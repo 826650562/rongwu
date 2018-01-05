@@ -1,0 +1,65 @@
+﻿*{padding:0px;margin:0px;}
+body {font-family: 'microsoft yahei', Arial, Helvetica, sans-serif;color: #444;background-color: #fff; font-size:14px;padding:0px;margin:0px; position:relative;}
+a{color:#444;}
+a:hover{color:#1d75c1; text-decoration:none;}
+
+.mar0{margin:0px  !important;}
+.marB15{margin:0px 0px  15px 0px !important;}
+.marB20{margin:0px 0px 20px 0px !important;}
+.marT15{margin-top:15px;}
+.marT30{margin-top:30px;}
+.marLR15{margin:0px 15px;}
+
+.colorBlue{color:#0873bd !important;}
+.colorGray{color:#999 !important;}
+.color666{color:#666 !important;}
+.colorWhite{color:#fff;}
+.pad0{padding:0px !important;}
+.pad10{padding:10px !important;}
+.pad15{padding:15px !important;}
+.padB15{padding:0px 0px 15px 0px;}
+.padT15{padding-top:15px;}
+.padLR8{padding:0px 8px !important;}
+.padLR15{padding:0px 15px !important;}
+.padLR20{padding:0px 20px !important;}
+.padLR25{padding:0px 25px !important;}
+.padLR30{padding:0px 30px !important;}
+.padTB10{padding:10px 0px !important;}
+.padTB15{padding:15px 0px !important;}
+.padTB20{padding:20px 0px !important;}
+.padTB25{padding:25px 0px !important;}
+.padTB30{padding:30px 0px !important;}
+
+.bgGray{ background:#f6f6f6;}
+.bgWhite{ background:#fff;}
+.bgBlue{ background:#0873bd;}
+.bgBlack{ background:#333;}
+.ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+
+.zInput{width:100%; height:45px;border:none;}
+.width100{width:100% !important;}
+
+
+
+/*--layui重定义--*/
+.layui-tab-title li {min-width: 50%; padding:0px;    line-height: 45px; font-size:15px;}
+.layui-tab {margin:0px;text-align: left!important;}
+.layui-btn { height: 45px; line-height: 45px;    border-radius: 0px; font-size:15px;}
+.layui-tab-title {height: 45px;}
+.layui-tab-title .layui-this:after {
+    height: 45px;}
+/*--login--*/
+.topbar{width:100%; height:45px; background:#fb3740; color:#fff;}
+.topbarleft{width:45px;height:45px;text-align:center; line-height:45px; cursor:pointer;}
+.topbarright{width:45px;height:45px;text-align:center; line-height:45px;}
+.topbarcenter{height:45px; line-height:45px; text-align:center; font-size:15px;}
+.loginInputXtb{width:45px; height:45px; line-height:45px; text-align:center; }
+.loginInput{border:1px solid #e6e6e6; margin-bottom:10px; box-sizing:border-box;}
+.loginbox{padding:0px 5px;}
+.hqyzm{border-left:1px solid #e6e6e6; font-size:14px; padding:0px 10px; line-height:45px; cursor:pointer; background:#f6f6f6;}
+.tpyzm{width:80px; height:35px; padding:5px 0px;}
+.tpyzmsx{width:40px; line-height:45px; height:45px; text-align:center; cursor:pointer;}
+/*--sjrz--*/
+.sjrzitem1{border-radius:5px; background:#069ce8; height:100px; margin-bottom:10px;}
+.sjrzitem2{border-radius:5px; background:#fc4b53; height:100px; margin-bottom:10px;}
+.sjrzitem3{border-radius:5px; background:#b450e6; height:100px; margin-bottom:10px;}
