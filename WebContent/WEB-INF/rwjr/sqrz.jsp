@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<title>商家入驻</title>
+<title>融五金融</title>
 <!--<link rel="icon" href="images/ico.png" type="image/x-icon">-->
 <link href="layui/css/layui.css" rel="stylesheet" type="text/css">
 <link href="fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -33,30 +33,33 @@
   <div class="topbar">
      <div class="z-row">
         <div class="topbarleft"><i class="fa fa-chevron-left fa-fw"></i></div>
-        <div class="z-col topbarcenter">商家入驻</div>
+        <div class="z-col topbarcenter">申请认证</div>
         <div class="topbarright"></div>
      </div>
   </div>
   
   <div class="pad15">
-  
-      <div class="z-row sjrzitem1">
-        <div class="z-col">
-        
-        </div>
-      </div>
 
-      <div class="z-row sjrzitem2">
-        <div class="z-col">
-        
-        </div>
-      </div>
 
-      <div class="z-row sjrzitem3">
-        <div class="z-col">
-        
-        </div>
+      <a href="#">  
+      <div class="z-row rzsq">
+        <div class="sjrzxtb"><img src="images/sfzxtb.png"></div>
+        <div class="z-col rzsqtxt">身份认证</div>
+        <div class="rzsqjt"><i class="fa fa-angle-right fa-2x"></i></div>
       </div>
+      </a>
+
+      
+     <a href="#">  
+      <div class="z-row rzsq">
+        <div class="sjrzxtb"> <img src="images/gpxtb.png"></div>
+        <div class="z-col rzsqtxt">工作认证</div>
+        <div class="rzsqjt"><i class="fa fa-angle-right fa-2x"></i></div>
+      </div>
+      </a>
+      
+
+      
 
   </div>
 </div>  
