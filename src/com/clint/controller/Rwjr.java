@@ -1,6 +1,7 @@
 package com.clint.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -73,24 +74,27 @@ public class Rwjr {
 	}
 	//检查手机验证码
 	@RequestMapping(value = "/checksjyzm")
-	public void checksjyzm(HttpServletRequest req,HttpServletResponse response) throws IOException {
+	public String checksjyzm(HttpServletRequest req,HttpServletResponse response) throws IOException {
 		 String sjyzm=(String) req.getParameter("dxyzm");
 		 String sjh=(String) req.getParameter("_sjh");
 		HttpSession session = req.getSession();
 		String yzm=(String) session.getAttribute("shoujiyanzhengma");
-		if(!yzm.isEmpty() && yzm==sjyzm){
-			response.getWriter().write("10002");
+		if(!yzm.isEmpty() && yzm.equals(sjyzm)){
 		    //将手机号存入数据库
-			List  sjhList = this.mapService.getListBySql("select * from user where sjh = '"+sjh+"'");
+			 List  sjhList = this.mapService.getListBySql("select * from user where sjh = '"+sjh+"'");
 			if(sjhList.size()<=0){
-				//this.mapService.execute();	
-			}
-			
-			
+				 this.mapService.execute("insert into user values('sjh','dlsj'),('"+sjh+"','"+new Date().getTime()+"');");	
+			 } 
+			//response.getWriter().write("10002");
+			return "redirect:/rwjr/shangjiaruzhuBe";
 		}else{
 			response.getWriter().write("10003");
 		}
-		
+		return yzm;
 	}
 	
+	@RequestMapping(value = "/shangjiaruzhuBe")
+	public String shangjiaruzhuBe() {
+		return "sjrz";
+	}
 }
