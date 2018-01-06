@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	pageContext.setAttribute("basePath", request.getContextPath());
+%>
 <!doctype html>
 <html>
 <head>
@@ -70,7 +75,11 @@
 
   </div>
 </div>  
-
+<script>
+  $(".sjrzjt").click(function(){
+     window.location.href = 'sqrz';
+  });
+</script>
 
 </body>
 </html>

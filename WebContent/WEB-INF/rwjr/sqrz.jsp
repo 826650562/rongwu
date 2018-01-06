@@ -1,10 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	pageContext.setAttribute("basePath", request.getContextPath());
+%>
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<title>融五金融</title>
+<title>融五金融-申请认证</title>
 <!--<link rel="icon" href="images/ico.png" type="image/x-icon">-->
 <link href="layui/css/layui.css" rel="stylesheet" type="text/css">
 <link href="fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
