@@ -11,11 +11,15 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <title>融五金融</title>
 <!--<link rel="icon" href="images/ico.png" type="image/x-icon">-->
-<link href="layui/css/layui.css" rel="stylesheet" type="text/css">
-<link href="fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link href="css/z-layout.css" rel="stylesheet" type="text/css">
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<link href="${basePath }/rwjr/layui/css/layui.css" rel="stylesheet" type="text/css">
+<link href="${basePath }/rwjr/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="${basePath }/rwjr/css/z-layout.css" rel="stylesheet" type="text/css">
+<link href="${basePath }/rwjr/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="${basePath }/rwjr/js/jquery-1.9.1.min.js"></script>
+
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script> 
+<script type="text/javascript" src="${basePath }/rwjr/js/common.js"></script>
+<script type="text/javascript" src="${basePath }/rwjr/js/sfrz.js"></script>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -45,12 +49,11 @@
   
   <div class=" pad15">
     
-    
        <div class="z-row">
           <div class="z-col">
              <div class="z-row">
                <div class="z-col sfzzimg">
-                  <img src="images/sfzzm.png"> 
+                  <img src="${basePath }/rwjr/images/sfzzm.png"> 
                </div>
              </div>
              <div class="z-row">
@@ -63,7 +66,7 @@
           <div class="z-col">
              <div class="z-row">
                <div class="z-col sfzzimg">
-                  <img src="images/sfzfm.png"> 
+                  <img src="${basePath }/rwjr/images/sfzfm.png"> 
                </div>
              </div>
              <div class="z-row">
@@ -78,7 +81,7 @@
           <div class="z-col">
              <div class="z-row">
                <div class="z-col sfzzimg">
-                  <img src="images/scsfzz.png"> 
+                  <img src="${basePath }/rwjr/images/scsfzz.png"> 
                </div>
              </div>
              <div class="z-row">
@@ -121,24 +124,13 @@
              </div>
           </div>
        </div>
-
-   
-       
-       
-      
-       
-       <div class="z-row marT15">
+ 
+       <div class="z-row marT15" id="sfzj_upload">
           <div class="z-col">
              <button class="layui-btn width100">保存</button>
           </div>
        </div>
-      
-
-    
-
-    
-    
-    
+ 
   </div>
   
 </div>  

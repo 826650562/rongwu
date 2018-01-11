@@ -50,7 +50,7 @@
       <div class="z-row rzsq">
         <div class="sjrzxtb"><img src="images/sfzxtb.png"></div>
         <div class="z-col rzsqtxt">身份认证</div>
-        <div class="rzsqjt"><i class="fa fa-angle-right fa-2x"></i></div>
+        <div class="rzsqjt" id="_sfzsqrz"><i class="fa fa-angle-right fa-2x"></i></div>
       </div>
       </a>
 
@@ -68,7 +68,13 @@
 
   </div>
 </div>  
-
+<script>
+$(function(){
+  $("#_sfzsqrz").click(function(){
+      window.location.href="../sfzyz/index";
+  });
+})
+</script>
 
 </body>
 </html>

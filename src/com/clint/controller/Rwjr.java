@@ -26,75 +26,89 @@ public class Rwjr {
 	private PersonService personService;
 	@Resource(name = "mapService")
 	private MapService mapService;
-	
-	
+
 	@RequestMapping(value = "/login")
 	public String savePersonUI() {
 		return "login";
 	}
-	@RequestMapping(value = "/yzm")
-	public void setYzm(HttpServletRequest req,HttpServletResponse response) throws IOException {
-		Sjm sjm=new Sjm();
-		sjm.setyzm(req,response);
+
+	@RequestMapping(value = "/sjrz")
+	public String sjrz(HttpServletRequest req, HttpServletResponse response) throws IOException {
+		return "sjrz";
 	}
-	 
+
+	@RequestMapping(value = "/sqrz")
+	public String sqrz(HttpServletRequest req, HttpServletResponse response) throws IOException {
+		return "sqrz";
+	}
+
+	@RequestMapping(value = "/yzm")
+	public void setYzm(HttpServletRequest req, HttpServletResponse response) throws IOException {
+		Sjm sjm = new Sjm();
+		sjm.setyzm(req, response);
+	}
+
 	@RequestMapping(value = "/getyzm")
-	public void _getYzm(HttpServletRequest req,HttpServletResponse response) throws IOException {
+	public void _getYzm(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		HttpSession session = req.getSession();
 		response.getWriter().write((String) session.getAttribute("validateCode"));
 	}
-	
+
 	@RequestMapping(value = "/getsjyzm")
-	public void getsjyzm(HttpServletRequest req,HttpServletResponse response) throws IOException, ClientException {
-		//发短信
-		 String sjh=(String) req.getParameter("sjh");
-		if(!sjh.isEmpty()){
-			SmsDemo sms=new SmsDemo();
+	public void getsjyzm(HttpServletRequest req, HttpServletResponse response) throws IOException, ClientException {
+		// 发短信
+		String sjh = (String) req.getParameter("sjh");
+		if (!sjh.isEmpty()) {
+			SmsDemo sms = new SmsDemo();
 			String s = "";
 			while (s.length() < 6)
-	            s += (int) (Math.random() * 10);
-			sms.setNumber(sjh,s);
+				s += (int) (Math.random() * 10);
+			sms.setNumber(sjh, s);
 			HttpSession session = req.getSession();
-			session.setAttribute("shoujiyanzhengma", s);
-	        SendSmsResponse res  = sms.sendSms();
-	        if (res.getCode() != null && res.getCode().equals("OK")) {
-	        	  response.getWriter().write("10010");
-	        }else if(res.getCode() != null && res.getCode().equals("isv.BUSINESS_LIMIT_CONTROL")){
-	        	response.getWriter().write("10011");
-	        }else{
-	        	  response.getWriter().write("10011");
-	        }
-	        
-	      
-		}else{
+			System.out.println(s);
+			session.setAttribute(sjh, s); // 手机号对应验证码
+			SendSmsResponse res = sms.sendSms();
+			if (res.getCode() != null && res.getCode().equals("OK")) {
+				response.getWriter().write("10010");
+			} else if (res.getCode() != null && res.getCode().equals("isv.BUSINESS_LIMIT_CONTROL")) {
+				response.getWriter().write("10011");
+			} else {
+				response.getWriter().write("10011");
+			}
+
+		} else {
 			response.getWriter().write("10001");
 		}
-		
-		
 	}
-	//检查手机验证码
+
+	// 检查手机验证码
 	@RequestMapping(value = "/checksjyzm")
-	public String checksjyzm(HttpServletRequest req,HttpServletResponse response) throws IOException {
-		 String sjyzm=(String) req.getParameter("dxyzm");
-		 String sjh=(String) req.getParameter("_sjh");
+	public void checksjyzm(HttpServletRequest req, HttpServletResponse response) throws IOException {
+		String sjyzm = (String) req.getParameter("dxyzm");
+		String sjh = (String) req.getParameter("_sjh");
 		HttpSession session = req.getSession();
-		String yzm=(String) session.getAttribute("shoujiyanzhengma");
-		if(!yzm.isEmpty() && yzm.equals(sjyzm)){
-		    //将手机号存入数据库
-			 List  sjhList = this.mapService.getListBySql("select * from user where sjh = '"+sjh+"'");
-			if(sjhList.size()<=0){
-				 this.mapService.execute("insert into user values('sjh','dlsj'),('"+sjh+"','"+new Date().getTime()+"');");	
-			 } 
-			//response.getWriter().write("10002");
-			return "redirect:/rwjr/shangjiaruzhuBe";
-		}else{
-			response.getWriter().write("10003");
+		String yzm = (String) session.getAttribute(sjh);// 获取手机验证码
+
+		if (!!(yzm == null) || yzm.isEmpty()) {
+			response.getWriter().write("10004");// 没有发送请求验证码
+		} else if (yzm.equals(sjyzm)) {
+			// 将手机号存入数据库
+			List sjhList = this.mapService.getListBySql("select * from user where sjh = '" + sjh + "'");
+			if (sjhList.size() <= 0) {
+				this.mapService
+						.execute("insert into user (sjh,dlsj)values('" + sjh + "','" + new Date().getTime() + "');");
+			}else{
+				this.mapService
+				.execute("UPDATE user SET sjh='" + sjh + "',dlsj= '" + new Date().getTime() + "' where sjh = '" + sjh + "'");
+			}
+		    //将登录信息写入session
+			session.setMaxInactiveInterval(900);
+			session.setAttribute("user", sjh);
+			response.getWriter().write("10002");
+		} else {
+			response.getWriter().write("10003");// 验证码错误
 		}
-		return yzm;
+
 	}
-	
-	@RequestMapping(value = "/shangjiaruzhuBe")
-	public String shangjiaruzhuBe() {
-		return "sjrz";
-	}
+
 }
