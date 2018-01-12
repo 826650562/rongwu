@@ -11,6 +11,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -118,7 +119,7 @@ public class Sfyz {
 	 *            内容类型
 	 * @return
 	 */
-	public  String getFileexpandedName(String contentType) {
+	public String getFileexpandedName(String contentType) {
 		String fileEndWitsh = "";
 		if ("image/jpeg".equals(contentType))
 			fileEndWitsh = ".jpg";
@@ -142,10 +143,10 @@ public class Sfyz {
 	 *            媒体文件id
 	 * @param savePath
 	 *            文件在本地服务器上的存储路径
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	@RequestMapping(value = "/downloadMedia")
-	public  void downloadMedia(HttpServletRequest req, HttpServletResponse response) throws IOException {
+	public void downloadMedia(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		String mediaId = (String) req.getParameter("picid");
 
 		String path = req.getServletContext().getContextPath();
@@ -177,7 +178,7 @@ public class Sfyz {
 			fos.close();
 			bis.close();
 			conn.disconnect();
-		
+
 		} catch (Exception e) {
 			filePath = null;
 			String error = String.format("下载媒体文件失败：%s", e);
@@ -185,26 +186,70 @@ public class Sfyz {
 		}
 		response.getWriter().write("10700");
 	}
-	
-	//将图片路径放入数据库
+
+	// 将图片路径放入数据库
 	@RequestMapping(value = "/savePicsAndIpone")
 	public void savePicsAndIpone(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		String pics = (String) req.getParameter("serverIds");
 		if (!pics.isEmpty()) {
-			//分割字符串
-			String[] picArr=pics.split(",");
+			// 分割字符串
+			String[] picArr = pics.split(",");
 			HttpSession session = req.getSession();
-			String sjh = (String) session.getAttribute("user");// 获取手机 
+			String sjh = (String) session.getAttribute("user");// 获取手机
 			List sjhList = this.mapService.getListBySql("select * from sjh_sfzpic  where  sjh = '" + sjh + "'");
 			if (sjhList.size() <= 0) {
-				this.mapService
-						.execute("insert into sjh_sfzpic (sjh,_beforpic,_mepic,_afterpic) values('" + sjh + "','" + picArr[0]+ "','" + picArr[1]+ "','" + picArr[2] + "');");
-			}else{
-				this.mapService
-				.execute("UPDATE sjh_sfzpic SET sjh='" + sjh + "', _beforpic='" + picArr[0]  + "', _mepic='" + picArr[1]  +  "', _afterpic='" + picArr[2]  +   "', _ispass='" + 0  + "' where sjh = '" + sjh + "'");
+				this.mapService.execute("insert into sjh_sfzpic (sjh,_beforpic,_mepic,_afterpic) values('" + sjh + "','"
+						+ picArr[0] + "','" + picArr[1] + "','" + picArr[2] + "');");
+			} else {
+				this.mapService.execute(
+						"UPDATE sjh_sfzpic SET sjh='" + sjh + "', _beforpic='" + picArr[0] + "', _mepic='" + picArr[1]
+								+ "', _afterpic='" + picArr[2] + "', _ispass='" + 0 + "' where sjh = '" + sjh + "'");
 			}
 			response.getWriter().write("10071");
 		}
 	}
+
+	@RequestMapping(value = "/getstatusOfsq")
+	public void getstatusOfsq(HttpServletRequest req, HttpServletResponse response) throws IOException {
+		String sjh= (String) req.getParameter("_sfrzsjh");
+		String sql="select t._ispass from sjh_sfzpic t where t.sjh="+sjh;
+		List list=mapService.getListBySql(sql);
+        if(list.size()<=0){
+        	//不存在记录 需要申请
+        	response.getWriter().write("10703");
+        }else {
+        	Map map=(Map) list.get(0);
+        	Integer _ispass=(Integer) map.get("_ispass");
+        	if(String.valueOf(_ispass).endsWith("0")){
+        		//等于0 审核中  等于1 通过  2 退回 otherInfo
+        		response.getWriter().write("10700");
+        	}else if(String.valueOf(_ispass).endsWith("1")){
+        		response.getWriter().write("10701");
+        	}else if(String.valueOf(_ispass).endsWith("2")){
+        		map.put("code", "10702");
+        		JSONArray jsonArray = JSONArray.fromObject(map);
+    			response.getWriter().write(jsonArray.toString());
+        	}
+        }		
+	}
+	@RequestMapping(value = "/saveInfoForuser")
+	public void saveInfoForuser(HttpServletRequest req, HttpServletResponse response) throws IOException {
+		String _xm= (String) req.getParameter("_xm");
+		String _sfz= (String) req.getParameter("_sfz");
+		String _sjh= (String) req.getParameter("_sjh");
+		
+		List sjhList = this.mapService.getListBySql("select * from user  where  sjh = '" + _sjh + "'");
+		if (sjhList.size() <= 0) {
+			this.mapService.execute("insert into user (sfz,realname) values('" + _sfz + "','"
+					+ _xm +  "');");
+		} else {
+			this.mapService.execute(
+					"UPDATE user SET  sfz='" + _sfz + "', realname='" +_xm + "' where sjh = '" + _sjh + "'");
+		}
+		response.getWriter().write("10071");
+       	
+	}
+	
+	
 
 }

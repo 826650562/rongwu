@@ -86,7 +86,7 @@
 
 			<div class="z-row marT15">
 				<div class="z-col">
-					<button class="layui-btn width100">认证</button>
+					<button class="layui-btn width100" id="_rz">认证</button>
 				</div>
 			</div>
 
@@ -97,28 +97,45 @@
 	<script>
 		$(function() {
 			var sjh = getCookie("_user");
+			alert(111);
 			if (sjh) {
 				$.ajax({
-					url : "savePicsAndIpone", //判断是不是已发申请
+					url : "getstatusOfsq", //判断申请状态
 					type : "post",
 					contentType : "application/x-www-form-urlencoded",
 					data : {
-						serverIds : serverIds
+						_sfrzsjh : sjh
 					},
 					success : function(code) {
-						alert("上传完成2");
-						var search = window.location.href;
-						search = search.split("#")[1];
-						//返回页面
-						window.location.href = 'index#' + search + "," + encodeURIComponent("身份证照片已上传");
+						if (code == "10703") {
+						    alert(code);
+							dosomething();
+						} else if (code == "10700") {
+						 alert(code);
+							$("#_xm").attr('disabled', "disabled");
+							$("#_sfz").attr('disabled', "disabled");
+							$("#djscsfz").attr('disabled', "disabled");
+							$("#djscsfz").unbind("click");
+							$("#djscsfz").html("<font color='green'>身份证照片已上传</font>");
+							$("#_rz").fadeOut();
+						} else if (code == "10701") {
+						 alert(code);
+							$("#_xm").attr('disabled', "disabled");
+							$("#_sfz").attr('disabled', "disabled");
+							$("#djscsfz").attr('disabled', "disabled");
+							$("#djscsfz").unbind("click");
+							$("#djscsfz").html("<font color='green'>审核通过</font>");
+							$("#_rz").fadeOut();
+						} else {
+						 alert(code);
+							$("#djscsfz").html("<font color='red'>审核不通过</font>");
+							$("#_rz").fadeIn();
+						}
 					},
 					error : function(error) {}
 				});
 	
 			}
-	
-	
-	
 	
 			var search = window.location.href;
 			search = search.split("#")[1];
@@ -130,38 +147,63 @@
 					$("#_sfz").val(searchs[1]);
 					$("#djscsfz").text(searchs[2]);
 					$("#djscsfz").attr("sfzzp_ok", '10010');
-					$('.hqyzm').unbind("click");
 				}
 			}
 	
 	
-			function check() {
-				var _xm = $.trim($("#_xm").val());
-				var _sfz = $.trim($("#_sfz").val());
-				var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-				if (_xm.length <= 0) {
-					_msg("姓名不能为空！");
-					return false;
+	
+			function dosomething() {
+				function check() {
+					var _xm = $.trim($("#_xm").val());
+					var _sfz = $.trim($("#_sfz").val());
+					var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+					if (_xm.length <= 0) {
+						_msg("姓名不能为空！");
+						return false;
+					}
+					if (_sfz.length <= 0) {
+						_msg("身份证不能为空！");
+						return false;
+					}
+					if (reg.test(_sfz) === false) {
+						_msg("身份证输入不合法");
+						return false;
+					}
+					return true;
 				}
-				if (_sfz.length <= 0) {
-					_msg("身份证不能为空！");
-					return false;
-				}
-				if (reg.test(_sfz) === false) {
-					_msg("身份证输入不合法");
-					return false;
-				}
-				return true;
+	
+				$("#djscsfz").click(function() {
+					if (check()) {
+						var url = encodeURIComponent($.trim($("#_xm").val()) + "," + $.trim($("#_sfz").val()));
+						alert(url);
+						window.location.href = "scsfzzJsp#" + url;
+					}
+				});
+	
+				$("._rz").click(function() {
+					if ($("#djscsfz").attr("sfzzp_ok") == '10010') {
+						_msg("请先上传身份证照片");return false;
+					} else {
+						var _xm = $.trim($("#_xm").val());
+						var _sfz = $.trim($("#_sfz").val());
+						$.ajax({
+							url : "saveInfoForuser", //判断申请状态
+							type : "post",
+							contentType : "application/x-www-form-urlencoded",
+							data : {
+								_xm : _xm,
+								_sfz : _sfz,
+								_sjh:sjh
+							},
+							success : function(code) {
+							  
+							},
+							error : function(error) {}
+						});
+					}
+				});
+	
 			}
-	
-			$("#djscsfz").click(function() {
-				if (check()) {
-					var url = encodeURIComponent($.trim($("#_xm").val()) + "," + $.trim($("#_sfz").val()));
-					alert(url);
-					window.location.href = "scsfzzJsp#" + url;
-				}
-			});
-	
 	
 		})
 	</script>
