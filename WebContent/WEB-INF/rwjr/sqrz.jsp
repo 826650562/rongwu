@@ -49,7 +49,7 @@
       <a href="#">  
       <div class="z-row rzsq">
         <div class="sjrzxtb"><img src="images/sfzxtb.png"></div>
-        <div class="z-col rzsqtxt">身份认证</div>
+        <div class="z-col rzsqtxt colorRed">身份认证</div>
         <div class="rzsqjt" id="_sfzsqrz"><i class="fa fa-angle-right fa-2x"></i></div>
       </div>
       </a>
@@ -58,7 +58,7 @@
      <a href="#">  
       <div class="z-row rzsq">
         <div class="sjrzxtb"> <img src="images/gpxtb.png"></div>
-        <div class="z-col rzsqtxt">工作认证</div>
+        <div class="z-col rzsqtxt colorZise">工作认证</div>
         <div class="rzsqjt"><i class="fa fa-angle-right fa-2x"></i></div>
       </div>
       </a>

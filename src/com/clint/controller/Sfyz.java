@@ -191,11 +191,11 @@ public class Sfyz {
 	@RequestMapping(value = "/savePicsAndIpone")
 	public void savePicsAndIpone(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		String pics = (String) req.getParameter("serverIds");
+		String sjh= (String) req.getParameter("_sjh");
 		if (!pics.isEmpty()) {
 			// 分割字符串
 			String[] picArr = pics.split(",");
 			HttpSession session = req.getSession();
-			String sjh = (String) session.getAttribute("user");// 获取手机
 			List sjhList = this.mapService.getListBySql("select * from sjh_sfzpic  where  sjh = '" + sjh + "'");
 			if (sjhList.size() <= 0) {
 				this.mapService.execute("insert into sjh_sfzpic (sjh,_beforpic,_mepic,_afterpic) values('" + sjh + "','"
@@ -239,13 +239,14 @@ public class Sfyz {
 		String _sjh= (String) req.getParameter("_sjh");
 		
 		List sjhList = this.mapService.getListBySql("select * from user  where  sjh = '" + _sjh + "'");
-		if (sjhList.size() <= 0) {
-			this.mapService.execute("insert into user (sfz,realname) values('" + _sfz + "','"
-					+ _xm +  "');");
-		} else {
+		if (sjhList.size() >= 0) {
+		/*	this.mapService.execute("insert into user (sfz,realname) values('" + _sfz + "','"
+					+ _xm +  "');");*/
+			System.out.println(
+					"UPDATE user SET  sfz='" + _sfz + "', realname='" +_xm + "' where sjh = '" + _sjh + "'");
 			this.mapService.execute(
 					"UPDATE user SET  sfz='" + _sfz + "', realname='" +_xm + "' where sjh = '" + _sjh + "'");
-		}
+		}  
 		response.getWriter().write("10071");
        	
 	}

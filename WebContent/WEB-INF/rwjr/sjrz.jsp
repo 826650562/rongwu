@@ -11,11 +11,11 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <title>融五金融</title>
 <!--<link rel="icon" href="images/ico.png" type="image/x-icon">-->
-<link href="layui/css/layui.css" rel="stylesheet" type="text/css">
-<link href="fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link href="css/z-layout.css" rel="stylesheet" type="text/css">
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<link href="${basePath }/rwjr/layui/css/layui.css" rel="stylesheet" type="text/css">
+<link href="${basePath }/rwjr/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="${basePath }/rwjr/css/z-layout.css" rel="stylesheet" type="text/css">
+<link href="${basePath }/rwjr/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="${basePath }/rwjr/js/jquery-1.9.1.min.js"></script>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,7 +47,7 @@
 
 
       <a href="#">  
-      <div class="z-row sjrzitem1">
+      <div class="z-row sjrzitem">
         <div class="sjrzxtb"><img src="images/xdxtb.png"></div>
         <div class="z-col sjrzitemtxt"> 信贷经理入驻</div>
         <div class="sjrzjt"><i class="fa fa-angle-right fa-2x"></i></div>
@@ -56,7 +56,7 @@
 
       
      <a href="#">  
-      <div class="z-row sjrzitem2">
+      <div class="z-row sjrzitem">
         <div class="sjrzxtb"> <img src="images/qcxtb.png"></div>
         <div class="z-col sjrzitemtxt">二手车商入驻</div>
         <div class="sjrzjt"><i class="fa fa-angle-right fa-2x"></i></div>
@@ -65,7 +65,7 @@
       
       
       <a href="#"> 
-      <div class="z-row sjrzitem3">
+      <div class="z-row sjrzitem">
         <div class="sjrzxtb"> <img src="images/zjxtb.png"></div>
         <div class="z-col sjrzitemtxt"> 房产中介入驻</div>
         <div class="sjrzjt"><i class="fa fa-angle-right fa-2x"></i></div>

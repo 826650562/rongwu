@@ -107,12 +107,14 @@ $(function() {
 
               function savePicsTOdata(serverIds){
             	  var serverIds=serverIds.substring(0,serverIds.length-1);
+            		var sjh = getCookie("_user");
             		$.ajax({
 						url : "savePicsAndIpone",
 						type : "post",
 						contentType : "application/x-www-form-urlencoded",
 						data : {
-							serverIds : serverIds 
+							serverIds : serverIds,
+							_sjh:sjh
 						},
 						success : function(code) {
 							alert("上传完成2");

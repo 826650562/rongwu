@@ -96,47 +96,6 @@
 	</div>
 	<script>
 		$(function() {
-			var sjh = getCookie("_user");
-			alert(111);
-			if (sjh) {
-				$.ajax({
-					url : "getstatusOfsq", //判断申请状态
-					type : "post",
-					contentType : "application/x-www-form-urlencoded",
-					data : {
-						_sfrzsjh : sjh
-					},
-					success : function(code) {
-						if (code == "10703") {
-						    alert(code);
-							dosomething();
-						} else if (code == "10700") {
-						 alert(code);
-							$("#_xm").attr('disabled', "disabled");
-							$("#_sfz").attr('disabled', "disabled");
-							$("#djscsfz").attr('disabled', "disabled");
-							$("#djscsfz").unbind("click");
-							$("#djscsfz").html("<font color='green'>身份证照片已上传</font>");
-							$("#_rz").fadeOut();
-						} else if (code == "10701") {
-						 alert(code);
-							$("#_xm").attr('disabled', "disabled");
-							$("#_sfz").attr('disabled', "disabled");
-							$("#djscsfz").attr('disabled', "disabled");
-							$("#djscsfz").unbind("click");
-							$("#djscsfz").html("<font color='green'>审核通过</font>");
-							$("#_rz").fadeOut();
-						} else {
-						 alert(code);
-							$("#djscsfz").html("<font color='red'>审核不通过</font>");
-							$("#_rz").fadeIn();
-						}
-					},
-					error : function(error) {}
-				});
-	
-			}
-	
 			var search = window.location.href;
 			search = search.split("#")[1];
 			if (search) {
@@ -145,12 +104,56 @@
 				if (searchs.length) {
 					$("#_xm").val(searchs[0]);
 					$("#_sfz").val(searchs[1]);
-					$("#djscsfz").text(searchs[2]);
+					$("#djscsfz").html("<font color='green'>" + searchs[2] + "</font>");
 					$("#djscsfz").attr("sfzzp_ok", '10010');
+					dosomething();
+				}
+			} else {
+				var sjh = getCookie("_user");
+				if (sjh) {
+					$.ajax({
+						url : "getstatusOfsq", //判断申请状态
+						type : "post",
+						contentType : "application/x-www-form-urlencoded",
+						data : {
+							_sfrzsjh : sjh
+						},
+						success : function(code) {
+							var _xm = getCookie("_xm") || "请输入名字";
+							var _sfz = getCookie("_sfz") || "请输入身份证号";
+							if (code == "10703") {
+								dosomething();
+							} else if (code == "10700") {
+								$("#_xm").attr("placeholder", _xm);
+								$("#_sfz").attr("placeholder", _sfz);
+								$("#_xm").attr('disabled', "disabled");
+								$("#_sfz").attr('disabled', "disabled");
+								$("#djscsfz").attr('disabled', "disabled");
+								$("#djscsfz").unbind("click");
+								$(".sfzrztssr").text("身份证信息");
+								$("#djscsfz").html("<font color='green'>身份信息已上传，审核中</font>");
+								$("#_rz").fadeOut();
+							} else if (code == "10701") {
+								$("#_xm").attr("placeholder", _xm);
+								$("#_sfz").attr("placeholder", _sfz);
+								$("#_xm").attr('disabled', "disabled");
+								$("#_sfz").attr('disabled', "disabled");
+								$("#djscsfz").attr('disabled', "disabled");
+								$("#djscsfz").unbind("click");
+								$("#djscsfz").html("<font color='green'>审核通过</font>");
+								$("#_rz").fadeOut();
+							} else {
+								$("#_xm").attr("placeholder", "请输入");
+								$("#_sfz").attr("placeholder", "请输入");
+								$("#djscsfz").html("<font color='red'>审核不通过，请检查后上传</font>");
+								$("#_rz").fadeIn();
+								dosomething();
+							}
+						},
+						error : function(error) {}
+					});
 				}
 			}
-	
-	
 	
 			function dosomething() {
 				function check() {
@@ -175,17 +178,23 @@
 				$("#djscsfz").click(function() {
 					if (check()) {
 						var url = encodeURIComponent($.trim($("#_xm").val()) + "," + $.trim($("#_sfz").val()));
-						alert(url);
 						window.location.href = "scsfzzJsp#" + url;
 					}
 				});
 	
-				$("._rz").click(function() {
-					if ($("#djscsfz").attr("sfzzp_ok") == '10010') {
+				$("#_rz").click(function() {
+					if (!$("#djscsfz").attr("sfzzp_ok")) {
 						_msg("请先上传身份证照片");return false;
 					} else {
 						var _xm = $.trim($("#_xm").val());
 						var _sfz = $.trim($("#_sfz").val());
+					    var sjh = getCookie("_user");
+						if (_xm.length <= 0) {
+							_msg("姓名不能为空！"); return false;
+						}
+						if (_sfz.length <= 0) {
+							_msg("身份证号不能为空！"); return false;
+						}
 						$.ajax({
 							url : "saveInfoForuser", //判断申请状态
 							type : "post",
@@ -193,12 +202,19 @@
 							data : {
 								_xm : _xm,
 								_sfz : _sfz,
-								_sjh:sjh
+								_sjh : sjh
 							},
 							success : function(code) {
-							  
+								if (code == '10071') {
+									alert("信息已提交！");
+									setCookie("_xm", _xm);
+									setCookie("_sfz", _sfz);
+									window.location.href = '../rwjr/sjrz';
+								}
 							},
-							error : function(error) {}
+							error : function(error) {
+								_msg("系统错误！");
+							}
 						});
 					}
 				});
