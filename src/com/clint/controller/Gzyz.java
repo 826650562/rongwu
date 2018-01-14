@@ -30,8 +30,8 @@ import com.clint.untils.Outer;
 import net.sf.json.JSONArray;
 
 @Controller
-@RequestMapping(value = "/sfzyz")
-public class Sfyz {
+@RequestMapping(value = "/gzyz")
+public class Gzyz {
 	@Resource(name = "personService")
 	private PersonService personService;
 	@Resource(name = "mapService")
@@ -42,11 +42,12 @@ public class Sfyz {
 		return "sfzrz";
 	}
 
-	@RequestMapping(value = "/scsfzzJsp")
-	public String scsfzzJsp() {
+	@RequestMapping(value = "/scsgzzJsp")
+	public String scsgzzJsp() {
 		return "scsfzz";
 	}
 
+	// 检查手机验证码
 	@RequestMapping(value = "/scPics")
 	public void scPics(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		String _url = (String) req.getParameter("url");
@@ -195,30 +196,29 @@ public class Sfyz {
 			// 分割字符串
 			String[] picArr = pics.split(",");
 			HttpSession session = req.getSession();
-			List sjhList = this.mapService.getListBySql("select * from sjh_sfzpic  where  sjh = '" + sjh + "'");
+			List sjhList = this.mapService.getListBySql("select * from sjh_gzzpic  where  sjh = '" + sjh + "'");
 			if (sjhList.size() <= 0) {
-				this.mapService.execute("insert into sjh_sfzpic (sjh,_beforpic,_mepic,_afterpic) values('" + sjh + "','"
-						+ picArr[0] + "','" + picArr[1] + "','" + picArr[2] + "');");
+				this.mapService.execute("insert into sjh_gzzpic (sjh,gzzp ) values('" + sjh + "','"
+						+ picArr[0] +   "');");
 			} else {
 				this.mapService.execute(
-						"UPDATE sjh_sfzpic SET sjh='" + sjh + "', _beforpic='" + picArr[0] + "', _mepic='" + picArr[1]
-								+ "', _afterpic='" + picArr[2] + "', _ispass='" + 0 + "' where sjh = '" + sjh + "'");
+						"UPDATE sjh_gzzpic SET sjh='" + sjh + "', gzzp='" + picArr[0] + "', _ispass='" + 0 + "' where sjh = '" + sjh + "'");
 			}
 			response.getWriter().write("10071");
 		}
 	}
 
-	@RequestMapping(value = "/getstatusOfsq")
-	public void getstatusOfsq(HttpServletRequest req, HttpServletResponse response) throws IOException {
+	@RequestMapping(value = "/getstatusOfsqgzz")
+	public void getstatusOfsqgzz(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		String sjh= (String) req.getParameter("_sfrzsjh");
-		String sql="select t._ispass from sjh_sfzpic t where t.sjh="+sjh;
+		String sql="select t.ispass from sjh_gzzpic t where t.sjh="+sjh;
 		List list=mapService.getListBySql(sql);
         if(list.size()<=0){
         	//不存在记录 需要申请
         	response.getWriter().write("10703");
         }else {
         	Map map=(Map) list.get(0);
-        	Integer _ispass=(Integer) map.get("_ispass");
+        	Integer _ispass=(Integer) map.get("ispass");
         	if(String.valueOf(_ispass).endsWith("0")){
         		//等于0 审核中  等于1 通过  2 退回 otherInfo
         		response.getWriter().write("10700");
@@ -233,8 +233,9 @@ public class Sfyz {
 	}
 	@RequestMapping(value = "/saveInfoForuser")
 	public void saveInfoForuser(HttpServletRequest req, HttpServletResponse response) throws IOException {
-		String _xm= (String) req.getParameter("_xm");
-		String _sfz= (String) req.getParameter("_sfz");
+		String _gsmc= (String) req.getParameter("_gsmc");
+		String _grzw= (String) req.getParameter("_grzw");
+		String _city= (String) req.getParameter("_city");
 		String _sjh= (String) req.getParameter("_sjh");
 		
 		List sjhList = this.mapService.getListBySql("select * from user  where  sjh = '" + _sjh + "'");
@@ -242,9 +243,9 @@ public class Sfyz {
 		/*	this.mapService.execute("insert into user (sfz,realname) values('" + _sfz + "','"
 					+ _xm +  "');");*/
 			System.out.println(
-					"UPDATE user SET  sfz='" + _sfz + "', realname='" +_xm + "' where sjh = '" + _sjh + "'");
+					"UPDATE user SET  gsmc='" + _gsmc + "', grzw='" +_grzw + "', city='" +_city+ "' where sjh = '" + _sjh + "'");
 			this.mapService.execute(
-					"UPDATE user SET  sfz='" + _sfz + "', realname='" +_xm + "' where sjh = '" + _sjh + "'");
+					"UPDATE user SET  gsmc='" + _gsmc + "', grzw='" +_grzw+ "', city='" +_city + "' where sjh = '" + _sjh + "'");
 		}  
 		response.getWriter().write("10071");
        	

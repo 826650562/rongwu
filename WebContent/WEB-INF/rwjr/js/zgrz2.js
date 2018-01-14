@@ -5,7 +5,7 @@ $(function() {
 		type : "post",
 		contentType : "application/x-www-form-urlencoded",
 		data : {
-			url : "http://www.80wangjian.com/springmvc/sfzyz/scsfzzJsp"
+			url : "http://www.80wangjian.com/springmvc/gzyz/scsgzzJsp"
 		},
 		success : function(data) {
 			var res = JSON.parse(data)[0];
@@ -23,7 +23,7 @@ $(function() {
 			wx.ready(function() {
 				//选择图片
 				var mylocalIds=[];
-				$(".sfzzimg").click(function() {
+				$(".scsfzcont").click(function() {
 					var that = $(this);
 					wx.chooseImage({
 						count : 1,
@@ -43,17 +43,18 @@ $(function() {
 					});
 				});
 				//上传
-				$("#sfzj_upload").click(function() {
+				$("#gzzj_upload").click(function() {
 					var isok = true;
 					var len=mylocalIds.length;
-					var imgs = [];
+					var mylocalId=$(".scsfzcont").find("img").attr("mylocalId");
+					
+					
+					var imgs = [mylocalId];
 					$(".sfzzimg").find("img").each(function() {
 						if (!$(this).attr("is_load")) {
 							alert("请先完成证件图片上传！");
 							isok = false;
-						} else {
-							imgs.push($(this).attr("mylocalId"));
-						}
+						}  
 					});
 					if (isok) {
 						//上传到腾讯服务器
@@ -69,11 +70,10 @@ $(function() {
 									index++;
 									serverIds =serverIds+res.serverId+",";
 									uploadFilsToMe(res.serverId, function() {
-										if(index==3){
+										if(index==1){
 											alert("上传完成1");
 											//将图片名称+手机号放入数据库
 											savePicsTOdata(serverIds);
-											
 										}else{
 											wxuploadImage(index, imgs);
 										}
@@ -120,10 +120,8 @@ $(function() {
 						},
 						success : function(code) {
 							alert("上传完成2");
-							var search = window.location.href;
-							search = search.split("#")[1];
 							//返回页面
-							window.location.href='index#'+search+","+encodeURIComponent("身份证照片已上传");
+							window.location.href='index#'+encodeURIComponent("工作证照片已上传");
 						},
 						error : function(error) {
 						}

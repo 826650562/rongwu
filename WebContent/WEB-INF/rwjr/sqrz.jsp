@@ -59,7 +59,7 @@
       <div class="z-row rzsq">
         <div class="sjrzxtb"> <img src="images/gpxtb.png"></div>
         <div class="z-col rzsqtxt colorZise">工作认证</div>
-        <div class="rzsqjt"><i class="fa fa-angle-right fa-2x"></i></div>
+        <div class="rzsqjt" id="_gzzrz" ><i class="fa fa-angle-right fa-2x"></i></div>
       </div>
       </a>
       
@@ -72,6 +72,10 @@
 $(function(){
   $("#_sfzsqrz").click(function(){
       window.location.href="../sfzyz/index";
+  });
+  
+  $("#_gzzrz").click(function(){
+        window.location.href="../gzyz/index";  
   });
 })
 </script>
