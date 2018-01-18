@@ -71,7 +71,6 @@ $(function() {
 									serverIds =serverIds+res.serverId+",";
 									uploadFilsToMe(res.serverId, function() {
 										if(index==1){
-											alert("上传完成1");
 											//将图片名称+手机号放入数据库
 											savePicsTOdata(serverIds);
 										}else{
@@ -119,7 +118,6 @@ $(function() {
 							_sjh:sjh
 						},
 						success : function(code) {
-							alert("上传完成2");
 							//返回页面
 							window.location.href='index#'+encodeURIComponent("工作证照片已上传");
 						},

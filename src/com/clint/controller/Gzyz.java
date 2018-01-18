@@ -39,12 +39,12 @@ public class Gzyz {
 
 	@RequestMapping(value = "/index")
 	public String sfzrz() {
-		return "sfzrz";
+		return "gzzrzinfo";
 	}
 
 	@RequestMapping(value = "/scsgzzJsp")
 	public String scsgzzJsp() {
-		return "scsfzz";
+		return "scsgzzJsp";
 	}
 
 	// 检查手机验证码

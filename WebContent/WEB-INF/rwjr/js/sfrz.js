@@ -70,7 +70,6 @@ $(function() {
 									serverIds =serverIds+res.serverId+",";
 									uploadFilsToMe(res.serverId, function() {
 										if(index==3){
-											alert("上传完成1");
 											//将图片名称+手机号放入数据库
 											savePicsTOdata(serverIds);
 											
@@ -119,7 +118,6 @@ $(function() {
 							_sjh:sjh
 						},
 						success : function(code) {
-							alert("上传完成2");
 							var search = window.location.href;
 							search = search.split("#")[1];
 							//返回页面

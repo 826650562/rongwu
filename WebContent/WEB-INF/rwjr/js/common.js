@@ -1,19 +1,22 @@
-function  _msg(info){
+function  _msg(info,fn){
 	layer.open({
 		content : info,
 		skin : 'msg',
 		time : 2 //2秒后自动关闭
+	}, function(){
+		  //do something
+		fn();
 	});
 }
 
 function setCookie(name, value, liveMinutes) {    
-    if (liveMinutes == undefined || liveMinutes == null) {  
+/*    if (liveMinutes == undefined || liveMinutes == null) {  
         liveMinutes = 60 * 200;  
     }  
     if (typeof (liveMinutes) != 'number') {  
-        liveMinutes = 60 * 2;//默认120分钟  
-    }  
-    var minutes = liveMinutes * 60 * 1000;  
+        liveMinutes = 600000 * 2;//默认120分钟  
+    }  */
+    var minutes = 6000000 * 60 * 1000;  
     var exp = new Date();  
     exp.setTime(exp.getTime() + minutes + 8 * 3600 * 1000);  
     //path=/表示全站有效，而不是当前页  

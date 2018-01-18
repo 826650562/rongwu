@@ -16,6 +16,12 @@
 <link href="${basePath }/rwjr/css/z-layout.css" rel="stylesheet" type="text/css">
 <link href="${basePath }/rwjr/css/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="${basePath }/rwjr/js/jquery-1.9.1.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script type="text/javascript" src="${basePath }/rwjr/layui/layui.js"></script>
+<script type="text/javascript" src="${basePath }/rwjr/js/layer.js"></script>
+<script type="text/javascript" src="${basePath }/rwjr/js/common.js"></script>
+<script type="text/javascript" src="${basePath }/rwjr/js/zgrz2.js"></script>
+
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -36,7 +42,7 @@
   
   <div class=" pad15">
        <div class="z-row scsfzcont">
-          <div class="z-col scsfzzimg"><img src="images/scsfzz.jpg"> </div>
+          <div class="z-col scsfzzimg"><img src="${basePath }/rwjr/images/scsfzz.jpg"> </div>
        </div>
        
        <div class="z-row scsfzztishi">

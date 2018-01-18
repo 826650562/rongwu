@@ -22,6 +22,13 @@
 	type="text/css">
 <script type="text/javascript"
 	src="${basePath }/rwjr/js/jquery-1.9.1.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script type="text/javascript" src="${basePath }/rwjr/layui/layui.js"></script>
+<script type="text/javascript" src="${basePath }/rwjr/js/layer.js"></script>
+<script type="text/javascript" src="${basePath }/rwjr/js/common.js"></script>
+<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script>
+
+
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -76,6 +83,52 @@
 	</div>
 	<script>
 		$(function() {
+			if (!$.trim($("#_city").val())) {
+	
+				$.ajax({
+					url : "scPics",
+					type : "post",
+					contentType : "application/x-www-form-urlencoded",
+					data : {
+						url : "http://www.80wangjian.com/springmvc/gzyz/index"
+					},
+					success : function(data) {
+						var res = JSON.parse(data)[0];
+						wx.config({
+							debug : false,
+							appId : 'wxc3691f09dbfd769d',
+							timestamp : res.timestamp,
+							nonceStr : res.noncestr,
+							signature : res.signature,
+							jsApiList : [ 'chooseImage', 'uploadImage', 'downloadImage',
+								'previewImage', 'openLocation', 'getLocation',
+								'scanQRCode', 'checkJsApi', 'onMenuShareTimeline',
+								'onMenuShareAppMessage', 'onMenuShareQQ',
+								'onMenuShareWeibo', 'onMenuShareQZone' ]
+						});
+						wx.ready(function() {
+							wx.getLocation({
+								type : 'gcj02',
+								success : function(res) {
+									var longitude = res.longitude
+									var latitude = res.latitude
+									var latLng = new qq.maps.LatLng(latitude, longitude);
+									//调用获取位置方法
+									geocoder = new qq.maps.Geocoder({
+										complete : function(result) {
+											$("#_city").val(result.detail.address)
+										}
+									});
+									geocoder.getAddress(latLng);
+								}
+							})
+						})
+	
+					}
+				})
+			}
+	
+	
 			var search = window.location.href;
 			search = search.split("#")[1];
 			if (search) {
@@ -89,6 +142,9 @@
 				}
 			} else {
 				var sjh = getCookie("_user");
+				var _gsmc = getCookie("_gsmc")
+				var _grzw = getCookie("_grzw")
+				var _city = getCookie("_city")
 				if (sjh) {
 					$.ajax({
 						url : "getstatusOfsqgzz", //判断申请状态
@@ -98,34 +154,43 @@
 							_sfrzsjh : sjh
 						},
 						success : function(code) {
-							var _xm = getCookie("_xm") || "请输入名字";
-							var _sfz = getCookie("_sfz") || "请输入身份证号";
 							if (code == "10703") {
 								dosomething();
 							} else if (code == "10700") {
-								$("#_xm").attr("placeholder", _xm);
-								$("#_sfz").attr("placeholder", _sfz);
-								$("#_xm").attr('disabled', "disabled");
-								$("#_sfz").attr('disabled', "disabled");
-								$("#djscsfz").attr('disabled', "disabled");
-								$("#djscsfz").unbind("click");
+								$("#_gsmc").attr("placeholder", _gsmc);
+								$("#_grzw").attr("placeholder", _grzw);
+								$("#_city").attr("placeholder", _city);
+								
+								$("#_gsmc").attr('disabled', "disabled");
+								$("#_grzw").attr('disabled', "disabled");
+								$("#_city").attr('disabled', "disabled");
+								$("#scgzz").attr('disabled', "disabled");
+								
+								$("#scgzz").unbind("click");
 								$(".sfzrztssr").text("身份证信息");
-								$("#djscsfz").html("<font color='green'>身份信息已上传，审核中</font>");
-								$("#_rz").fadeOut();
+								$("#scgzz").html("<font color='green'>身份信息已上传，审核中</font>");
+								$("#mysubmit").fadeOut();
 							} else if (code == "10701") {
-								$("#_xm").attr("placeholder", _xm);
-								$("#_sfz").attr("placeholder", _sfz);
-								$("#_xm").attr('disabled', "disabled");
-								$("#_sfz").attr('disabled', "disabled");
-								$("#djscsfz").attr('disabled', "disabled");
-								$("#djscsfz").unbind("click");
-								$("#djscsfz").html("<font color='green'>审核通过</font>");
-								$("#_rz").fadeOut();
+									$("#_gsmc").attr("placeholder", _gsmc);
+								$("#_grzw").attr("placeholder", _grzw);
+								$("#_city").attr("placeholder", _city);
+								
+								$("#_gsmc").attr('disabled', "disabled");
+								$("#_grzw").attr('disabled', "disabled");
+								$("#_city").attr('disabled', "disabled");
+								$("#scgzz").attr('disabled', "disabled");
+								
+								$("#scgzz").unbind("click");
+								$(".sfzrztssr").text("身份证信息");
+								$("#scgzz").html("<font color='green'>审核通过</font>");
+								$("#mysubmit").fadeOut();
 							} else {
-								$("#_xm").attr("placeholder", "请输入");
-								$("#_sfz").attr("placeholder", "请输入");
-								$("#djscsfz").html("<font color='red'>审核不通过，请检查后上传</font>");
-								$("#_rz").fadeIn();
+								$("#_gsmc").attr("placeholder", "请输入");
+								$("#_grzw").attr("placeholder", "请输入");
+								$("#_city").attr("placeholder", "请输入");
+								
+								$("#scgzz").html("<font color='red'>审核不通过，请检查后上传</font>");
+								$("#mysubmit").fadeIn();
 								dosomething();
 							}
 						},
@@ -138,8 +203,7 @@
 				function check() {
 					var _gsmc = $.trim($("#_gsmc").val());
 					var _grzw = $.trim($("#_grzw").val());
-					var _city = $.trim($("#	_city").val());
-	
+					var _city = $.trim($("#_city").val());
 					if (_gsmc.length <= 0) {
 						_msg("公司名称不能为空！");
 						return false;
@@ -152,15 +216,15 @@
 						_msg("所在城市不能为空！");
 						return false;
 					}
+					setCookie("_gsmc", _gsmc);
+					setCookie("_grzw", _grzw);
+					setCookie("_city", _city);
 					return true;
 				}
 	
 				$("#scgzz").click(function() {
 					if (check()) {
-						setCookie("_gsmc", _gsmc);
-						setCookie("_grzw", _grzw);
-						setCookie("_city", _city);
-						window.location.href = "scsfzzJsp";
+						window.location.href = "scsgzzJsp";
 					}
 				});
 	
@@ -171,7 +235,7 @@
 						var sjh = getCookie("_user");
 						var _gsmc = $.trim($("#_gsmc").val());
 						var _grzw = $.trim($("#_grzw").val());
-						var _city = $.trim($("#	_city").val());
+						var _city = $.trim($("#_city").val());
 						$.ajax({
 							url : "saveInfoForuser", //判断申请状态
 							type : "post",
@@ -179,15 +243,15 @@
 							data : {
 								_gsmc : _gsmc,
 								_grzw : _grzw,
-								_city:_city,
+								_city : _city,
 								_sjh : sjh
 							},
 							success : function(code) {
 								if (code == '10071') {
-									alert("信息已提交！");
-									setCookie("_xm", _xm);
-									setCookie("_sfz", _sfz);
-									window.location.href = '../rwjr/sjrz';
+									_msg("信息已提交！",function(){
+										window.location.href = '/springmvc/rwjr/sjrz';
+									});
+								
 								}
 							},
 							error : function(error) {

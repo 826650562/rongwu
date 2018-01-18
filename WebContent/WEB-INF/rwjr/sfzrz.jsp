@@ -206,10 +206,13 @@
 							},
 							success : function(code) {
 								if (code == '10071') {
-									alert("信息已提交！");
 									setCookie("_xm", _xm);
 									setCookie("_sfz", _sfz);
-									window.location.href = '../rwjr/sjrz';
+									_msg("信息已提交！",function(){
+								    	window.location.href = '../rwjr/sjrz';
+									});
+								
+									
 								}
 							},
 							error : function(error) {
