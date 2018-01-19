@@ -21,15 +21,14 @@ $(function() {
 				]
 			});
 			wx.ready(function() { 
-				alert(343);
-				wx.showToast({
-					  title: '成功',
-					  icon: 'success',
-					  duration: 2000
-					})
+				 
+
+
 				
 			});
 
+		},error:function(){
+		  alert(333);
 		}
 	})
 

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -32,8 +33,6 @@ public class Qd {
 
 	@RequestMapping(value = "/index")
 	public String savePersonUI() {
-		
-		
 		return "wyqd";
 	}
 	
@@ -79,6 +78,10 @@ public class Qd {
 
 	}
 
+	/**
+	 * @param decript
+	 * @return
+	 */
 	public static String SHA1(String decript) {
 		try {
 			MessageDigest digest = java.security.MessageDigest.getInstance("SHA-1");
@@ -101,4 +104,53 @@ public class Qd {
 		}
 		return "";
 	}
+	
+	/**
+	 * @param req
+	 * @param response
+	 * @throws IOException
+	 * @author Administrator 根据筛选条件生成抢单列表
+	 */
+	@RequestMapping(value = "/Grabsingle")
+	public void Grabsingle(HttpServletRequest req, HttpServletResponse response) throws IOException {
+		String havahose = (String) req.getParameter("havahose");//有车
+		String havacar = (String) req.getParameter("havacar");
+		String havasb = (String) req.getParameter("havasb");//有社保
+		String havagz = (String) req.getParameter("havagz");//上班族
+		String havagjj = (String) req.getParameter("havagjj");//公积金
+        String sjh = (String) req.getParameter("sjh");
+//		String _url = (String) req.getParameter("url");
+//		String _url = (String) req.getParameter("url");
+		
+		StringBuffer sqlBf=new StringBuffer("select * from shenqing_user t where 1=1 and sjh="+sjh);
+		if(!havahose.isEmpty()){
+			sqlBf.append(" and t.fangchan="+havahose);
+		}
+		if(!havahose.isEmpty()){
+			sqlBf.append(" and t.che="+havacar);
+		}
+		if(!havasb.isEmpty()){
+			sqlBf.append(" and t.shebao="+havasb);
+		}
+		if(!havagz.isEmpty()){
+			sqlBf.append(" and t.gzffxs="+havagz);
+		}
+		if(!havagjj.isEmpty()){
+			sqlBf.append(" and t.gjj="+havagjj);
+		}
+		
+		List sjhList = this.mapService.getListBySql(sqlBf.toString());
+		if (sjhList.size() <= 0) {
+			this.mapService
+					.execute("insert into user (sjh,dlsj)values('" + sjh + "','" + new Date().getTime() + "');");
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
 }
