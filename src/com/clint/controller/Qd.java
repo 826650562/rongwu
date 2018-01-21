@@ -35,7 +35,11 @@ public class Qd {
 	public String savePersonUI() {
 		return "wyqd";
 	}
-	
+
+	@RequestMapping(value = "/dkrxx")
+	public String dkrxx() {
+		return "dkrxx";
+	}
 
 	@RequestMapping(value = "/scPics")
 	public void scPics(HttpServletRequest req, HttpServletResponse response) throws IOException {
@@ -104,7 +108,7 @@ public class Qd {
 		}
 		return "";
 	}
-	
+
 	/**
 	 * @param req
 	 * @param response
@@ -113,44 +117,38 @@ public class Qd {
 	 */
 	@RequestMapping(value = "/Grabsingle")
 	public void Grabsingle(HttpServletRequest req, HttpServletResponse response) throws IOException {
-		String havahose = (String) req.getParameter("havahose");//有车
-		String havacar = (String) req.getParameter("havacar");
-		String havasb = (String) req.getParameter("havasb");//有社保
-		String havagz = (String) req.getParameter("havagz");//上班族
-		String havagjj = (String) req.getParameter("havagjj");//公积金
-        String sjh = (String) req.getParameter("sjh");
-//		String _url = (String) req.getParameter("url");
-//		String _url = (String) req.getParameter("url");
-		
-		StringBuffer sqlBf=new StringBuffer("select * from shenqing_user t where 1=1 and sjh="+sjh);
-		if(!havahose.isEmpty()){
-			sqlBf.append(" and t.fangchan="+havahose);
+		String havahose = (String) req.getParameter("fangchan");// 有车
+		String havacar = (String) req.getParameter("che");
+		String havasb = (String) req.getParameter("shebao");// 有社保
+		String havagz = (String) req.getParameter("sbz");// 上班族
+		String havagjj = (String) req.getParameter("gjj");// 公积金
+
+		StringBuffer sqlBf = new StringBuffer(
+				"select * from shenqing_user t join yh_dk d on t.sjh=d.sjh   where 1=1 and d.status=1");
+		if (!havahose.isEmpty() && havahose.equals("1")) {
+			sqlBf.append(" and t.fangchan=" + havahose);
 		}
-		if(!havahose.isEmpty()){
-			sqlBf.append(" and t.che="+havacar);
+		if (!havacar.isEmpty() && havacar.equals("1")) {
+			sqlBf.append(" and t.che=" + havacar);
 		}
-		if(!havasb.isEmpty()){
-			sqlBf.append(" and t.shebao="+havasb);
+		if (!havasb.isEmpty() && havasb.equals("1")) {
+			sqlBf.append(" and t.shebao=" + havasb);
 		}
-		if(!havagz.isEmpty()){
-			sqlBf.append(" and t.gzffxs="+havagz);
+		if (!havagz.isEmpty() && havagz.equals("1")) {
+			sqlBf.append(" and t.gzffxs=" + havagz);
 		}
-		if(!havagjj.isEmpty()){
-			sqlBf.append(" and t.gjj="+havagjj);
+		if (!havagjj.isEmpty() && havahose.equals("1")) {
+			sqlBf.append(" and t.gjj=" + havagjj);
 		}
-		
+
 		List sjhList = this.mapService.getListBySql(sqlBf.toString());
-		if (sjhList.size() <= 0) {
-			this.mapService
-					.execute("insert into user (sjh,dlsj)values('" + sjh + "','" + new Date().getTime() + "');");
+		if (sjhList.size() > 0) {
+			JSONArray jsonArray = JSONArray.fromObject(sjhList);
+			response.getWriter().write(jsonArray.toString());
+		} else {
+			response.getWriter().write("10010");
 		}
-		
-		
+
 	}
-	
-	
-	
-	
-	
-	
+
 }

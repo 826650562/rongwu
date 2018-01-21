@@ -186,3 +186,9 @@ position:relative;}
 .chongzhibtn{border:none;border-right:none; height:40px; line-height:40px; width:100%; padding:0px;border-top-left-radius:0px;border-bottom-left-radius:0px; color:#fc4023;}
 .peocentxx{color:#fff; padding:15px 0px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .mycentzhye{padding-left:10px; opacity:0.8;}
+
+/*------blank html css-------*/
+.blankimgbox{width:150px; height:90px;}
+.blankimgbox img{width:100%;}
+.nofound{text-align:center; color:#313131; padding:10px 0px 20px 0px;}
+.blkhtmlblk{height:180px;}

@@ -22,6 +22,7 @@
 <script type="text/javascript" src="${basePath }/rwjr/js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script> 
 <script type="text/javascript" src="${basePath }/rwjr/js/wyqd_index.js"></script>
+<script type="text/javascript" src="${basePath }/rwjr/js/common.js"></script>
 <!--App自定义的css-->
 
 <style>
@@ -73,11 +74,11 @@ html,body{height:100%;}
 <div class="qdsx">
 <div class="z-row">
 <div class="z-col"> 
- <span class="zcsx">有房产</span>
- <span class="zcsx">有车产</span>
- <span class="zcsx">有社保</span>
- <span class="zcsxactive">有公积金</span>
- <span class="zcsx">上班族</span>
+ <span class="zcsx" value="fangchan">有房产</span>
+ <span class="zcsx" value="che">有车产</span>
+ <span class="zcsx" value="shebao">有社保</span>
+ <span class="zcsx" value="gjj">有公积金</span>
+ <span class="zcsx" value="sbz">上班族</span>
 </div>
 </div>
 </div>
@@ -87,7 +88,7 @@ html,body{height:100%;}
 <div class="z-col">
  <div class="z-row">
     <div class="z-col tabletitle">发布时间</div>
-    <div class="pxxtb">
+    <div class="pxxtb _dkfbsj">
        <i class="fa fa-caret-up fa-fw"></i>
        <i class="fa fa-caret-down fa-fw"></i>
     </div>
@@ -96,7 +97,7 @@ html,body{height:100%;}
 <div class="z-col">
  <div class="z-row">
     <div class="z-col tabletitle">金额</div>
-    <div class="pxxtb">
+    <div class="pxxtb _dkjine">
        <i class="fa fa-caret-up fa-fw"></i>
        <i class="fa fa-caret-down fa-fw"></i>
     </div>
@@ -105,7 +106,7 @@ html,body{height:100%;}
 <div class="z-col">
  <div class="z-row">
     <div class="z-col tabletitle">价格</div>
-    <div class="pxxtb">
+    <div class="pxxtb _dkjiage">
        <i class="fa fa-caret-up fa-fw"></i>
        <i class="fa fa-caret-down fa-fw"></i>
     </div>
@@ -121,136 +122,11 @@ html,body{height:100%;}
 </div>
 </div><!--tiaojian end-->
 
-<div class="z-row qdliitem">
-<div class="z-col">
-<a href="dkrxx.html">
-<div class="z-row wyqdtopbox">
-  <div class="wyqdname"><strong>张先锋</strong></div>
-  <div class="z-col wyqdcash colorRed">1万元</div>
-  <div class="wyqdwxxtb"><i class="fa fa-street-view fa-fw"></i></div>
-  <div class=" wyqdaddr">上海市--嘉定区</div>
-</div>
-<div class="z-row">
-  <div class="z-col wyqditemcont">上班族，普通企业，29岁，男，月光族，月代发6000元，芝麻信用400分，有社保，信用良好</div>
-</div>
-<div class="z-row">
-  <div class="z-col wyqdtime">申请时间：刚刚</div>
-</div>
-<div class="z-row wyqditemcz">
-  <div class="z-col wyqdckxq"><a href="#">查看详情</a></div>
-  <div class="z-col qdbutton">
-    <span class="qdxtb"><img src="${basePath }/rwjr/images/qiang.png"></span>
-    <a href="#" class="colorRed">20元抢单</a>
-  </div>
-</div>
-</a>
-</div>     
+ <div class='ptkh'>
+
 </div>
 
-<div class="z-row qdliitem">
-<div class="z-col">
-<a href="dkrxx.html">
-<div class="z-row wyqdtopbox">
-  <div class="wyqdname"><strong>张先锋</strong></div>
-  <div class="z-col wyqdcash colorRed">1万元</div>
-  <div class="wyqdwxxtb"><i class="fa fa-street-view fa-fw"></i></div>
-  <div class=" wyqdaddr">上海市--嘉定区</div>
-</div>
-<div class="z-row">
-  <div class="z-col wyqditemcont">上班族，普通企业，29岁，男，月光族，月代发6000元，芝麻信用400分，有社保，信用良好</div>
-</div>
-<div class="z-row">
-  <div class="z-col wyqdtime">申请时间：刚刚</div>
-</div>
-<div class="z-row wyqditemcz">
-  <div class="z-col wyqdckxq"><a href="#">查看详情</a></div>
-  <div class="z-col qdbutton">
-    <span class="qdxtb"><img src="${basePath }/rwjr/images/qiang.png"></span>
-    <a href="#" class="colorRed">20元抢单</a>
-  </div>
-</div>
-</a>
-</div>     
-</div>
-
-<div class="z-row qdliitem">
-<div class="z-col">
-<a href="dkrxx.html">
-<div class="z-row wyqdtopbox">
-  <div class="wyqdname"><strong>张先锋</strong></div>
-  <div class="z-col wyqdcash colorRed">1万元</div>
-  <div class="wyqdwxxtb"><i class="fa fa-street-view fa-fw"></i></div>
-  <div class=" wyqdaddr">上海市--嘉定区</div>
-</div>
-<div class="z-row">
-  <div class="z-col wyqditemcont">上班族，普通企业，29岁，男，月光族，月代发6000元，芝麻信用400分，有社保，信用良好</div>
-</div>
-<div class="z-row">
-  <div class="z-col wyqdtime">申请时间：刚刚</div>
-</div>
-<div class="z-row wyqditemcz">
-  <div class="z-col wyqdckxq"><a href="#">查看详情</a></div>
-  <div class="z-col qdbutton">
-    <span class="qdxtb"><img src="${basePath }/rwjr/images/qiang.png"></span>
-    <a href="#" class="colorRed">20元抢单</a>
-  </div>
-</div>
-</a>
-</div>     
-</div>
-
-<div class="z-row qdliitem">
-<div class="z-col">
-<a href="dkrxx.html">
-<div class="z-row wyqdtopbox">
-  <div class="wyqdname"><strong>张先锋</strong></div>
-  <div class="z-col wyqdcash colorRed">1万元</div>
-  <div class="wyqdwxxtb"><i class="fa fa-street-view fa-fw"></i></div>
-  <div class=" wyqdaddr">上海市--嘉定区</div>
-</div>
-<div class="z-row">
-  <div class="z-col wyqditemcont">上班族，普通企业，29岁，男，月光族，月代发6000元，芝麻信用400分，有社保，信用良好</div>
-</div>
-<div class="z-row">
-  <div class="z-col wyqdtime">申请时间：刚刚</div>
-</div>
-<div class="z-row wyqditemcz">
-  <div class="z-col wyqdckxq"><a href="#">查看详情</a></div>
-  <div class="z-col qdbutton">
-    <span class="qdxtb"><img src="${basePath }/rwjr/images/qiang.png"></span>
-    <a href="#" class="colorRed">20元抢单</a>
-  </div>
-</div>
-</a>
-</div>     
-</div>
-
-<div class="z-row qdliitem">
-<div class="z-col">
-<a href="dkrxx.html">
-<div class="z-row wyqdtopbox">
-  <div class="wyqdname"><strong>张先锋</strong></div>
-  <div class="z-col wyqdcash colorRed">1万元</div>
-  <div class="wyqdwxxtb"><i class="fa fa-street-view fa-fw"></i></div>
-  <div class=" wyqdaddr">上海市--嘉定区</div>
-</div>
-<div class="z-row">
-  <div class="z-col wyqditemcont">上班族，普通企业，29岁，男，月光族，月代发6000元，芝麻信用400分，有社保，信用良好</div>
-</div>
-<div class="z-row">
-  <div class="z-col wyqdtime">申请时间：刚刚</div>
-</div>
-<div class="z-row wyqditemcz">
-  <div class="z-col wyqdckxq"><a href="#">查看详情</a></div>
-  <div class="z-col qdbutton">
-    <span class="qdxtb"><img src="${basePath }/rwjr/images/qiang.png"></span>
-    <a href="#" class="colorRed">20元抢单</a>
-  </div>
-</div>
-</a>
-</div>     
-</div>
-
+ 
 <div class="bnavblank"> </div> <!---blank-->
 </div>
 <!--tab cont1 end-->                  
@@ -266,7 +142,7 @@ html,body{height:100%;}
 <div class="z-col">
  <div class="z-row">
     <div class="z-col tabletitle">发布时间</div>
-    <div class="pxxtb">
+    <div class="pxxtb _dkfbsj">
        <i class="fa fa-caret-up fa-fw"></i>
        <i class="fa fa-caret-down fa-fw"></i>
     </div>
@@ -275,7 +151,7 @@ html,body{height:100%;}
 <div class="z-col">
  <div class="z-row">
     <div class="z-col tabletitle">金额</div>
-    <div class="pxxtb">
+    <div class="pxxtb _dkjine">
        <i class="fa fa-caret-up fa-fw"></i>
        <i class="fa fa-caret-down fa-fw"></i>
     </div>
@@ -284,7 +160,7 @@ html,body{height:100%;}
 <div class="z-col">
  <div class="z-row">
     <div class="z-col tabletitle">价格</div>
-    <div class="pxxtb">
+    <div class="pxxtb _dkjiage">
        <i class="fa fa-caret-up fa-fw"></i>
        <i class="fa fa-caret-down fa-fw"></i>
     </div>
@@ -299,84 +175,12 @@ html,body{height:100%;}
  </div>
 </div>
 </div><!--tiaojian end-->
+ <div class='ptkh'>
 
-<div class="z-row qdliitem">
-<div class="z-col">
-<a href="dkrxx.html">
-<div class="z-row wyqdtopbox">
-  <div class="wyqdname"><strong>张先锋</strong></div>
-  <div class="z-col wyqdcash colorRed">1万元</div>
-  <div class="wyqdwxxtb"><i class="fa fa-street-view fa-fw"></i></div>
-  <div class=" wyqdaddr">上海市--嘉定区</div>
-</div>
-<div class="z-row">
-  <div class="z-col wyqditemcont">上班族，普通企业，29岁，男，月光族，月代发6000元，芝麻信用400分，有社保，信用良好</div>
-</div>
-<div class="z-row">
-  <div class="z-col wyqdtime">申请时间：刚刚</div>
-</div>
-<div class="z-row wyqditemcz">
-  <div class="z-col wyqdckxq"><a href="#">查看详情</a></div>
-  <div class="z-col qdbutton">
-    <span class="qdxtb"><img src="${basePath }/rwjr/images/qiang.png"></span>
-    <a href="#" class="colorRed">20元抢单</a>
-  </div>
-</div>
-</a>
-</div>     
-</div>
+</div>  
+ 
+ 
 
-<div class="z-row qdliitem">
-<div class="z-col">
-<a href="dkrxx.html">
-<div class="z-row wyqdtopbox">
-  <div class="wyqdname"><strong>张先锋</strong></div>
-  <div class="z-col wyqdcash colorRed">1万元</div>
-  <div class="wyqdwxxtb"><i class="fa fa-street-view fa-fw"></i></div>
-  <div class=" wyqdaddr">上海市--嘉定区</div>
-</div>
-<div class="z-row">
-  <div class="z-col wyqditemcont">上班族，普通企业，29岁，男，月光族，月代发6000元，芝麻信用400分，有社保，信用良好</div>
-</div>
-<div class="z-row">
-  <div class="z-col wyqdtime">申请时间：刚刚</div>
-</div>
-<div class="z-row wyqditemcz">
-  <div class="z-col wyqdckxq"><a href="#">查看详情</a></div>
-  <div class="z-col qdbutton">
-    <span class="qdxtb"><img src="${basePath }/rwjr/images/qiang.png"></span>
-    <a href="#" class="colorRed">20元抢单</a>
-  </div>
-</div>
-</a>
-</div>     
-</div>
-
-<div class="z-row qdliitem">
-<div class="z-col">
-<a href="dkrxx.html">
-<div class="z-row wyqdtopbox">
-  <div class="wyqdname"><strong>张先锋</strong></div>
-  <div class="z-col wyqdcash colorRed">1万元</div>
-  <div class="wyqdwxxtb"><i class="fa fa-street-view fa-fw"></i></div>
-  <div class=" wyqdaddr">上海市--嘉定区</div>
-</div>
-<div class="z-row">
-  <div class="z-col wyqditemcont">上班族，普通企业，29岁，男，月光族，月代发6000元，芝麻信用400分，有社保，信用良好</div>
-</div>
-<div class="z-row">
-  <div class="z-col wyqdtime">申请时间：刚刚</div>
-</div>
-<div class="z-row wyqditemcz">
-  <div class="z-col wyqdckxq"><a href="#">查看详情</a></div>
-  <div class="z-col qdbutton">
-    <span class="qdxtb"><img src="${basePath }/rwjr/images/qiang.png"></span>
-    <a href="#" class="colorRed">20元抢单</a>
-  </div>
-</div>
-</a>
-</div>     
-</div>
 
 <div class="bnavblank"> </div> <!--blank--->
 </div>
@@ -446,8 +250,8 @@ html,body{height:100%;}
    <div class="z-row">
      <div class="z-col szcz">
         <div class="z-row szczcont">
-         <div class="z-col"><button class="shezhibtn"><i class="fa fa-gear fa-fw"></i>设置</button></div>
-         <div class="z-col"><button class="chongzhibtn"><i class="fa fa-cny fa-fw"></i>充值</button></div>
+         <div class="z-col"><button class="shezhibtn"><i class="fa fa-cny fa-fw"></i>充值</button></div>
+         <div class="z-col"><button class="chongzhibtn"><i class="fa fa-gear fa-fw"></i>设置</button></div>
         </div>
      </div>
    </div>
