@@ -3,11 +3,14 @@ package com.clint.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author Administrator 我要申请页面
  */
+@Controller
+@RequestMapping(value = "/wysq")
 public class Wysq {
 	@RequestMapping(value = "/index")
 	public String index() {
@@ -15,6 +18,13 @@ public class Wysq {
 		return "wysq";
 	}
 	
+	@RequestMapping(value = "/userinfo")
+	public String userinfo() {
+		//返回申请页面
+		
+		
+		return "wysq";
+	}
 	
 	
 	@RequestMapping(value = "/checkUserLogin")

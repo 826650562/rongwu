@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.clint.service.MapService;
 import com.clint.service.PersonService;
+import com.clint.untils.Oauth2Action;
 import com.clint.untils.Outer;
 
 import net.sf.json.JSONArray;
@@ -33,7 +35,21 @@ public class Qd {
 
 	@RequestMapping(value = "/index")
 	public String savePersonUI() {
-		return "wyqd";
+		return "oauth";
+	}
+
+	@RequestMapping(value = "/getuserInfo")
+	public String getuserInfo(HttpServletRequest req, HttpServletResponse response)
+			throws ServletException, IOException {
+		String echostr = req.getParameter("echostr");
+		Oauth2Action oa = new Oauth2Action();
+		HashMap map = Oauth2Action.auth(req, response, echostr);
+		if (map.size() > 0) {
+			System.out.println(map);
+			return "wyqd";
+		} else {
+			return "login";
+		}
 	}
 
 	@RequestMapping(value = "/dkrxx")
@@ -125,19 +141,19 @@ public class Qd {
 
 		StringBuffer sqlBf = new StringBuffer(
 				"select * from shenqing_user t join yh_dk d on t.sjh=d.sjh   where 1=1 and d.status=1");
-		if (!havahose.isEmpty() && havahose.equals("1")) {
+		if (havahose != null && !havahose.isEmpty() && havahose.equals("1")) {
 			sqlBf.append(" and t.fangchan=" + havahose);
 		}
-		if (!havacar.isEmpty() && havacar.equals("1")) {
+		if (havacar != null && !havacar.isEmpty() && havacar.equals("1")) {
 			sqlBf.append(" and t.che=" + havacar);
 		}
-		if (!havasb.isEmpty() && havasb.equals("1")) {
+		if (havasb != null && !havasb.isEmpty() && havasb.equals("1")) {
 			sqlBf.append(" and t.shebao=" + havasb);
 		}
-		if (!havagz.isEmpty() && havagz.equals("1")) {
+		if (havagz != null && !havagz.isEmpty() && havagz.equals("1")) {
 			sqlBf.append(" and t.gzffxs=" + havagz);
 		}
-		if (!havagjj.isEmpty() && havahose.equals("1")) {
+		if (havagjj != null && !havagjj.isEmpty() && havahose.equals("1")) {
 			sqlBf.append(" and t.gjj=" + havagjj);
 		}
 

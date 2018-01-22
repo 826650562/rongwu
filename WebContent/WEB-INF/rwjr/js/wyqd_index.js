@@ -83,36 +83,7 @@ $(function() {
 			" <span class='qdxtb'><img src='../rwjr/images/qiang.png'></span>" +
 			" <a href='#' class='colorRed _qdjg'  ><span value=" + 20 + ">20</span>元抢单</a>  </div> </div> </a> </div> </div>";
 	}
-
-	$.ajax({
-		url : "scPics",
-		type : "post",
-		contentType : "application/x-www-form-urlencoded",
-		data : {
-			url : "http://www.80wangjian.com/springmvc/wyqd/index"
-		},
-		success : function(data) {
-			var res = JSON.parse(data)[0];
-			wx.config({
-				debug : true,
-				appId : 'wxc3691f09dbfd769d',
-				timestamp : res.timestamp,
-				nonceStr : res.noncestr,
-				signature : res.signature,
-				jsApiList : [
-					'chooseImage',
-					'uploadImage'
-				]
-			});
-			wx.ready(function() {
-				main();
-			});
-
-		},
-		error : function() {
-			alert("'");
-		}
-	})
+	
 	function main() {
 		init();
 		addEventLisiter();
@@ -251,15 +222,11 @@ $(function() {
 		//处理抢单
 		var _sjh = getCookie("_user");
 		alert(_sjh);
-		if (!_sjh) {
-			//页面自动跳转地址（非静默授权链接） 
-			//参数appid为公众号的id redirect_uri为微信回调接口
-			//state为可携带的参数(可选，这里写的是回调接口处理完跳转到指定页面) 
-			//其余参数不变
-			window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc3691f09dbfd769d&redirect_uri=www.80wangjian.com/springmvc/wyqd/index&response_type=code&scope=snsapi_userinfo";
+		if (true) {
+
 		}
 
 
 	}
-
+	main();
 })
