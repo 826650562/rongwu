@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.clint.service.MapService;
 import com.clint.service.PersonService;
 import com.clint.untils.DloadImgUtil;
+import com.clint.untils.Oauth2Action;
 import com.clint.untils.Outer;
 
 import net.sf.json.JSONArray;
@@ -32,14 +34,13 @@ import net.sf.json.JSONArray;
 @Controller
 @RequestMapping(value = "/sfzyz")
 public class Sfyz {
-	@Resource(name = "personService")
-	private PersonService personService;
+ 
 	@Resource(name = "mapService")
 	private MapService mapService;
 
 	@RequestMapping(value = "/index")
 	public String sfzrz() {
-		return "sfzrz";
+		return "xdjl_oauth";
 	}
 
 	@RequestMapping(value = "/scsfzzJsp")
@@ -250,6 +251,29 @@ public class Sfyz {
        	
 	}
 	
+	@RequestMapping(value = "/getuserInfo")
+	public String getuserInfo(HttpServletRequest req, HttpServletResponse response)
+			throws ServletException, IOException {
+		String echostr = req.getParameter("echostr");
+		Oauth2Action oa = new Oauth2Action();
+		HashMap map = Oauth2Action.auth(req, response, echostr);
+		if (map.size() > 0) {
+		  //存在数据库
+			String swl="select * from weixin_info t where t.openid="+map.get("openid");
+			List sqllist=mapService.getListBySql(swl);	
+			if(sqllist.size()>0){
+			}else{
+				this.mapService
+				.execute("insert into weixin_info (openid,nickname,sex,province,city,country,imgsrc)values('" + map.get("openid") + "','" + map.get("nickname")+ "','" +
+						 "','" + map.get("sex")+ "','" + map.get("province")+ "','" +map.get("city")   + "','" +map.get("country")   + "','" +map.get("imgsrc")  + "');");
+			}
+			//return "sfzrz";
+			response.getWriter().write("10002");
+		} else {
+			return "login";
+		}
+		return echostr;
+	}
 	
 
 }

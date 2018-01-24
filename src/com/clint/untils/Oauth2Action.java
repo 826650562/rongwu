@@ -16,7 +16,8 @@ public class Oauth2Action {
 	public static HashMap<String, String> auth(HttpServletRequest request, HttpServletResponse response, String echostr)
 			throws ServletException, IOException {
 		HashMap<String, String> map = new HashMap<String, String>();
-		if (echostr == null) {
+		String code = request.getParameter("code");
+		if (echostr == null && code != null) {
 			String appId = "wxc3691f09dbfd769d";
 			String appSecret = "c1d465d27a459096f805d7e7f4c7f827";
 			// 拼接
@@ -25,7 +26,6 @@ public class Oauth2Action {
 			String get_userinfo = "https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
 			request.setCharacterEncoding("UTF-8");
 			response.setCharacterEncoding("UTF-8");
-			String code = request.getParameter("code");
 			System.out.println("******************code=" + code);
 			get_access_token_url = get_access_token_url.replace("CODE", code);
 			String json = HttpsGetUtil.doHttpsGetJson(get_access_token_url);
@@ -51,8 +51,7 @@ public class Oauth2Action {
 			map.put("city", user_city);
 			map.put("country", user_country);
 			map.put("imgsrc", user_headimgurl);
-
-		} 
+		}
 		return map;
 	}
 	/*

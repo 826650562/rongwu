@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>登陆授权</title>
+<title>抢单登陆授权</title>
 <script type="text/javascript" src="${basePath }/rwjr/js/common.js"></script>
 <script type="text/javascript"
 	src="${basePath }/rwjr/js/jquery-1.9.1.min.js"></script>
