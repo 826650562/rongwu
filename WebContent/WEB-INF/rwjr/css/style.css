@@ -2,6 +2,8 @@
 body {font-family: 'microsoft yahei', Arial, Helvetica, sans-serif;color: #313131;background-color: #f6f6f6; font-size:15px;padding:0px;margin:0px; position:relative;}
 a{color:#313131;}
 a:hover{color:#313131; text-decoration:none;}
+p{color:#313131;}
+
 
 .mar0{margin:0px  !important;}
 .marB15{margin:0px 0px  15px 0px !important;}
@@ -58,6 +60,8 @@ a:hover{color:#313131; text-decoration:none;}
 .layui-tab-brief>.layui-tab-title .layui-this {
     color: #fc4023;
 }
+/*---mui 重定义---*/
+
 /*--login--*/
 .topbar{width:100%; height:45px; background:#fff;-moz-box-shadow:0px 1px 3px #e6e6e6; -webkit-box-shadow:0px 1px 3px #e6e6e6; box-shadow:0px 1px 3px #e6e6e6; color:#313131;}
 .topbarleft{width:45px;height:45px;text-align:center; line-height:45px; cursor:pointer;}
@@ -66,7 +70,8 @@ a:hover{color:#313131; text-decoration:none;}
 .loginInputXtb{width:45px; height:45px; line-height:45px; text-align:center; }
 .loginInput{border:1px solid #e6e6e6; margin-bottom:10px; background:#fff; box-sizing:border-box; border-radius:4px;}
 .loginbox{padding:15px 15px;}
-.hqyzm{border-left:1px solid #e6e6e6; font-size:14px; padding:0px 10px; line-height:45px; cursor:pointer; background:#f6f6f6;}
+.hqyzm{border-left:1px solid #e6e6e6; border-bottom:none !important; font-size:14px; padding:0px 10px !important; line-height:45px; cursor:pointer; background:#f6f6f6;white-space: nowrap;
+    text-overflow: ellipsis; overflow:hidden;}
 .tpyzm{width:80px; height:35px; padding:5px 0px;}
 .tpyzmsx{width:40px; line-height:45px; height:45px; text-align:center; cursor:pointer;}
 /*--sjrz--*/
@@ -192,3 +197,38 @@ position:relative;}
 .blankimgbox img{width:100%;}
 .nofound{text-align:center; color:#313131; padding:10px 0px 20px 0px;}
 .blkhtmlblk{height:180px;}
+/*-------tk html css------*/
+.tkbox{padding:15px; line-height:24px; position:relative;}
+.tktitle{font-size:16px; font-weight:bold; color:#fc4023; padding:10px 0px 0px 0px;}
+.tkbblank{height:75px; width:100%;}
+.tkbottom{ position:fixed; bottom:0px; height:75px; width:100%; z-index:100; background:#fff; border-top:1px solid #e6e6e6; left:0px; box-sizing:border-box; padding:15px;}
+
+/*-----dksq html css-----*/
+.dksqbox{background:#fff;}
+.yhkimg img{height:45px; width:45px !important; display:block;padding:0px; margin:0px;}
+.dksqyhtitle{font-size:16px; height:25px; line-height:25px; padding-left:10px;}
+.dksqyhtxt{color:#999; height:20px; line-height:20px; font-size:12px; padding-left:10px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.dksqitem{border-right:1px solid #e6e6e6 !important; cursor:pointer; width:100%; border-radius:0px; padding:10px 15px !important; border-bottom:1px solid #e6e6e6 !important; height:auto !important; overflow:hidden; text-overflow:ellipsis;white-space:nowrap;}
+.dksqitem:nth-child(2n+0){border-right:none; overflow:hidden; text-overflow:ellipsis;white-space:nowrap;}
+.dksqinputtxt{width:95px; height:45px;    white-space: nowrap;
+    text-overflow: ellipsis; overflow:hidden; line-height:45px; text-align:center; background:#f6f6f6; border-right:1px solid #e6e6e6; border-top-left-radius:4px; border-bottom-left-radius:4px;}
+.rzzqbox{width:100%;box-sizing:border-box; padding:15px; background:#fff;}
+.rzzqInput {border: 1px solid #e6e6e6;margin-bottom: 10px;background: #fff;box-sizing: border-box;border-radius: 4px;}
+.rzzqInput input{height:45px; line-height:45px; margin-bottom:0px; border:none;}
+.mui-checkbox a,label{font-family: 'microsoft yahei', Arial, Helvetica, sans-serif;}
+.mui-checkbox.mui-left label, .mui-radio.mui-left label {
+    padding-left: 35px;
+}
+.tytk{left:35px; position:absolute; height:36px; line-height:36px;}
+.xxbcbox{padding:0px 15px; background:#fff;  border-top:1px solid #e6e6e6; border-bottom:1px solid #e6e6e6;}
+
+.dksqtishi{width:100%;margin-top:10px; height:30px; line-height:30px; box-sizing:border-box; padding:0px 15px; background:#fcf5e5; font-size:12px;border-top:1px solid #e2e2e2; color:#c58200;}
+.dksqts{width:100%;margin-bottom:10px; height:30px; line-height:30px; box-sizing:border-box; padding:0px 15px; background:#fcf5e5; font-size:12px;border-bottom:1px solid #e2e2e2; color:#c58200;}
+.xxbcrjt{padding:0px 5px 0px 10px;text-align:center; color:#999; line-height:41px;}
+.xxbcltxt{padding:0px 15px 0px 5px;}
+.dktxtinput{border-bottom:1px solid #e2e2e2; padding:0px; height:45px; line-height:45px;}
+.dktxtinput:last-child{border-bottom:none;}
+.dktjsh{width:100%;box-sizing:border-box;}
+.dktjshbtn{width:100%; border-radius:0px;}
+.dktxtinput input[type="text"]{height:44px; line-height:44px; border:none; border-radius:0px; margin:0px;padding:0px; text-align:right;}
+.xxbcltxt span{font-size:12px;color:#999;}

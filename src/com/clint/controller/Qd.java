@@ -35,7 +35,7 @@ public class Qd {
 
 	@RequestMapping(value = "/index")
 	public String savePersonUI() {
-		return "oauth";
+		return "qd_oauth";
 	}
 
 	@RequestMapping(value = "/getuserInfo")
@@ -45,7 +45,18 @@ public class Qd {
 		Oauth2Action oa = new Oauth2Action();
 		HashMap map = Oauth2Action.auth(req, response, echostr);
 		if (map.size() > 0) {
-			System.out.println(map);
+			// 存在数据库
+			String swl = "select * from weixin_info t where t.openid='" + map.get("openid")+"'";
+			List sqllist = mapService.getListBySql(swl);
+			if (sqllist.size() > 0) {
+			} else {
+				String sql = "insert into weixin_info (openid,nickname,sex,province,city,country,imgsrc)values('"
+						+ map.get("openid") + "','" + map.get("nickname") + "','" + "','" + map.get("sex") + "','"
+						+ map.get("province") + "','" + map.get("city") + "','" + map.get("country") + "','"
+						+ map.get("imgsrc") + "');";
+				System.out.println(sql);
+				this.mapService.execute(sql);
+			}
 			return "wyqd";
 		} else {
 			return "login";
