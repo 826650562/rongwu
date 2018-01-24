@@ -3,7 +3,7 @@
 <%
 	pageContext.setAttribute("basePath", request.getContextPath());
 %>
- 
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -218,9 +218,7 @@ html,body{height:100%;}
 <!-------------------------------------------->
     <div id="tabbar-with-contact" class="mui-control-content">
         <ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
-        微店
-
-        
+        <div class="requestScope">${requestScope.key}</div>
     </ul>
     </div>
 <!-------------------------------------------->
@@ -328,6 +326,8 @@ html,body{height:100%;}
 		swipeBack: true
 	});
 	(function($) {
+	    alert($(".requestScope").text());
+	
 		$('.mui-scroll-wrapper').scroll({
 			indicators: true //是否显示滚动条
 		});

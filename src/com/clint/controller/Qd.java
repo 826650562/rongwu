@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.clint.service.MapService;
@@ -39,24 +40,24 @@ public class Qd {
 	}
 
 	@RequestMapping(value = "/getuserInfo")
-	public String getuserInfo(HttpServletRequest req, HttpServletResponse response)
+	public String getuserInfo(HttpServletRequest req, HttpServletResponse response,Model model)
 			throws ServletException, IOException {
 		String echostr = req.getParameter("echostr");
 		Oauth2Action oa = new Oauth2Action();
 		HashMap map = Oauth2Action.auth(req, response, echostr);
 		if (map.size() > 0) {
 			// 存在数据库
-			String swl = "select * from weixin_info t where t.openid='" + map.get("openid")+"'";
+			String swl = "select * from weixin_info t where t.openid='" + map.get("openid") + "'";
 			List sqllist = mapService.getListBySql(swl);
 			if (sqllist.size() > 0) {
 			} else {
 				String sql = "insert into weixin_info (openid,nickname,sex,province,city,country,imgsrc)values('"
-						+ map.get("openid") + "','" + map.get("nickname") + "','" + "','" + map.get("sex") + "','"
+						+ map.get("openid") + "','" + map.get("nickname") + "','" + map.get("sex") + "','"
 						+ map.get("province") + "','" + map.get("city") + "','" + map.get("country") + "','"
 						+ map.get("imgsrc") + "');";
-				System.out.println(sql);
 				this.mapService.execute(sql);
 			}
+			model.addAttribute("openid", map.get("openid"));  
 			return "wyqd";
 		} else {
 			return "login";

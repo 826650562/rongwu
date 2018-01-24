@@ -16,6 +16,7 @@
 	<script>
 		//请求用户基本信息
 		if (!getCookie("wexinOpenId")) {
+		    
 			var url = encodeURI("http://www.80wangjian.com/springmvc/wyqd/getuserInfo");
 			url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc3691f09dbfd769d&redirect_uri=" + url + "&response_type=code&scope=snsapi_userinfo&state=index.html#wechat_redirect";
 		    window.location.href=url
