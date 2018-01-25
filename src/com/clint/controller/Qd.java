@@ -39,6 +39,11 @@ public class Qd {
 		return "qd_oauth";
 	}
 
+	@RequestMapping(value = "/wyqdjsp")
+	public String wyqdjsp() {
+		return "wyqd";
+	}
+	
 	@RequestMapping(value = "/getuserInfo")
 	public String getuserInfo(HttpServletRequest req, HttpServletResponse response,Model model)
 			throws ServletException, IOException {
