@@ -33,15 +33,11 @@ html,body{height:100%;}
 .mui-slider-group{height:100%;}
 .mui-control-content{height:100%;}
 
-
-
 .mui-grid-view.mui-grid-9 {
     border-top: 1px solid #e6e6e6;
     border-left: 1px solid #e6e6e6;
     background-color: #fff;
 }
-
-
 
 </style>
 
