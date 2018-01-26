@@ -29,6 +29,7 @@ function getYzm() {
 	function _login() {
 		//获取手机验证码
 		//首先 图形验证码要正确
+		var _name_sq  = $.trim($("#_name_sq").val());
 		if (checkPhoneAndName()) {
 			//验证图形码
 			checkTuxing(function(bool) {
@@ -52,9 +53,9 @@ function getYzm() {
 									//登录成功
 									window.timer && window.clearInterval(timer);
 									//放入cookie
-									setCookie("_user", _w_sjh);
-									 $(".mui-page").css("display","block");
-									//location.hash='#account';
+									setCookie("sqdk_user", _w_sjh);
+									setCookie("sqdk_name", _name_sq);
+									window.location.href='sqdk2';
 								} else {
 									_msg("*—* 手机验证码错误！");
 								}

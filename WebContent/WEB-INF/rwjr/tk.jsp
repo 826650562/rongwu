@@ -17,7 +17,7 @@
 <!--App自定义的css-->
 </head>
 <body>
-<header class="mui-bar mui-bar-nav"> <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+<header class="mui-bar mui-bar-nav"> <a href="javascript:history.back()"  class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
   <h1 class="mui-title">融五金融服务协议单</h1>
 </header>
 <div class="mui-content">
@@ -148,7 +148,7 @@
     </div>
     <div class="tkbblank"></div>
     <div class="tkbottom">
-      <button class="layui-btn width100">我知道了</button>
+      <button class="layui-btn width100" id="alead_n"><a href="javascript:history.back()" style="color:#fff">我知道了</a></button>
     </div>
   </div>
 </div>

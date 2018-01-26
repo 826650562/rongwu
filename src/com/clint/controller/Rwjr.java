@@ -31,7 +31,7 @@ public class Rwjr {
 	public String savePersonUI() {
 		return "login";
 	}
-
+ 
 	@RequestMapping(value = "/sjrz")
 	public String sjrz(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		return "sjrz";

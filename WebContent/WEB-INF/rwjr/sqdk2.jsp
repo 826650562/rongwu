@@ -14,27 +14,34 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 <!--标准mui.css-->
-<link rel="stylesheet" href="${basePath }/rwjr/mui-master/dist/css/mui.min.css">
-<link href="${basePath }/rwjr/layui/css/layui.css" rel="stylesheet" type="text/css">
-<link href="${basePath }/rwjr/layui/css/layui.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet"
+	href="${basePath }/rwjr/mui-master/dist/css/mui.min.css">
+<link href="${basePath }/rwjr/layui/css/layui.css" rel="stylesheet"
+	type="text/css">
+<link href="${basePath }/rwjr/layui/css/layui.css" rel="stylesheet"
+	type="text/css">
 <link rel="stylesheet" type="text/css"
 	href="${basePath }/rwjr/mui-master/examples/hello-mui/css/app.css" />
-<link href="${basePath }/rwjr/mui-master/examples/hello-mui/css/mui.picker.css"
+<link
+	href="${basePath }/rwjr/mui-master/examples/hello-mui/css/mui.picker.css"
 	rel="stylesheet" />
-<link href="${basePath }/rwjr/mui-master/examples/hello-mui/css/mui.poppicker.css"
+<link
+	href="${basePath }/rwjr/mui-master/examples/hello-mui/css/mui.poppicker.css"
 	rel="stylesheet" />
 
-<link href="${basePath }/rwjr/fontawesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="${basePath }/rwjr/fontawesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link href="${basePath }/rwjr/css/z-layout.css" rel="stylesheet"
 	type="text/css">
-<link href="${basePath }/rwjr/css/z-layout.css" rel="stylesheet" type="text/css">
-<link href="${basePath }/rwjr/css/style.css" rel="stylesheet" type="text/css">
+<link href="${basePath }/rwjr/css/style.css" rel="stylesheet"
+	type="text/css">
 <!--App自定义的css-->
 <script type="text/javascript" src="${basePath }/rwjr/layui/layui.js"></script>
 <script type="text/javascript" src="${basePath }/rwjr/js/layer.js"></script>
 <script type="text/javascript"
 	src="${basePath }/rwjr/js/jquery-1.9.1.min.js"></script>
-	<script src="${basePath }/rwjr/js/dksq.js"></script>
-		<script src="${basePath }/rwjr/js/common.js"></script>
+<script src="${basePath }/rwjr/js/dksq.js"></script>
+<script src="${basePath }/rwjr/js/common.js"></script>
 <style>
 .mui-control-content .mui-loading {
 	margin-top: 50px;
@@ -146,10 +153,6 @@ html, body {
 	transition: opacity 300ms ease, transform 300ms ease;
 }
 
-.mui-page {
-	display: none;
-}
-
 .mui-pages .mui-page {
 	display: block;
 }
@@ -199,305 +202,12 @@ h5.mui-content-padded:first-child {
 </head>
 
 <body class="mui-fullscreen">
-	<!--页面主结构开始-->
-	<div id="app" class="mui-views">
-		<div class="mui-view">
-			<div class="mui-navbar"></div>
-			<div class="mui-pages"></div>
-		</div>
-	</div>
-	<!--页面主结构结束-->
-	<!--单页面开始-->
-	<div id="setting" class="mui-page">
-		<!--页面标题栏开始-->
-		<div class="mui-navbar-inner mui-bar mui-bar-nav">
-			<button type="button"
-				class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
-				<span class="mui-icon mui-icon-left-nav"></span>
-			</button>
-			<h1 class="mui-center mui-title">贷款申请</h1>
-		</div>
-		<!--页面标题栏结束-->
-		<!--页面主内容区开始-->
-		<div class="mui-page-content">
-			<div class="mui-scroll-wrapper">
-				<div class="mui-scroll">
-
-					<!----------------------------------页面1 start--------------------------------------->
-
-					<div class="mui-content">
-						<div id="tabbar" class="mui-control-content mui-active">
-							<div id="slider" class="mui-slider">
-
-								<div id="sliderSegmentedControl"
-									class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-									<a class="mui-control-item" href="#item1mobile">银行融资专区</a> <a
-										class="mui-control-item" href="#item2mobile">信用卡申请</a>
-								</div>
-
-
-								<div id="sliderProgressBar"
-									class="mui-slider-progress-bar mui-col-xs-6"></div>
-
-								<div class="mui-slider-group">
-
-									<div id="item1mobile"
-										class="mui-slider-item mui-control-content mui-active">
-										<div id="scroll1" class="mui-scroll-wrapper">
-											<div class="mui-scroll">
-												<!--tab cont1 start-->
-												<div class="rzzqbox">
-
-													<div class="z-row rzzqInput">
-														<div class="dksqinputtxt">姓名</div>
-														<div class="z-col">
-															<input type="text" id="_name_sq"  placeholder="请输入真实姓名" class="zInput">
-														</div>
-													</div>
-													<div class="z-row rzzqInput">
-														<div class="dksqinputtxt">手机号</div>
-														<div class="z-col">
-															<input type="text" placeholder="请输入手机号" id="_sjh_sq" class="zInput">
-														</div>
-													</div>
-													<div class="z-row rzzqInput">
-														<div class="dksqinputtxt">图形验证码</div>
-														<div class="z-col">
-															<input type="text" placeholder="图形验证码" id="_txyzm" class="zInput">
-														</div>
-														<div class="tpyzm">
-															<img class="getyzm" src="${basePath }/rwjr/images/txyzm.jpg" width="80" height="35">
-														</div>
-														<div class="tpyzmsx">
-															<i class="fa fa-refresh fa-fw"></i>
-														</div>
-													</div>
-													<div class="z-row rzzqInput">
-														<div class="dksqinputtxt">短信验证码</div>
-														<div class="z-col">
-															<input type="text" id="dxyzm" placeholder="短信验证码" class="zInput">
-														</div>
-														<div class="hqyzm mui-table-view-cell">获取验证码</div>
-													</div>
-
-													<div class="z-row">
-														<div class="z-col">
-															<form class="mui-input-group">
-																<div class="mui-input-row mui-checkbox mui-left">
-																	<a class="tytk" href="${basePath }/sqdk/tk">同意融五金融《服务协议》</a> <input
-																		name="checkbox" value="Item 1" id="_sq_tyjr" type="checkbox"
-																		style="left: 0px;">
-																</div>
-															</form>
-														</div>
-													</div>
-
-													<div class="z-row marT15">
-														<div class="z-col">
-															<a href="javascript:;" id="_sq_next" class="layui-btn width100 layui-btn-disabled">下一步</a>
-														</div>
-													</div>
-
-												</div>
-												<!--tab cont1 end-->
-											</div>
-										</div>
-									</div>
-
-
-									<div id="item2mobile"
-										class="mui-slider-item mui-control-content">
-										<div id="scroll2" class="mui-scroll-wrapper">
-											<div class="mui-scroll">
-												<!--tab cont2 start-->
-												<div class="dksqbox">
-													<div class="z-row">
-														<div class="z-col dksqitem  mui-table-view-cell">
-															<div class="z-row">
-																<div class="yhkimg">
-																	<img src="${basePath }/rwjr/images/msyh.png">
-																</div>
-																<div class="z-col">
-																	<div class="z-row">
-																		<div class="z-col dksqyhtitle">民生银行</div>
-																	</div>
-																	<div class="z-row">
-																		<div class="z-col dksqyhtxt">5分钟出额度</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="z-col dksqitem mui-table-view-cell">
-															<div class="z-row">
-																<div class="yhkimg">
-																	<img src="${basePath }/rwjr/images/gdyh.png">
-																</div>
-																<div class="z-col">
-																	<div class="z-row">
-																		<div class="z-col dksqyhtitle">光大银行</div>
-																	</div>
-																	<div class="z-row">
-																		<div class="z-col dksqyhtxt">送10W积分</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-
-
-													<div class="z-row">
-														<div class="z-col dksqitem mui-table-view-cell">
-															<div class="z-row">
-																<div class="yhkimg">
-																	<img src="${basePath }/rwjr/images/xyyh.png">
-																</div>
-																<div class="z-col">
-																	<div class="z-row">
-																		<div class="z-col dksqyhtitle">兴业银行</div>
-																	</div>
-																	<div class="z-row">
-																		<div class="z-col dksqyhtxt">额度最高至8万</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="z-col dksqitem mui-table-view-cell">
-															<div class="z-row">
-																<div class="yhkimg">
-																	<img src="${basePath }/rwjr/images/payh.png">
-																</div>
-																<div class="z-col">
-																	<div class="z-row">
-																		<div class="z-col dksqyhtitle">平安银行</div>
-																	</div>
-																	<div class="z-row">
-																		<div class="z-col dksqyhtxt">成功高发卡快</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-
-
-													<div class="z-row">
-														<div class="z-col dksqitem mui-table-view-cell">
-															<div class="z-row">
-																<div class="yhkimg">
-																	<img src="${basePath }/rwjr/images/zsyh.png">
-																</div>
-																<div class="z-col">
-																	<div class="z-row">
-																		<div class="z-col dksqyhtitle">招商银行</div>
-																	</div>
-																	<div class="z-row">
-																		<div class="z-col dksqyhtxt">送美旅双肩包</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="z-col dksqitem mui-table-view-cell">
-															<div class="z-row">
-																<div class="yhkimg">
-																	<img src="${basePath }/rwjr/images/jtyh.png">
-																</div>
-																<div class="z-col">
-																	<div class="z-row">
-																		<div class="z-col dksqyhtitle">交通银行</div>
-																	</div>
-																	<div class="z-row">
-																		<div class="z-col dksqyhtxt">周五加油享5%优惠</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-
-
-													<div class="z-row">
-														<div class="z-col dksqitem mui-table-view-cell">
-															<div class="z-row">
-																<div class="yhkimg">
-																	<img src="${basePath }/rwjr/images/zxyh.png">
-																</div>
-																<div class="z-col">
-																	<div class="z-row">
-																		<div class="z-col dksqyhtitle">中信银行</div>
-																	</div>
-																	<div class="z-row">
-																		<div class="z-col dksqyhtxt">超值好礼领不完</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="z-col dksqitem mui-table-view-cell">
-															<div class="z-row">
-																<div class="yhkimg">
-																	<img src="${basePath }/rwjr/images/hfyh.png">
-																</div>
-																<div class="z-col">
-																	<div class="z-row">
-																		<div class="z-col dksqyhtitle">汇丰银行</div>
-																	</div>
-																	<div class="z-row">
-																		<div class="z-col dksqyhtxt">额度高达10万</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-
-
-													<div class="z-row">
-														<div class="z-col dksqitem mui-table-view-cell">
-															<div class="z-row">
-																<div class="yhkimg">
-																	<img src="${basePath }/rwjr/images/shyh.png">
-																</div>
-																<div class="z-col">
-																	<div class="z-row">
-																		<div class="z-col dksqyhtitle">上海银行</div>
-																	</div>
-																	<div class="z-row">
-																		<div class="z-col dksqyhtxt">周六享美食5折</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="z-col dksqitem mui-table-view-cell"></div>
-													</div>
-
-												</div>
-												<!--tab cont2 end-->
-											</div>
-										</div>
-									</div>
-
-								</div>
-
-							</div>
-						</div>
-
-					</div>
-
-					<!----------------------------------页面1 end--------------------------------------->
-
-				</div>
-			</div>
-		</div>
-		<!--页面主内容区结束-->
-	</div>
-	<!--单页面结束-->
-
-
-
-
-
-
 	<div id="account" class="mui-page">
 		<div class="mui-navbar-inner mui-bar mui-bar-nav">
 			<button type="button"
 				class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
-				<span href="javascript:history.back()"  class="mui-icon mui-icon-left-nav"></span>
+				<span href="javascript:history.back()"
+					class="mui-icon mui-icon-left-nav"></span>
 			</button>
 			<h1 class="mui-center mui-title">贷款申请</h1>
 		</div>
@@ -528,7 +238,7 @@ h5.mui-content-padded:first-child {
 									贷款金额<span>(0.1-1000万元)</span>
 								</div>
 								<div class="z-col">
-									<input placeholder="请填写" type="text" />
+									<input id="_sq_dkjine" placeholder="请填写" type="text" />
 								</div>
 								<div>万元</div>
 							</div>
@@ -600,7 +310,7 @@ h5.mui-content-padded:first-child {
 									芝麻信用<span>（选填）</span>
 								</div>
 								<div class="z-col">
-									<input placeholder="请填写" id="_sq_zm" type="text" />
+									<input placeholder="请填写" type="text" />
 								</div>
 								<div>分</div>
 							</div>
@@ -613,7 +323,7 @@ h5.mui-content-padded:first-child {
 									微粒贷额度<span>（选填）</span>
 								</div>
 								<div class="z-col">
-									<input placeholder="请填写" id="_sq_wld" type="text" />
+									<input placeholder="请填写" type="text" />
 								</div>
 								<div>万元</div>
 							</div>
@@ -645,7 +355,7 @@ h5.mui-content-padded:first-child {
 							<div class="z-row">
 								<div class="xxbcltxt">身份证号码</div>
 								<div class="z-col">
-									<input placeholder="请填写" id="_sq_sfz" type="text" />
+									<input placeholder="请填写" type="text" />
 								</div>
 							</div>
 						</div>
@@ -674,63 +384,21 @@ h5.mui-content-padded:first-child {
 </body>
 
 <script src="${basePath }/rwjr/mui-master/dist/js/mui.min.js"></script>
-<script src="${basePath }/rwjr/mui-master/examples/hello-mui/js/mui.view.js"></script>
-<script src="${basePath }/rwjr/mui-master/examples/hello-mui/js/feedback.js"></script>
+<script
+	src="${basePath }/rwjr/mui-master/examples/hello-mui/js/mui.view.js"></script>
+<script
+	src="${basePath }/rwjr/mui-master/examples/hello-mui/js/feedback.js"></script>
 
-<script src="${basePath }/rwjr/mui-master/examples/hello-mui/js/mui.picker.js"></script>
-<script src="${basePath }/rwjr/mui-master/examples/hello-mui/js/mui.poppicker.js"></script>
+<script
+	src="${basePath }/rwjr/mui-master/examples/hello-mui/js/mui.picker.js"></script>
+<script
+	src="${basePath }/rwjr/mui-master/examples/hello-mui/js/mui.poppicker.js"></script>
 
 
 <!--<script src="mui-master/examples/hello-mui/js/city.data.js" type="text/javascript" charset="utf-8"></script>-->
-<script src="${basePath }/rwjr/mui-master/examples/hello-mui/js/city.data-3.js"
+<script
+	src="${basePath }/rwjr/mui-master/examples/hello-mui/js/city.data-3.js"
 	type="text/javascript" charset="utf-8"></script>
-
-<script>
-	mui.init({
-		swipeBack : true
-	});
-	//初始化单页view
-	var viewApi = mui('#app').view({
-		defaultPage : '#setting'
-	});
-	//初始化单页的区域滚动
-	mui('.mui-scroll-wrapper').scroll();
-	//分享操作
-	var shares = {};
-
-
-	var view = viewApi.view;
-	(function($) {
-
-		$('.mui-scroll-wrapper').scroll({
-			indicators : true //是否显示滚动条
-		});
-
-		//处理view的后退与webview后退
-		var oldBack = $.back;
-		$.back = function() {
-			if (viewApi.canBack()) { //如果view可以后退，则执行view的后退
-				viewApi.back();
-			} else { //执行webview后退
-				oldBack();
-			}
-		};
-		//监听页面切换事件方案1,通过view元素监听所有页面切换事件，目前提供pageBeforeShow|pageShow|pageBeforeBack|pageBack四种事件(before事件为动画开始前触发)
-		//第一个参数为事件名称，第二个参数为事件回调，其中e.detail.page为当前页面的html对象
-		view.addEventListener('pageBeforeShow', function(e) {
-			//				console.log(e.detail.page.id + ' beforeShow');
-		});
-		view.addEventListener('pageShow', function(e) {
-			//				console.log(e.detail.page.id + ' show');
-		});
-		view.addEventListener('pageBeforeBack', function(e) {
-			//				console.log(e.detail.page.id + ' beforeBack');
-		});
-		view.addEventListener('pageBack', function(e) {
-			//				console.log(e.detail.page.id + ' back');
-		});
-	})(mui);
-</script>
 
 
 
@@ -759,18 +427,17 @@ h5.mui-content-padded:first-child {
 				value : 'qyz',
 				text : '企业主'
 			}, {
-				value : 'wgdzy',
-				text : '无固定职业'
-			}, {
 				value : 'xs',
 				text : '学生'
+			}, {
+				value : 'wgdzy',
+				text : '无固定职业'
 			} ]);
 			var showUserPickerButton = doc.getElementById('showUserPicker');
 			var userResult = doc.getElementById('userResult');
 			showUserPickerButton.addEventListener('tap', function(event) {
 				userPicker.show(function(items) {
-					userResult.innerText = JSON.stringify(items[0]);
-				//返回 false 可以阻止选择框的关闭
+					userResult.innerText = items[0].text;
 				//return false;
 				});
 
@@ -809,7 +476,7 @@ h5.mui-content-padded:first-child {
 			var haveHouseResult = doc.getElementById('haveHouseResult');
 			showHousePickerButton.addEventListener('tap', function(event) {
 				haveHousePicker.show(function(items) {
-					haveHouseResult.innerText = JSON.stringify(items[0]);
+					haveHouseResult.innerText = items[0].text;
 				//返回 false 可以阻止选择框的关闭
 				//return false;
 				});
@@ -834,7 +501,7 @@ h5.mui-content-padded:first-child {
 			var haveCarResult = doc.getElementById('haveCarResult');
 			showCarPickerButton.addEventListener('tap', function(event) {
 				haveCarPicker.show(function(items) {
-					haveCarResult.innerText = JSON.stringify(items[0]);
+					haveCarResult.innerText = items[0].text;
 				//返回 false 可以阻止选择框的关闭
 				//return false;
 				});
@@ -854,7 +521,7 @@ h5.mui-content-padded:first-child {
 
 			showSbPickerButton.addEventListener('tap', function(event) {
 				haveSbPicker.show(function(items) {
-					haveSbResult.innerText = JSON.stringify(items[0]);
+					haveSbResult.innerText = items[0].text;
 				//返回 false 可以阻止选择框的关闭
 				//return false;
 				});
@@ -873,7 +540,7 @@ h5.mui-content-padded:first-child {
 			var haveGjjResult = doc.getElementById('haveGjjResult');
 			showGjjPickerButton.addEventListener('tap', function(event) {
 				haveGjjPicker.show(function(items) {
-					haveGjjResult.innerText = JSON.stringify(items[0]);
+					haveGjjResult.innerText = items[0].text;
 				//返回 false 可以阻止选择框的关闭
 				//return false;
 				});
@@ -895,7 +562,7 @@ h5.mui-content-padded:first-child {
 			var haveXyqkResult = doc.getElementById('haveXyqkResult');
 			showXyqkPickerButton.addEventListener('tap', function(event) {
 				haveXyqkPicker.show(function(items) {
-					haveXyqkResult.innerText = JSON.stringify(items[0]);
+					haveXyqkResult.innerText = items[0].text;
 				//返回 false 可以阻止选择框的关闭
 				//return false;
 				});
@@ -914,7 +581,7 @@ h5.mui-content-padded:first-child {
 			var haveYwrsbxResult = doc.getElementById('haveYwrsbxResult');
 			showYwrsbxPickerButton.addEventListener('tap', function(event) {
 				haveYwrsbxPicker.show(function(items) {
-					haveYwrsbxResult.innerText = JSON.stringify(items[0]);
+					haveYwrsbxResult.innerText = items[0].text;
 				//返回 false 可以阻止选择框的关闭
 				//return false;
 				});
@@ -939,7 +606,7 @@ h5.mui-content-padded:first-child {
 			var haveZgxlResult = doc.getElementById('haveZgxlResult');
 			showZgxlPickerButton.addEventListener('tap', function(event) {
 				haveZgxlPicker.show(function(items) {
-					haveZgxlResult.innerText = JSON.stringify(items[0]);
+					haveZgxlResult.innerText = items[0].text;
 				//返回 false 可以阻止选择框的关闭
 				//return false;
 				});
@@ -957,7 +624,7 @@ h5.mui-content-padded:first-child {
 			showCityPickerButton.addEventListener('tap', function(event) {
 				cityPicker3.show(function(items) {
 					//cityResult3.innerText = "你选择的城市是:" + _getParam(items[0], 'text') + " " + _getParam(items[1], 'text') + " " + _getParam(items[2], 'text');
-					cityResult3.innerText = "你选择的城市是:" + _getParam(items[0], 'text') + " " + _getParam(items[1], 'text') + " " + _getParam(items[2], 'text');
+					cityResult3.innerText = _getParam(items[0], 'text') + " " + _getParam(items[1], 'text');
 				//返回 false 可以阻止选择框的关闭
 				//return false;
 				});
@@ -965,7 +632,56 @@ h5.mui-content-padded:first-child {
 		});
 	})(mui, document);
 </script>
+<script>
+	function checkout() {
+		var _sq_dkjine = $ > trim($("#_sq_dkjine").val());
+		if (_sq_dkjine.length <= 0) {
+			_msg("贷款金额不能为空！");return false;
+		} else {
+			return true;
+		}
+	}
+	function getValue(v) {
+		if (v != "请选择" || v != null || v != "") {
+			return v;
+		} else {
+			return "";
+		}
+	}
+	$(".dktjshbtn").click(function() {
+		if (checkout()) {
+			var data = {
+				cityResult3 : getValue($.trim($("#cityResult3").text())),
+				_sq_dkjine : getValue($.trim($("#_sq_dkjine").val())),
+				userResult : getValue($.trim($("#userResult").text())),
+				haveHouseResult : getValue($.trim($("#haveHouseResult").text())),
+				haveCarResult : getValue($.trim($("#haveCarResult").text())),
+				haveSbResult : getValue($.trim($("#haveSbResult").text())),
+				haveGjjResult : getValue($.trim($("#haveGjjResult").text())),
+				haveXyqkResult : getValue($.trim($("#haveXyqkResult").text())),
 
+				sq_zm : getValue($.trim($("#_sq_zm").val())),
+				sq_wld : getValue($.trim($("#_sq_wld").val())),
+				haveYwrsbxResult : getValue($.trim($("#haveYwrsbxResult").text())),
+				haveZgxlResult : getValue($.trim($("#haveZgxlResult").text())),
+				_sq_sfz : getValue($.trim($("#_sq_sfz").val())),
+				_w_sjh : getCookie("sqdk_user"),
+				_name_sq : getCookie("sqdk_name")
+			};
+
+			$.ajax({
+				url : "sigin",
+				type : "post",
+				contentType : "application/x-www-form-urlencoded",
+				data : data,
+				success : function(code) {},
+				error : function(error) {}
+			});
+
+
+		}
+	});
+</script>
 
 <!------------------MUI 选项卡 js----------------------->
 </html>
