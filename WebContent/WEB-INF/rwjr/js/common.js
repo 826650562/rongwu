@@ -9,6 +9,23 @@ function  _msg(info,fn){
 	});
 }
 
+function _xunwen(content,buttons,fn1,fn2){
+	//底部对话框
+	  layer.open({
+	    content: content
+	    ,btn: buttons
+	    ,skin: 'footer'
+	    ,shadeClose:false
+	    ,yes: function(index){
+	    	fn1();
+	    }
+	    ,no:function(){
+	    	fn2();
+	    }
+	  });
+	  
+}
+
 function setCookie(name, value, liveMinutes) {    
 /*    if (liveMinutes == undefined || liveMinutes == null) {  
         liveMinutes = 60 * 200;  

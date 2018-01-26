@@ -16,7 +16,7 @@
 <!--标准mui.css-->
 <link rel="stylesheet" href="${basePath }/rwjr/mui-master/dist/css/mui.min.css">
 <link href="${basePath }/rwjr/layui/css/layui.css" rel="stylesheet" type="text/css">
-
+<link href="${basePath }/rwjr/layui/css/layui.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css"
 	href="${basePath }/rwjr/mui-master/examples/hello-mui/css/app.css" />
 <link href="${basePath }/rwjr/mui-master/examples/hello-mui/css/mui.picker.css"
@@ -29,7 +29,12 @@
 <link href="${basePath }/rwjr/css/z-layout.css" rel="stylesheet" type="text/css">
 <link href="${basePath }/rwjr/css/style.css" rel="stylesheet" type="text/css">
 <!--App自定义的css-->
-
+<script type="text/javascript" src="${basePath }/rwjr/layui/layui.js"></script>
+<script type="text/javascript" src="${basePath }/rwjr/js/layer.js"></script>
+<script type="text/javascript"
+	src="${basePath }/rwjr/js/jquery-1.9.1.min.js"></script>
+	<script src="${basePath }/rwjr/js/dksq.js"></script>
+		<script src="${basePath }/rwjr/js/common.js"></script>
 <style>
 .mui-control-content .mui-loading {
 	margin-top: 50px;
@@ -246,22 +251,22 @@ h5.mui-content-padded:first-child {
 													<div class="z-row rzzqInput">
 														<div class="dksqinputtxt">姓名</div>
 														<div class="z-col">
-															<input type="text" placeholder="请输入真实姓名" class="zInput">
+															<input type="text" id="_name_sq"  placeholder="请输入真实姓名" class="zInput">
 														</div>
 													</div>
 													<div class="z-row rzzqInput">
 														<div class="dksqinputtxt">手机号</div>
 														<div class="z-col">
-															<input type="text" placeholder="请输入手机号" class="zInput">
+															<input type="text" placeholder="请输入手机号" id="_sjh_sq" class="zInput">
 														</div>
 													</div>
 													<div class="z-row rzzqInput">
 														<div class="dksqinputtxt">图形验证码</div>
 														<div class="z-col">
-															<input type="text" placeholder="图形验证码" class="zInput">
+															<input type="text" placeholder="图形验证码" id="_txyzm" class="zInput">
 														</div>
 														<div class="tpyzm">
-															<img src="images/txyzm.jpg" width="80" height="35">
+															<img class="getyzm" src="${basePath }/rwjr/images/txyzm.jpg" width="80" height="35">
 														</div>
 														<div class="tpyzmsx">
 															<i class="fa fa-refresh fa-fw"></i>
@@ -270,7 +275,7 @@ h5.mui-content-padded:first-child {
 													<div class="z-row rzzqInput">
 														<div class="dksqinputtxt">短信验证码</div>
 														<div class="z-col">
-															<input type="text" placeholder="短信验证码" class="zInput">
+															<input type="text" id="dxyzm" placeholder="短信验证码" class="zInput">
 														</div>
 														<div class="hqyzm mui-table-view-cell">获取验证码</div>
 													</div>
@@ -279,8 +284,8 @@ h5.mui-content-padded:first-child {
 														<div class="z-col">
 															<form class="mui-input-group">
 																<div class="mui-input-row mui-checkbox mui-left">
-																	<a class="tytk" href="${basePath }/rwjr/tk.jsp">同意融五金融《服务协议》</a> <input
-																		name="checkbox" value="Item 1" type="checkbox"
+																	<a class="tytk" href="${basePath }/sqdk/tk">同意融五金融《服务协议》</a> <input
+																		name="checkbox" checked="checked" value="Item 1" id="_sq_tyjr" type="checkbox"
 																		style="left: 0px;">
 																</div>
 															</form>
@@ -289,7 +294,7 @@ h5.mui-content-padded:first-child {
 
 													<div class="z-row marT15">
 														<div class="z-col">
-															<a href="#account" class="layui-btn width100">下一步</a>
+															<a href="javascript:;" id="_sq_next" class="layui-btn width100  ">下一步</a>
 														</div>
 													</div>
 
@@ -310,7 +315,7 @@ h5.mui-content-padded:first-child {
 														<div class="z-col dksqitem  mui-table-view-cell">
 															<div class="z-row">
 																<div class="yhkimg">
-																	<img src="images/msyh.png">
+																	<img src="${basePath }/rwjr/images/msyh.png">
 																</div>
 																<div class="z-col">
 																	<div class="z-row">
@@ -325,7 +330,7 @@ h5.mui-content-padded:first-child {
 														<div class="z-col dksqitem mui-table-view-cell">
 															<div class="z-row">
 																<div class="yhkimg">
-																	<img src="images/gdyh.png">
+																	<img src="${basePath }/rwjr/images/gdyh.png">
 																</div>
 																<div class="z-col">
 																	<div class="z-row">
@@ -344,7 +349,7 @@ h5.mui-content-padded:first-child {
 														<div class="z-col dksqitem mui-table-view-cell">
 															<div class="z-row">
 																<div class="yhkimg">
-																	<img src="images/xyyh.png">
+																	<img src="${basePath }/rwjr/images/xyyh.png">
 																</div>
 																<div class="z-col">
 																	<div class="z-row">
@@ -359,7 +364,7 @@ h5.mui-content-padded:first-child {
 														<div class="z-col dksqitem mui-table-view-cell">
 															<div class="z-row">
 																<div class="yhkimg">
-																	<img src="images/payh.png">
+																	<img src="${basePath }/rwjr/images/payh.png">
 																</div>
 																<div class="z-col">
 																	<div class="z-row">
@@ -378,7 +383,7 @@ h5.mui-content-padded:first-child {
 														<div class="z-col dksqitem mui-table-view-cell">
 															<div class="z-row">
 																<div class="yhkimg">
-																	<img src="images/zsyh.png">
+																	<img src="${basePath }/rwjr/images/zsyh.png">
 																</div>
 																<div class="z-col">
 																	<div class="z-row">
@@ -393,7 +398,7 @@ h5.mui-content-padded:first-child {
 														<div class="z-col dksqitem mui-table-view-cell">
 															<div class="z-row">
 																<div class="yhkimg">
-																	<img src="images/jtyh.png">
+																	<img src="${basePath }/rwjr/images/jtyh.png">
 																</div>
 																<div class="z-col">
 																	<div class="z-row">
@@ -412,7 +417,7 @@ h5.mui-content-padded:first-child {
 														<div class="z-col dksqitem mui-table-view-cell">
 															<div class="z-row">
 																<div class="yhkimg">
-																	<img src="images/zxyh.png">
+																	<img src="${basePath }/rwjr/images/zxyh.png">
 																</div>
 																<div class="z-col">
 																	<div class="z-row">
@@ -427,7 +432,7 @@ h5.mui-content-padded:first-child {
 														<div class="z-col dksqitem mui-table-view-cell">
 															<div class="z-row">
 																<div class="yhkimg">
-																	<img src="images/hfyh.png">
+																	<img src="${basePath }/rwjr/images/hfyh.png">
 																</div>
 																<div class="z-col">
 																	<div class="z-row">
@@ -446,7 +451,7 @@ h5.mui-content-padded:first-child {
 														<div class="z-col dksqitem mui-table-view-cell">
 															<div class="z-row">
 																<div class="yhkimg">
-																	<img src="images/shyh.png">
+																	<img src="${basePath }/rwjr/images/shyh.png">
 																</div>
 																<div class="z-col">
 																	<div class="z-row">
@@ -492,7 +497,7 @@ h5.mui-content-padded:first-child {
 		<div class="mui-navbar-inner mui-bar mui-bar-nav">
 			<button type="button"
 				class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
-				<span class="mui-icon mui-icon-left-nav"></span>
+				<span href="javascript:history.back()"  class="mui-icon mui-icon-left-nav"></span>
 			</button>
 			<h1 class="mui-center mui-title">贷款申请</h1>
 		</div>
@@ -595,7 +600,7 @@ h5.mui-content-padded:first-child {
 									芝麻信用<span>（选填）</span>
 								</div>
 								<div class="z-col">
-									<input placeholder="请填写" type="text" />
+									<input placeholder="请填写" id="_sq_zm" type="text" />
 								</div>
 								<div>分</div>
 							</div>
@@ -608,7 +613,7 @@ h5.mui-content-padded:first-child {
 									微粒贷额度<span>（选填）</span>
 								</div>
 								<div class="z-col">
-									<input placeholder="请填写" type="text" />
+									<input placeholder="请填写" id="_sq_wld" type="text" />
 								</div>
 								<div>万元</div>
 							</div>
@@ -640,14 +645,14 @@ h5.mui-content-padded:first-child {
 							<div class="z-row">
 								<div class="xxbcltxt">身份证号码</div>
 								<div class="z-col">
-									<input placeholder="请填写" type="text" />
+									<input placeholder="请填写" id="_sq_sfz" type="text" />
 								</div>
 							</div>
 						</div>
 
 					</div>
 
-					<div class="dksqts">只有核实身份才能贷款</div>
+					<div class="dksqts">我们将严格保密您的资料，只做本次申请使用！</div>
 
 
 					<div class="dktjsh">
@@ -668,16 +673,16 @@ h5.mui-content-padded:first-child {
 
 </body>
 
-<script src="mui-master/dist/js/mui.min.js"></script>
-<script src="mui-master/examples/hello-mui/js/mui.view.js"></script>
-<script src="mui-master/examples/hello-mui/js/feedback.js"></script>
+<script src="${basePath }/rwjr/mui-master/dist/js/mui.min.js"></script>
+<script src="${basePath }/rwjr/mui-master/examples/hello-mui/js/mui.view.js"></script>
+<script src="${basePath }/rwjr/mui-master/examples/hello-mui/js/feedback.js"></script>
 
-<script src="mui-master/examples/hello-mui/js/mui.picker.js"></script>
-<script src="mui-master/examples/hello-mui/js/mui.poppicker.js"></script>
+<script src="${basePath }/rwjr/mui-master/examples/hello-mui/js/mui.picker.js"></script>
+<script src="${basePath }/rwjr/mui-master/examples/hello-mui/js/mui.poppicker.js"></script>
 
 
 <!--<script src="mui-master/examples/hello-mui/js/city.data.js" type="text/javascript" charset="utf-8"></script>-->
-<script src="mui-master/examples/hello-mui/js/city.data-3.js"
+<script src="${basePath }/rwjr/mui-master/examples/hello-mui/js/city.data-3.js"
 	type="text/javascript" charset="utf-8"></script>
 
 <script>

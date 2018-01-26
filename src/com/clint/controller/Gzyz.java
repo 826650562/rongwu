@@ -242,9 +242,7 @@ public class Gzyz {
 		if (sjhList.size() >= 0) {
 		/*	this.mapService.execute("insert into user (sfz,realname) values('" + _sfz + "','"
 					+ _xm +  "');");*/
-			System.out.println(
-					"UPDATE user SET  gsmc='" + _gsmc + "', grzw='" +_grzw + "', city='" +_city+ "' where sjh = '" + _sjh + "'");
-			this.mapService.execute(
+			 this.mapService.execute(
 					"UPDATE user SET  gsmc='" + _gsmc + "', grzw='" +_grzw+ "', city='" +_city + "' where sjh = '" + _sjh + "'");
 		}  
 		response.getWriter().write("10071");

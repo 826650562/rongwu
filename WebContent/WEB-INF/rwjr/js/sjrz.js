@@ -19,7 +19,6 @@ $(function() {
 		});
 
 		function _login() {
-
 			//获取手机验证码
 			//首先 图形验证码要正确
 			if (checkPhone()) {

@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	pageContext.setAttribute("basePath", request.getContextPath());
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>贷款申请</title>
+</head>
+<body>
+	<div id="dkjine">请输入贷款金额</div>
+	<div id="dkqixian">请输入贷款期限</div>
+	<button>提交申请</button>
+
+</body>
+</html>
