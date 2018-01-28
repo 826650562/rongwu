@@ -9,7 +9,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -75,7 +74,7 @@ public class sqdk {
 	}
 
 	@RequestMapping(value = "/sigin")
-	public String sigin(HttpServletRequest req, HttpServletResponse response) throws IOException {
+	public void sigin(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		// 信息只注册一次
 		String cityResult3 = (String) req.getParameter("cityResult3");
 		String userResult = (String) req.getParameter("userResult");
@@ -102,12 +101,11 @@ public class sqdk {
 		try {
 			mapService.execute(" DELETE FROM shenqing_user WHERE sjh='"+_w_sjh+"' and name='"+_name_sq+"'");
 			mapService.execute(sql2.toString());
-			return "";
+			response.getWriter().write("sdqk10010");
 		} catch (Exception e) {
 			// TODO: handle exception
-			response.getWriter().write("sigin_10011");
+			response.getWriter().write("sdqk10011");
 		}
-		return "";
 
 	}
 

@@ -108,6 +108,7 @@ $(function() {
 			//验证图形码
 			checkTuxing(function(bool) {
 				if (bool) {
+					djs();
 					//发送手机验证码
 					$.ajax({
 						url : "../rwjr/getsjyzm",
@@ -121,7 +122,6 @@ $(function() {
 								_msg("^_^ 手机验证码发送成功！");
 								$(".hqyzm").addClass("layui-btn layui-btn-disabled");
 								$('.hqyzm').unbind("click");
-								djs();
 							} else if (code == '10011') {
 								_msg("*—* 手机验证码发送太频繁，请稍后重试");
 							} else {

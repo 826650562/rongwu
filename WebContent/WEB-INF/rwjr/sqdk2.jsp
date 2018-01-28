@@ -721,12 +721,12 @@ h5.mui-content-padded:first-child {
 				contentType : "application/x-www-form-urlencoded",
 				data : data,
 				success : function(code) {
-					if (code == 'sdqk10011') {
-						_msg("系统错误");
+					if (code == 'sdqk10010') {
+						window.location.href='sqdk3'; 
 					}
 				},
 				error : function(error) {
-					_msg("系统错误");
+					 window.location.href='index';
 				}
 			});
 		}
