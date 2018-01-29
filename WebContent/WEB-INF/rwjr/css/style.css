@@ -18,6 +18,7 @@ p{color:#313131;}
 .colorWhite{color:#fff;}
 .colorRed{color:#fc4023 !important;}
 .colorZise{color:#7d24fb !important;}
+.colorBlue{color:#0275e1;}
 .pad0{padding:0px !important;}
 .pad10{padding:10px !important;}
 .pad15{padding:15px !important;}
@@ -232,3 +233,34 @@ position:relative;}
 .dktjshbtn{width:100%; border-radius:0px;}
 .dktxtinput input[type="text"]{height:44px; line-height:44px; border:none; border-radius:0px; margin:0px;padding:0px; text-align:right;}
 .xxbcltxt span{font-size:12px;color:#999;}
+.dksqaabox{padding:15px 15px 5px 15px; background:#fff;}
+.dkdw{padding:0px 10px; color:#999; font-size:13px; height:45px; line-height:45px;}
+.dkjiantou{padding:0px 10px; color:#999; font-size:13px; height:45px; line-height:40px;}
+/*-----cz html css------*/
+.czbox{padding:15px; width:100%; box-sizing:border-box;}
+.czhead{height:100px; background:url(../images/czbg.jpg) no-repeat top center; box-sizing:border-box;padding:20px 0px 0px 0px;}
+.czsyje{font-size:25px;color:#fff; text-align:center; height:40px; line-height:40px;}
+.czsyjetxt{color:#fff; font-size:12px; text-align:center; height:18px; line-height:18px;}
+.cztcli{padding:0px 15px; margin-bottom:10px; background:#fff; height:70px; border-radius:5px;-moz-box-shadow:0px 0px 10px #e6e6e6; -webkit-box-shadow:0px 0px 10px #e6e6e6; box-shadow:0px 0px 10px #e6e6e6; cursor:pointer;}
+.cztcliActive{ background:#fee1dc; border:1px solid #fc4023; cursor:pointer;}
+.cztcje{font-size:20px; font-weight:bold; height:70px; line-height:70px; width:100px;}
+.cztcjeyuan{font-size:12px; font-weight:normal;padding:0px 5px 0px 5px;}
+.cztczshy{font-size:13px; color:#fc4023;  height:30px; line-height:30px; text-align:right; overflow:hidden;text-overflow:ellipsis; white-space:nowrap;}
+.cztctitle{font-size:16px;  padding:12px 0px 0px 0px; height:34px;  text-align:right; overflow:hidden;text-overflow:ellipsis; white-space:nowrap;}
+.wxzf{width:100%; background:#fff; color:#04ae0f; border:1px solid #04ae0f;moz-box-shadow: 0px 0px 10px #f4fcf5;
+    -webkit-box-shadow: 0px 0px 10px #f4fcf5;
+    box-shadow: 0px 0px 10px #f4fcf5;}
+/*------dksqxx html css------*/
+.dkxxbox{padding:15px;}
+.dkxxcont{font-size:14px; line-height:25px; }
+.dkxxtime{
+    font-size: 14px;
+    color: #666;
+	line-height:25px; 
+}
+.dkxxitem{border-radius:4px;   padding:15px 10px;background:#fff;-moz-box-shadow: 0px 0px 10px #e6e6e6;
+-webkit-box-shadow: 0px 0px 10px #e6e6e6;box-shadow: 0px 0px 10px #e6e6e6;margin-bottom:10px;position:relative;}
+.dkxxyz{width:90px; height:70px; padding:0px 10px; position:absolute; top:5px;right:0px;}
+.dkxxyz img{width:70px; height:70px;}
+.topbarright{font-size:16px !important; width:45px; height:45px; line-height:45px; text-align:center;padding:0px !important; cursor:pointer;}
+.qxddbtn{ height:30px; line-height:28px; font-size:13px; margin-top:5px; padding:0px 10px; border:1px solid #fc4023; background:#fff; color:#fc4023;}
