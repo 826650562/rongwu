@@ -26,6 +26,17 @@ function _xunwen(content,buttons,fn1,fn2){
 	  
 }
 
+function xunwenkuang(content,btn,fun1,fun2){
+	//中间询问框
+	  //询问框
+	  layer.open({
+	    content: content
+	    ,btn:btn
+	    ,yes:fun1  ,
+	    no:fun2
+	  });
+}
+
 function setCookie(name, value, liveMinutes) {    
 /*    if (liveMinutes == undefined || liveMinutes == null) {  
         liveMinutes = 60 * 200;  
@@ -59,5 +70,18 @@ function delCookie(name)
     exp.setTime(exp.getTime() - 1); 
     var cval=getCookie(name); 
     if(cval!=null) 
-        document.cookie= name + "="+cval+";expires="+exp.toGMTString(); 
-} 
+        document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+}
+function add0(m){return m<10?'0'+m:m }
+function format(shijianchuo)
+{
+//shijianchuo是整数，否则要parseInt转换
+var time = new Date(shijianchuo);
+var y = time.getFullYear();
+var m = time.getMonth()+1;
+var d = time.getDate();
+var h = time.getHours();
+var mm = time.getMinutes();
+var s = time.getSeconds();
+return y+'-'+add0(m)+'-'+add0(d)+' '+add0(h)+':'+add0(mm)+':'+add0(s);
+}

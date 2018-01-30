@@ -84,8 +84,8 @@ public class sqdk {
 		String _w_sjh = (String) req.getParameter("_w_sjh");
 		String name = (String) req.getParameter("name");
 		try {
-			mapService.execute("insert into yh_dk (name,jine,sjh,date,qixian)values('" +name+ "','"+ jine + "','"
-					+ _w_sjh + "','" + new Date().getTime()  + "','"+qixian+ "')");
+			mapService.execute("insert into yh_dk (name,jine,sjh,date,qixian)values('" + name + "','" + jine + "','"
+					+ _w_sjh + "','" + new Date().getTime() + "','" + qixian + "')");
 			response.getWriter().write("sdqk30010");
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -93,16 +93,16 @@ public class sqdk {
 		}
 
 	}
-	
+
 	@RequestMapping(value = "/getsqdk_list")
 	public void getsqdk_list(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		String _w_sjh = (String) req.getParameter("_w_sjh");
 		String name = (String) req.getParameter("name");
-		List list=mapService.getListBySql("select * from yh_dk where name="+"'"+name+"' and sjh="+"'"+_w_sjh+"'"  );
+		List list = mapService
+				.getListBySql("select * from yh_dk t where t.delete = '0' and  name=" + "'" + name + "' and sjh=" + "'" + _w_sjh + "'");
 		JSONArray jsonArray = JSONArray.fromObject(list);
 		response.getWriter().write(jsonArray.toString());
 	}
-
 
 	@RequestMapping(value = "/sigin")
 	public void sigin(HttpServletRequest req, HttpServletResponse response) throws IOException {
@@ -138,4 +138,16 @@ public class sqdk {
 
 	}
 
+	@RequestMapping(value = "/delete_dk")
+	public void delete_dk(HttpServletRequest req, HttpServletResponse response) throws IOException {
+		String id = (String) req.getParameter("id");
+		try {
+			mapService.execute("UPDATE yh_dk t SET  t.delete = '1' WHERE t.id = "+id);
+			response.getWriter().write("sdqk40010"); 
+		} catch (Exception e) {
+			// TODO: handle exception
+			response.getWriter().write("sdqk40011");
+		}
+
+	}
 }

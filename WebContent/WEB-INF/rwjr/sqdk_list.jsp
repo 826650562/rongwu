@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Hello MUI</title>
+<title>贷款列表</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -24,7 +24,7 @@
 <link href="${basePath }/rwjr/css/style.css" rel="stylesheet"
 	type="text/css">
 <!--App自定义的css-->
-	<script type="text/javascript" src="${basePath }/rwjr/js/layer.js"></script>
+<script type="text/javascript" src="${basePath }/rwjr/js/layer.js"></script>
 <script type="text/javascript"
 	src="${basePath }/rwjr/js/jquery-1.9.1.min.js"></script>
 <script src="${basePath }/rwjr/js/common.js"></script>
@@ -102,54 +102,36 @@
 				<div class="mui-scroll-wrapper">
 					<div class="mui-scroll">
 						<ul class="mui-table-view">
-							<li class="mui-table-view-cell"><a href="#" class="dkxxdown">再次申请</a>
+							<li class="mui-table-view-cell"><a
+								href="${basePath }/sqdk/sqdk3" class="dkxxdown">再次申请</a>
 						</ul>
 					</div>
 				</div>
 			</div>
 
-			<div class="dkxx_box_">
-
-				<div class="z-row dkxxitem" style="display:none">
-					<div class="z-col">
-						<div class="dkxxyz">
-							<img src="${basePath }/rwjr/images/wbqd.png">
-						</div>
-						<div class="z-row">
-							<div class="z-col dkxxcont">
-								申请金额：<span class="colorRed">3万</span>
-							</div>
-						</div>
-						<div class="z-row">
-							<div class="z-col dkxxtime">申请时间：2018-01-02 12:23:43</div>
-						</div>
-						<div class="z-row" class="_cance_dingdan" style="display:none">
-							<div class="z-col">
-								<button class="layui-btn qxddbtn">取消订单</button>
-							</div>
-						</div>
-					</div>
+			<div class="dkxx_box_"></div>
+		</div>
+	</div>
+	<div id="dkxxitem" class="z-row dkxxitem" style="display:none">
+		<div class="z-col">
+			<div class="dkxxyz">
+				<img src="${basePath }/rwjr/images/wbqd.png">
+			</div>
+			<div class="z-row">
+				<div class="z-col dkxxcont">
+					申请金额：<span class="colorRed"></span>
 				</div>
-
-
-				<%-- <div class="z-row dkxxitem">
-<div class="z-col">
-<div class="dkxxyz"><img src="${basePath }/rwjr/images/ybqd.png"></div>
-<div class="z-row">
-  <div class="z-col dkxxcont">申请金额：<span class="colorRed">3万</span></div>
-</div>
-<div class="z-row">
-  <div class="z-col dkxxtime">申请时间：2018-01-02 12:23:43</div>
-</div>
-</div>     
-</div>
- --%>
-
-
+			</div>
+			<div class="z-row">
+				<div class="z-col dkxxtime"></div>
+			</div>
+			<div class="z-row" id="_cance_dingdan" style="display:none">
+				<div class="z-col">
+					<button class="layui-btn qxddbtn" _id="">取消订单</button>
+				</div>
 			</div>
 		</div>
 	</div>
-
 
 	<script src="${basePath }/rwjr/mui-master/dist/js/mui.min.js"></script>
 	<script>
@@ -166,14 +148,15 @@
 		});
 	</script>
 	<script type="text/javascript">
- $(function(){
-    var sjh = getCookie("sqdk_user");
-    var name=getCookie("sqdk_name");
-    
-    if(sjh.length<=0 || name.length<=0){
-      window.location.href = 'index';
-    }
-   	$.ajax({
+		$(function() {
+			var sjh = getCookie("sqdk_user");
+			var name = getCookie("sqdk_name");
+	
+	
+			if (sjh.length <= 0 || name.length <= 0) {
+				window.location.href = 'index';
+			}
+			$.ajax({
 				url : "getsqdk_list",
 				type : "post",
 				contentType : "application/x-www-form-urlencoded",
@@ -182,16 +165,56 @@
 					_w_sjh : sjh
 				},
 				success : function(code) {
-					 console.info(code);
+					var res = JSON.parse(code);
+					res.map(function(item) {
+						var dkxxitem = $("#dkxxitem").clone();
+						dkxxitem.find(".dkxxcont span").text(item.jine + "万");
+						dkxxitem.find(".dkxxtime").text("申请时间：" + format(parseInt(item.date)));
+						if (item.status == "1") {
+							dkxxitem.find("#_cance_dingdan").css("display", "block");
+						} else {
+							dkxxitem.find("#_cance_dingdan").css("display", "none");
+						}
+						dkxxitem.find("#_cance_dingdan").find(".qxddbtn").attr("_id", item.id);
+						dkxxitem.css("display", "block");
+						$(".dkxx_box_").append(dkxxitem);
+					});
+					$(".qxddbtn").click(function() {
+					    var that=$(this)
+					    xunwenkuang("信贷经理正在评估您的贷款申请，确定取消吗？",['确定','在想想'],function(){
+					       	var id_ = that.attr("_id");
+						$.ajax({
+							url : "delete_dk",
+							type : "post",
+							contentType : "application/x-www-form-urlencoded",
+							data : {
+								id : id_,
+							},
+							success : function(code) {
+								if (code == 'sdqk40010') {
+								   that.parents("#dkxxitem").fadeOut(300);
+								   layer.closeAll();
+								}
+							},
+							error : function(error) {
+								///window.location.href = 'index';
+								_msg("请重试");layer.closeAll();
+							}
+						});
+					    },function(){
+					       layer.closeAll();
+					    });
+					
+	
+					});
 				},
 				error : function(error) {
-					 _msg("内部错误！");
+					_msg("内部错误！");
 				}
 			});
-   
- })
- 
-</script>
+	
+		})
+	</script>
 
 </body>
 </html>
