@@ -66,6 +66,18 @@ html, body {
 	background-color: #fff;
 }
 </style>
+<style>
+.mui-table-view-cell{padding:0px;}
+.layui-m-layercont{padding:0px;border-radius:2px;}
+.layui-m-layerchild {
+    border-radius: 2px;
+}
+.mui-table-view-cell>a:not(.mui-btn){margin:0px;}
+.mui-table-view-cell:after {
+    background-color: #fff;
+}
+</style>
+
 <script type="text/tmp" id="tmp7"> 
 <div class="cztkbox">
   <div class="z-row">
@@ -318,7 +330,7 @@ html, body {
 				<div class="z-row peocentxx">
 					<div class="z-col"></div>
 					<div>
-						<strong>赵经理</strong>
+						<strong id="_name_xd">经理</strong>
 					</div>
 					<div class="mycentzhye">
 						<span>（</span>账户余额：0元<span>）</span>
@@ -346,11 +358,11 @@ html, body {
 
 			<ul class="mui-table-view mui-grid-view mui-grid-9">
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
-					<span class="renzheng"><img
-						src="${basePath }/rwjr/images/no_rz.png"> <!--<img src="${basePath }/rwjr/images/yes_rz.png">--></span>
+					<span class="renzheng"><img id="shengqing_pic"
+						src="${basePath }/rwjr/images/"> <!--<img src="${basePath }/rwjr/images/yes_rz.png">--></span>
 					<a href="#"> <span class="mycenterxtb"><img
 							src="${basePath }/rwjr/images/myxtb1.png"></span>
-						<div class="mui-media-body">申请认证</div>
+						<div class="mui-media-body" id="shenqing-status">申请认证</div>
 				</a>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
@@ -404,35 +416,7 @@ html, body {
 	<script src="${basePath }/rwjr/layui/layer_mobile/layer.js"></script>
 	<!--------layui_moblile js--------->
 	<script src="${basePath }/rwjr/js/jsRender.js"></script>
-	<!--------jsRender js--------->
-	<script>
-		$(function() {
-	
-			arr = [ { } ];
-			var html = $("#tmp7").render(arr);
-			$(".qdbutton").click(function() {
-				layer.open({
-					anim : 'up',
-					content : html
-				});
-			})
-		});
-	</script>
-
-
-
-	<script>
-		$(function() {
-			arrdata = [ { } ];
-			var html = $("#tmp2").render(arrdata);
-			$(".wyqdckxq").click(function() {
-				layer.open({
-					anim : 'up',
-					content : html
-				});
-			})
-		});
-	</script>
+	 
 	<!------------------MUI 选项卡 js----------------------->
 	<script>
 		mui.init({

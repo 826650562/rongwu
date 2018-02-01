@@ -73,6 +73,23 @@ public class Qd {
 	public String dkrxx() {
 		return "dkrxx";
 	}
+	
+	@RequestMapping(value = "/getInfouserOfweixin")
+	public void getInfouserOfweixin(HttpServletRequest req, HttpServletResponse response) {
+		String _wxInfoId = (String) req.getParameter("wxInfoId");
+		String sql="select * from weixin_info where openid='"+_wxInfoId+"'";
+		
+        List list=mapService.getListBySql(sql);
+        JSONArray jsonArray = JSONArray.fromObject(list);
+		try {
+			response.getWriter().write(jsonArray.toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 
 	@RequestMapping(value = "/scPics")
 	public void scPics(HttpServletRequest req, HttpServletResponse response) throws IOException {

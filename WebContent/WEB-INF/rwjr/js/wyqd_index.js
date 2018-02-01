@@ -213,19 +213,65 @@ $(function() {
 		});
 	}
 
+	function getinforAjax() {
+		//请求数据
+		var wxInfoId="opT5v0qzEwWTGTRvKTwsHMHK-Jtw"//getCookie("wexinOpenId");
+		if(!wxInfoId){
+			_msg("需要您授权微信基本信息！");
+			return false;
+		}
+		$.ajax({
+			url : "getInfouserOfweixin",  
+			type : "post",
+			contentType : "application/x-www-form-urlencoded",
+			data : {
+				wxInfoId:wxInfoId
+			},
+			success : function(code) {
+			    var res=JSON.parse(code)[0];
+			    if(!res.sjh){
+			    	$("#shenqing-status").text("身份认证");
+			    	var imgsrc= $("#shengqing_pic").attr('src');
+			    	$("#shengqing_pic").attr('src',imgsrc+"no_rz.png");
+			    }else if(!res.status){
+			    	$("#shenqing-status").text("认证中");
+			    }
+			    if(res.imgsrc){
+			    	$(".mycenhead").find("img").attr("src",res.imgsrc);
+			    }
+			    if(res.nickname){
+			    	$("#_name_xd").text(res.nickname);
+			    }
+			   
+			    $("#shenqing-status").parents("li").click(function(){
+			    	 window.location.href="../rwjr/sqrz";
+			    });
+			},
+			error : function(error) {
+				_msg("系统错误！");
+			}
+		});
+	}
+	
 	function init() {
+		//填充列表
 		sendAjax(attrs, appendHtml, 0);
 		sendAjax(attrs2, appendHtml2, 1);
+		//获取信贷经理信息
+		getinforAjax();
+		
 	}
+	
 
 	function dealWithQd(id) {
 		//处理抢单
 		var _sjh = getCookie("_user");
-		alert(_sjh);
-		if (true) {
-
-		}
-
+		arrdata = [ { } ];
+		var html = $("#tmp2").render(arrdata);
+		layer.open({
+			anim : 'up',
+			content : html
+		});
 
 	}
 	main();
