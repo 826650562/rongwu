@@ -157,21 +157,21 @@ public class Qd {
 		String havagjj = (String) req.getParameter("gjj");// 公积金
 
 		StringBuffer sqlBf = new StringBuffer(
-				"select * from shenqing_user t join yh_dk d on t.sjh=d.sjh   where 1=1 and d.status=1");
-		if (havahose != null && !havahose.isEmpty() && havahose.equals("1")) {
-			sqlBf.append(" and t.fangchan=" + havahose);
+				"select * from shenqing_user t join yh_dk d on t.sjh=d.sjh   where d.status=1 and t.name=d.`name` and d.`delete`='0' ");
+		if (havahose != null && !havahose.isEmpty() && !havahose.equals("0")) {
+			sqlBf.append(" and t.fangchan<>'无房产'");
 		}
-		if (havacar != null && !havacar.isEmpty() && havacar.equals("1")) {
-			sqlBf.append(" and t.che=" + havacar);
+		if (havacar != null && !havacar.isEmpty() && !havacar.equals("0")) {
+			sqlBf.append(" and t.che<>'无车'");
 		}
-		if (havasb != null && !havasb.isEmpty() && havasb.equals("1")) {
-			sqlBf.append(" and t.shebao=" + havasb);
+		if (havasb != null && !havasb.isEmpty() && !havasb.equals("0")) {
+			sqlBf.append(" and t.shebao='" + havasb+"'");
 		}
-		if (havagz != null && !havagz.isEmpty() && havagz.equals("1")) {
-			sqlBf.append(" and t.gzffxs=" + havagz);
+		if (havagz != null && !havagz.isEmpty() && !havagz.equals("0")) {
+			sqlBf.append(" and t.gz='" + havagz+"'");
 		}
-		if (havagjj != null && !havagjj.isEmpty() && havahose.equals("1")) {
-			sqlBf.append(" and t.gjj=" + havagjj);
+		if (havagjj != null && !havagjj.isEmpty() && !havagjj.equals("0")) {
+			sqlBf.append(" and t.gjj='" + havagjj+"'");
 		}
 
 		List sjhList = this.mapService.getListBySql(sqlBf.toString());

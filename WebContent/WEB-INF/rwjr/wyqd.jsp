@@ -23,12 +23,15 @@
 	type="text/css">
 <link href="${basePath }/rwjr/css/style.css" rel="stylesheet"
 	type="text/css">
+	<link href="${basePath }/rwjr/layui/layer_mobile/layer.css" rel="stylesheet" type="text/css"><!-------layui_mobile css--------->
 
 <script type="text/javascript"
 	src="${basePath }/rwjr/js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript"
 	src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script type="text/javascript" src="${basePath }/rwjr/js/wyqd_index.js"></script>
+<script type="text/javascript" src="${basePath }/rwjr/layui/layui.js"></script>
+<script type="text/javascript" src="${basePath }/rwjr/js/layer.js"></script>
 <script type="text/javascript" src="${basePath }/rwjr/js/common.js"></script>
 <!--App自定义的css-->
 
@@ -63,6 +66,53 @@ html, body {
 	background-color: #fff;
 }
 </style>
+<script type="text/tmp" id="tmp7"> 
+<div class="cztkbox">
+  <div class="z-row">
+   <div class="z-col jfbz">余额/积分不足</div>
+ </div>
+ <div class="z-row">
+   <div class="z-col cztktxt">您当前的积分为：0</div>
+ </div>
+ <div class="z-row">
+   <div class="z-col cztktxt">您当前的余额为：0</div>
+ </div>
+  <div class="z-row">
+   <div class="z-col cztktxt">抢单将消耗&nbsp;&nbsp;<span class="colorRed">20积分</span>&nbsp;&nbsp;或者&nbsp;&nbsp;<span class="colorRed">10元</span></div>
+ </div>
+ <div class="z-row">
+   <div class="z-col cztkzhujie">注：平台贷款由客户自己申请，抢单成功后费用不可退；特殊情况退款，5个工作日内核实处理<a href="#">查看详情</a></div>
+ </div>
+</div> 
+ <div class="z-row" style="border-top:1px solid #e6e6e6;">
+   <div class="z-col" style="border-right:1px solid #e6e6e6;"><button class="layui-btn tkbtn1">充值</button></div>
+   <div class="z-col"><button class="layui-btn tkbtn2">微信支付</button></div>
+ </div>
+</script>
+
+
+
+<script type="text/tmp" id="tmp2"> 
+<div class="cztkbox">
+ <div class="z-row">
+   <div class="z-col cztktxt">您当前的积分为：100</div>
+ </div>
+ <div class="z-row">
+   <div class="z-col cztktxt">您当前的余额为：50</div>
+ </div>
+  <div class="z-row">
+   <div class="z-col cztktxt">抢单将消耗&nbsp;&nbsp;<span class="colorRed">20积分</span>&nbsp;&nbsp;或者&nbsp;&nbsp;<span class="colorRed">10元</span></div>
+ </div>
+ <div class="z-row">
+   <div class="z-col cztkzhujie">注：平台贷款由客户自己申请，抢单成功后费用不可退；特殊情况退款，5个工作日内核实处理<a href="#">查看详情</a></div>
+ </div>
+</div> 
+ <div class="z-row" style="border-top:1px solid #e6e6e6;">
+   <div class="z-col" style="border-right:1px solid #e6e6e6;"><button class="layui-btn tkbtn3">20积分抢单</button></div>
+   <div class="z-col"><button class="layui-btn tkbtn3">10元抢单</button></div>
+ </div>
+</script>
+
 
 </head>
 
@@ -297,9 +347,8 @@ html, body {
 			<ul class="mui-table-view mui-grid-view mui-grid-9">
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
 					<span class="renzheng"><img
-						src="${basePath }/rwjr/images/no_rz.png">
-					<!--<img src="${basePath }/rwjr/images/yes_rz.png">--></span> <a href="#">
-						<span class="mycenterxtb"><img
+						src="${basePath }/rwjr/images/no_rz.png"> <!--<img src="${basePath }/rwjr/images/yes_rz.png">--></span>
+					<a href="#"> <span class="mycenterxtb"><img
 							src="${basePath }/rwjr/images/myxtb1.png"></span>
 						<div class="mui-media-body">申请认证</div>
 				</a>
@@ -352,21 +401,52 @@ html, body {
 	<!--底部nav html end-->
 
 	<script src="${basePath }/rwjr/mui-master/dist/js/mui.min.js"></script>
+	<script src="${basePath }/rwjr/layui/layer_mobile/layer.js"></script>
+	<!--------layui_moblile js--------->
+	<script src="${basePath }/rwjr/js/jsRender.js"></script>
+	<!--------jsRender js--------->
+	<script>
+		$(function() {
+	
+			arr = [ { } ];
+			var html = $("#tmp7").render(arr);
+			$(".qdbutton").click(function() {
+				layer.open({
+					anim : 'up',
+					content : html
+				});
+			})
+		});
+	</script>
 
+
+
+	<script>
+		$(function() {
+			arrdata = [ { } ];
+			var html = $("#tmp2").render(arrdata);
+			$(".wyqdckxq").click(function() {
+				layer.open({
+					anim : 'up',
+					content : html
+				});
+			})
+		});
+	</script>
 	<!------------------MUI 选项卡 js----------------------->
 	<script>
-	mui.init({
-		swipeBack: true
-	});
-	(function($) {
-	    if('${openid}'){
-	      setCookie("wexinOpenId",'${openid}');
-	    }
-		$('.mui-scroll-wrapper').scroll({
-			indicators: true //是否显示滚动条
+		mui.init({
+			swipeBack : true
 		});
-	})(mui);
-</script>
+		(function($) {
+			if ('${openid}') {
+				setCookie("wexinOpenId", '${openid}');
+			}
+			$('.mui-scroll-wrapper').scroll({
+				indicators : true //是否显示滚动条
+			});
+		})(mui);
+	</script>
 
 </body>
 </html>

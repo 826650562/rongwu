@@ -41,8 +41,8 @@ $(function() {
 		if (res.sex) {
 			miaoshu += "," + res.sex;
 		}
-		if (res.gzffxs) {
-			miaoshu += "," + res.gzffxs;
+		if (res.gz) {
+			miaoshu += "," + res.gz;
 		}
 		if (res.xueli) {
 			miaoshu += "," + res.xueli;
@@ -50,20 +50,20 @@ $(function() {
 		if (res.gz) {
 			miaoshu += ",月收入" + res.gz;
 		}
-		if (res.shebao == '1') {
+		if (res.shebao != '无社保') {
 			miaoshu += ",有社保";
 		}
-		if (res.gjj == '1') {
+		if (res.gjj != '无公积金') {
 			miaoshu += ",有公积金";
 		}
-		if (res.fangchan == '1') {
+		if (res.fangchan != '无房产') {
 			miaoshu += ",有房产";
 		}
 		if (res.zhima) {
 			miaoshu += ",芝麻信用积分：" + res.zhima;
 		}
 		if (res.jine) {
-			miaoshu += ",意向贷款金额：" + res.jine;
+			miaoshu += ",意向贷款金额：" + res.jine+"万元";
 		}
 		if (res.daikuanqixian) {
 			miaoshu += ",意向贷款期限：" + res.daikuanqixian + "月";
@@ -93,12 +93,13 @@ $(function() {
 		zcsx.click(function() {
 			$(this).toggleClass("zcsxactive");
 			var value = $(this).attr("value")
+			var text=$(this).text()
 			if ($(this).hasClass("zcsxactive")) {
-				attrs[value] = 1;
+				attrs[value] = text;
 			} else {
 				attrs[value] = 0;
 			}
-			sendAjax();
+			sendAjax(attrs,appendHtml,0);
 		});
 
 		$("._dkfbsj").find(".fa-caret-up").click(function() {
@@ -168,7 +169,6 @@ $(function() {
 				$(".ptkh").eq(index).html("");
 				if (code == '10010') {
 					$(".ptkh").append(getBlanck(false));
-
 				} else {
 					fn(JSON.parse(code));
 				}

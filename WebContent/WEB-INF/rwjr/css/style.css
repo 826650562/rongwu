@@ -129,7 +129,7 @@ background:#fff;
 	margin-bottom:10px;
 }
 .wyqditemcz{border-top:1px solid #e6e6e6; height:35px; line-height:35px; text-align:center;font-size:13px;}
-.wyqdckxq{border-right:1px solid #e6e6e6;}
+.wyqdckxq{border-right:1px solid #e6e6e6; cursor:pointer;}
 .wyqditemcont{font-size:13px; line-height:22px; padding:0px 10px;}
 .wyqdtopbox{padding:10px;}
 .wyqdtime{padding:5px 10px 10px 10px; font-size:13px; color:#666;}
@@ -139,7 +139,7 @@ background:#fff;
 .zcsxactive{height:24px; line-height:24px; font-size:13px; margin:5px;border:1px solid #fc4023; padding:0px 5px; border-radius:4px; float:left; display:block; box-sizing:border-box; background:#fc4023; cursor:pointer; color:#fff;}
 .wyqdwxxtb{width:20px; height:20px;}
 .wyqdwxxtb i::before{color:#666;}
-.qdbutton{position:relative;}
+.qdbutton{position:relative; cursor:pointer;}
 .qdxtb{width:30px; height:20px; position:absolute;top:0px;left:0px;}
 .qdxtb img{width:100%; padding:0px; margin:0px; display:block;}
 .bottomnav{height:48px; background:#fff;border-top:1px solid #e6e6e6; position:fixed; bottom:0px; z-index:100;width:100%;}
@@ -151,7 +151,14 @@ background:#fff;
 .bnavxtb2 i::before{font-size:15px;}
 .bnavitem{cursor:pointer; color:#666;}
 .bnavitemActive{color:#fc4023 !important;}
-
+.tkbtn2{padding:0px; height:35px; line-height:35px;  background:#04ae0f; color:#fff; width:100%; border:none; border-radius:0px;border-bottom-right-radius: 3px;font-family: 'microsoft yahei', Arial, Helvetica, sans-serif;}
+.tkbtn1{padding:0px; background:#fc4023; color:#fff;height:35px;  line-height:35px; width:100%; border:none; border-radius:0px;border-bottom-left-radius: 3px;font-family: 'microsoft yahei', Arial, Helvetica, sans-serif;}
+.tkbtn3{padding:0px; background:#fc4023; color:#fff;height:35px;  line-height:35px; width:100%; border:none; border-radius:0px;border-bottom-left-radius: 3px;font-family: 'microsoft yahei', Arial, Helvetica, sans-serif;}
+.cztkbox{padding:10px 15px; text-align:left;font-family: 'microsoft yahei', Arial, Helvetica, sans-serif;color: #313131;}
+.cztktxt{height:25px; line-height:25px;}
+.cztkzhujie{font-size:12px; color:#999;}
+.cztkzhujie a{color:#0275e1;}
+.jfbz{font-size:16px; text-align:center; color:#fc4023; height:35px; line-height:35px;}
 /*----dkrxx----*/
 .xxcont{padding:15px; width:100%; box-sizing:border-box; position:absolute;top:155px;}
 .xxitembox{border-radius:5px; background:#fff; box-sizing:border-box; margin-bottom:10px;
@@ -264,3 +271,11 @@ position:relative;}
 .dkxxyz img{width:70px; height:70px;}
 .topbarright{font-size:16px !important; width:45px; height:45px; line-height:45px; text-align:center;padding:0px !important; cursor:pointer;}
 .qxddbtn{ height:30px; line-height:28px; font-size:13px; margin-top:5px; padding:0px 10px; border:1px solid #fc4023; background:#fff; color:#fc4023;}
+/*----------sz html css----------*/
+.szitem{border-bottom:1px solid #e6e6e6; height:45px; line-height:45px; cursor:pointer;}
+.sztstxt{text-align:right; font-size:14px; color:#666;}
+.szbox{padding:15px; background:#fff;}
+/*----------grxx html css---------*/
+.grxxhead{width:35px; height:35px; margin-top:5px; cursor:pointer; border-radius:35px; border:1px solid #e6e6e6; box-sizing:border-box;}
+.grxxhead img{width:100%; border-radius:35px; display:block;padding:0px; margin:0px;}
+.wjmm{color:#0873bd; float:right;}

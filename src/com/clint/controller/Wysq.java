@@ -20,8 +20,6 @@ public class Wysq {
 	
 	@RequestMapping(value = "/userinfo")
 	public String userinfo() {
-		//返回申请页面
-		
 		
 		return "wysq";
 	}
