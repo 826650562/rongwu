@@ -9,11 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
+import com.clint.model.Global;
 import com.clint.service.MapService;
 import com.clint.service.PersonService;
 import com.clint.untils.Sjm;
@@ -102,8 +104,13 @@ public class Rwjr {
 				.execute("UPDATE user SET sjh='" + sjh + "',dlsj= '" + new Date().getTime() + "' where sjh = '" + sjh + "'");
 			}
 		    //将登录信息写入session
-			session.setMaxInactiveInterval(900);
-			session.setAttribute("user", sjh);
+			String weixinOpenid=(String) session.getAttribute(Global.WEIXINOPENID);
+			if(StringUtils.isNotEmpty(weixinOpenid)){
+				//加入登录信息
+				this.mapService
+				.execute("UPDATE weixin_info SET sjh='" + sjh  + "' where openid = '" + weixinOpenid + "'");
+				session.setAttribute(Global.USER_SESSION_KEY, "rwjr_"+sjh+"_"+weixinOpenid);
+			}
 			response.getWriter().write("10002");
 		} else {
 			response.getWriter().write("10003");// 验证码错误

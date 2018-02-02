@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -14,12 +14,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.clint.model.Global;
 import com.clint.service.MapService;
-import com.clint.service.PersonService;
 import com.clint.untils.Oauth2Action;
 import com.clint.untils.Outer;
 
@@ -29,8 +30,7 @@ import net.sf.json.JSONArray;
 @Controller
 @RequestMapping(value = "/wyqd")
 public class Qd {
-	@Resource(name = "personService")
-	private PersonService personService;
+
 	@Resource(name = "mapService")
 	private MapService mapService;
 
@@ -40,12 +40,45 @@ public class Qd {
 	}
 
 	@RequestMapping(value = "/wyqdjsp")
-	public String wyqdjsp() {
+	public String wyqdjsp(HttpServletRequest req, HttpServletResponse response) {
+		req.getSession().setMaxInactiveInterval(-1);
+		req.getSession().setAttribute(Global.WEIXINOPENID, "opT5v0iSEeH8QB5nzL7vDRtS3YeA");
 		return "wyqd";
 	}
+
+	// 设置
+	@RequestMapping(value = "/_sz")
+	public String sz() {
+		return "sz";
+	}
+
+	// 充值
+	@RequestMapping(value = "/_cz")
+	public String cz() {
+		return "cz";
+	}
+
+	// 个人信息修改
+	@RequestMapping(value = "/grxx_xg")
+	public String grxx_xg() {
+		return "grxx_xg";
+	}
+
+	// 密码信息修改信息修改
+	@RequestMapping(value = "/zfmm_xg")
+	public String zfmm_xg() {
+		return "zfmm_xg";
+	}
 	
+	// 密码信息修改信息修改
+	@RequestMapping(value = "/mmsz_xg")
+	public String mmsz_xg() {
+		return "mmsz_xg";
+	}
+	
+
 	@RequestMapping(value = "/getuserInfo")
-	public String getuserInfo(HttpServletRequest req, HttpServletResponse response,Model model)
+	public String getuserInfo(HttpServletRequest req, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
 		String echostr = req.getParameter("echostr");
 		Oauth2Action oa = new Oauth2Action();
@@ -62,7 +95,9 @@ public class Qd {
 						+ map.get("imgsrc") + "');";
 				this.mapService.execute(sql);
 			}
-			model.addAttribute("openid", map.get("openid"));  
+			req.getSession().setMaxInactiveInterval(-1);
+			req.getSession().setAttribute(Global.WEIXINOPENID, map.get("openid"));
+			model.addAttribute(Global.WEIXINOPENID, map.get("openid"));
 			return "wyqd";
 		} else {
 			return "login";
@@ -73,14 +108,30 @@ public class Qd {
 	public String dkrxx() {
 		return "dkrxx";
 	}
-	
+
 	@RequestMapping(value = "/getInfouserOfweixin")
 	public void getInfouserOfweixin(HttpServletRequest req, HttpServletResponse response) {
 		String _wxInfoId = (String) req.getParameter("wxInfoId");
-		String sql="select * from weixin_info where openid='"+_wxInfoId+"'";
-		
-        List list=mapService.getListBySql(sql);
-        JSONArray jsonArray = JSONArray.fromObject(list);
+
+		List allres = new ArrayList();
+		String sql = "select * from weixin_info where openid='" + _wxInfoId + "'";
+		List list = mapService.getListBySql(sql);
+		allres.add(list);
+		Map wx_user = (Map) list.get(0);
+		String sjh = (String) wx_user.get("sjh");
+		if (StringUtils.isNotBlank(sjh)) {
+			String gzsql = "select * from sjh_gzzpic where sjh='" + sjh + "'";
+			String grsql = "select * from sjh_sfzpic where sjh='" + sjh + "'";
+			String usersql = "select * from user where sjh='" + sjh + "'";
+			List gzsqllist = mapService.getListBySql(gzsql);
+			List grsqllist = mapService.getListBySql(grsql);
+			List userlist = mapService.getListBySql(usersql);
+
+			allres.add(gzsqllist);
+			allres.add(grsqllist);
+			allres.add(userlist);
+		}
+		JSONArray jsonArray = JSONArray.fromObject(allres);
 		try {
 			response.getWriter().write(jsonArray.toString());
 		} catch (IOException e) {
@@ -88,8 +139,6 @@ public class Qd {
 			e.printStackTrace();
 		}
 	}
-	
-	
 
 	@RequestMapping(value = "/scPics")
 	public void scPics(HttpServletRequest req, HttpServletResponse response) throws IOException {
@@ -182,13 +231,13 @@ public class Qd {
 			sqlBf.append(" and t.che<>'无车'");
 		}
 		if (havasb != null && !havasb.isEmpty() && !havasb.equals("0")) {
-			sqlBf.append(" and t.shebao='" + havasb+"'");
+			sqlBf.append(" and t.shebao='" + havasb + "'");
 		}
 		if (havagz != null && !havagz.isEmpty() && !havagz.equals("0")) {
-			sqlBf.append(" and t.gz='" + havagz+"'");
+			sqlBf.append(" and t.gz='" + havagz + "'");
 		}
 		if (havagjj != null && !havagjj.isEmpty() && !havagjj.equals("0")) {
-			sqlBf.append(" and t.gjj='" + havagjj+"'");
+			sqlBf.append(" and t.gjj='" + havagjj + "'");
 		}
 
 		List sjhList = this.mapService.getListBySql(sqlBf.toString());

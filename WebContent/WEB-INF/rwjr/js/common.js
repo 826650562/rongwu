@@ -1,3 +1,9 @@
+// XK_JL_USER_ID  //ID=手机号+openid
+//XK_JL_USER_STATUS  //用户当前状态  00没有双认证   11代表认证通过 22认证不通过
+//wexinOpenId   微信的id
+
+//USER_SHOUJIHAO  用户手机号
+
 function  _msg(info,fn){
 	layer.open({
 		content : info,
@@ -23,8 +29,29 @@ function _xunwen(content,buttons,fn1,fn2){
 	    	fn2();
 	    }
 	  });
-	  
 }
+
+function checkUser(fn,url){
+	//请求数据
+	$.ajax({
+		url : "../loginManager/checkLogin", //判断登录状态
+		type : "post",
+		contentType : "application/x-www-form-urlencoded",
+		success : function(code) {
+			if (code == 'login_100') {
+				fn();	
+			} else {
+				window.location.href="../rwjr/login#"+url //";
+			}
+		},
+		error : function(error) {
+			_msg("系统错误！稍后重试");
+		}
+	});
+ 
+}
+
+ 
 
 function xunwenkuang(content,btn,fun1,fun2){
 	//中间询问框
@@ -32,7 +59,8 @@ function xunwenkuang(content,btn,fun1,fun2){
 	  layer.open({
 	    content: content
 	    ,btn:btn
-	    ,yes:fun1  ,
+	    ,shadeClose:false
+	    ,yes:fun1,
 	    no:fun2
 	  });
 }
@@ -72,7 +100,8 @@ function delCookie(name)
     if(cval!=null) 
         document.cookie= name + "="+cval+";expires="+exp.toGMTString();
 }
-function add0(m){return m<10?'0'+m:m }
+function add0(m){return m<10?'0'+m:m
+}
 function format(shijianchuo)
 {
 //shijianchuo是整数，否则要parseInt转换

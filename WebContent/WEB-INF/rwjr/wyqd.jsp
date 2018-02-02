@@ -65,10 +65,13 @@ html, body {
 	border-left: 1px solid #e6e6e6;
 	background-color: #fff;
 }
+
+
+
 </style>
 <style>
 .mui-table-view-cell{padding:0px;}
-.layui-m-layercont{padding:0px;border-radius:2px;}
+/* .layui-m-layercont{padding:0px;border-radius:2px;} */
 .layui-m-layerchild {
     border-radius: 2px;
 }
@@ -358,15 +361,15 @@ html, body {
 
 			<ul class="mui-table-view mui-grid-view mui-grid-9">
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
-					<span class="renzheng"><img id="shengqing_pic"
-						src="${basePath }/rwjr/images/"> <!--<img src="${basePath }/rwjr/images/yes_rz.png">--></span>
+					<span class="renzheng"><img id="shengqing_pic" img_url="${basePath }/rwjr/images/"
+						src="${basePath }/rwjr/images/no_rz.png"> <!--<img src="${basePath }/rwjr/images/yes_rz.png">--></span>
 					<a href="#"> <span class="mycenterxtb"><img
 							src="${basePath }/rwjr/images/myxtb1.png"></span>
 						<div class="mui-media-body" id="shenqing-status">申请认证</div>
 				</a>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
-					<a href="#"> <span class="mycenterxtb"><img
+					<a href="#tabbar-with-chat"> <span class="mycenterxtb"><img
 							src="${basePath }/rwjr/images/myxtb2.png"></span>
 						<div class="mui-media-body">客户申请</div>
 				</a>
@@ -406,7 +409,7 @@ html, body {
 			class="mui-icon mui-icon-email"></span> <span class="mui-tab-label">客户</span>
 		</a> <a class="mui-tab-item" href="#tabbar-with-contact"> <span
 			class="mui-icon mui-icon-contact"></span> <span class="mui-tab-label">微店</span>
-		</a> <a class="mui-tab-item" href="#tabbar-with-map"> <span
+		</a> <a class="mui-tab-item"   href="#tabbar-with-map"> <span
 			class="mui-icon mui-icon-gear"></span> <span class="mui-tab-label">我的</span>
 		</a>
 	</nav>

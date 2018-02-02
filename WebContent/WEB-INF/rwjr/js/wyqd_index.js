@@ -14,6 +14,7 @@ $(function() {
 		gjj : 0,
 		sbz : 0
 	};
+	var myurl = "../wyqd/wyqdjsp";
 	function getBlanck(back) {
 		var html = "<div class='mui-content'>" +
 			"<div class='z-row'>" +
@@ -63,7 +64,7 @@ $(function() {
 			miaoshu += ",芝麻信用积分：" + res.zhima;
 		}
 		if (res.jine) {
-			miaoshu += ",意向贷款金额：" + res.jine+"万元";
+			miaoshu += ",意向贷款金额：" + res.jine + "万元";
 		}
 		if (res.daikuanqixian) {
 			miaoshu += ",意向贷款期限：" + res.daikuanqixian + "月";
@@ -76,14 +77,14 @@ $(function() {
 			" <div class=' wyqdaddr'>" + res.adress + "</div> </div>" +
 			"<div class='z-row'> <div class='z-col wyqditemcont'>" + miaoshu + "</div>" +
 			" </div> <div class='z-row'>" +
-			"<div class='z-col wyqdtime'>申请时间：<span value=" + res.date + ">" + res.date + "</span></div> </div>" +
+			"<div class='z-col wyqdtime'>申请时间：<span value=" + res.date + ">" + format(parseInt(res.date)) + "</span></div> </div>" +
 			" <div class='z-row wyqditemcz'>" +
 			" <div val_id=" + res.id + " class='xiangqing_ofDz z-col wyqdckxq'><a href='javascript:;'>查看详情</a></div>" +
 			" <div class='z-col qdbutton' val_id=" + res.id + ">" +
 			" <span class='qdxtb'><img src='../rwjr/images/qiang.png'></span>" +
 			" <a href='#' class='colorRed _qdjg'  ><span value=" + 20 + ">20</span>元抢单</a>  </div> </div> </a> </div> </div>";
 	}
-	
+
 	function main() {
 		init();
 		addEventLisiter();
@@ -93,65 +94,83 @@ $(function() {
 		zcsx.click(function() {
 			$(this).toggleClass("zcsxactive");
 			var value = $(this).attr("value")
-			var text=$(this).text()
+			var text = $(this).text()
 			if ($(this).hasClass("zcsxactive")) {
 				attrs[value] = text;
 			} else {
 				attrs[value] = 0;
 			}
-			sendAjax(attrs,appendHtml,0);
+			sendAjax(attrs, appendHtml, 0);
 		});
 
 		$("._dkfbsj").find(".fa-caret-up").click(function() {
 			sortByName(".wyqdtime", function(a, b) {
-				return a - b;
-			});
+				return a.date - b.date;
+			},this);
 		});
 		$("._dkfbsj").find(".fa-caret-down").click(function() {
 			sortByName(".wyqdtime", function(a, b) {
-				return b - a;
-			});
+				return b.date - a.date;
+			},this);
 		});
 
 		$("._dkjine").find(".fa-caret-up").click(function() {
 			sortByName(".wyqdcash", function(a, b) {
-				return a - b;
-			});
+				return a.date - b.date;
+			},this);
 		});
 		$("._dkjine").find(".fa-caret-down").click(function() {
 			sortByName(".wyqdcash", function(a, b) {
-				return b - a;
-			});
+				return b.date - a.date;
+			},this);
 		});
 
 		$("._dkjiage").find(".fa-caret-up").click(function() {
 			sortByName("._qdjg", function(a, b) {
-				return b - a;
-			});
+				return b.date - a.date;
+			},this);
 		});
 		$("._dkjiage").find(".fa-caret-down").click(function() {
 			sortByName("._qdjg", function(a, b) {
-				return b - a;
-			});
+				return b.date - a.date;
+			},this);
 		});
 
+		$(".shezhibtn").click(function() {
+			//充值
+			checkUser(function() {
+				window.location.href = "_cz";
+			}, myurl)
+		});
+		$(".chongzhibtn").click(function() {
+			//设置
+			checkUser(function() {
+				window.location.href = "_sz";
+			}, myurl)
+		});
 
 	}
 
-	function sortByName(name, fc) {
-		var qdliitem = $(".ptkh").find(".qdliitem");
+	function sortByName(name, fc,self) {
+		var _index=$(self).index();
+		var qdliitem = $(".ptkh").eq(_index).find(".qdliitem");
 		//排序
 		var dates = [];
 		qdliitem.each(function(item) {
 			var date = qdliitem.eq(item).find(name).children("span").attr("value");
-			dates.push(parseInt(date));
+			var _id=qdliitem.eq(item).find(".xiangqing_ofDz").attr("val_id");
+			dates.push({
+				_id:_id,
+				date:parseInt(date)
+			});
 		});
 		dates.sort(fc);
 		$(".ptkh").html("");
-		dates.map(function(date) {
+		dates.map(function(elt) {
 			qdliitem.each(function(item) {
 				var realtime = qdliitem.eq(item).find(name).children("span").attr("value");
-				if (date == realtime) {
+				var _id=qdliitem.eq(item).find(".xiangqing_ofDz").attr("val_id");
+				if (elt.date == realtime && elt._id==_id) {
 					$(".ptkh").append(qdliitem.eq(item));
 				}
 			});
@@ -174,7 +193,7 @@ $(function() {
 				}
 			},
 			error : function(error) {
-				_msg("系统错误！");
+				_msg("系统错误！稍后重试");
 			}
 		});
 	}
@@ -186,11 +205,23 @@ $(function() {
 			var id = $(this).attr("val_id");
 			res.forEach(function(item) {
 				if (id == item.id) {
+					//user_dkxq 临时选中的贷款客户信息
 					setCookie("user_dkxq", JSON.stringify(item));
-					window.location.href = "dkrxx";
+					checkUser(function() {
+						window.location.href = "dkrxx";
+					}, myurl)
 				}
 			});
 		});
+		//XX元抢单
+		$(".qdbutton").click(function(e) {
+			var id = $(this).attr("val_id");
+			checkUser(function() {
+				dealWithQd(id);
+			}, myurl)
+
+		});
+
 	}
 	//第二页
 	function appendHtml2(res) {
@@ -202,66 +233,118 @@ $(function() {
 			res.forEach(function(item) {
 				if (id == item.id) {
 					setCookie("user_dkxq", JSON.stringify(item));
-					window.location.href = "dkrxx";
+					checkUser(function() {
+						window.location.href = "dkrxx";
+					}, myurl)
 				}
 			});
 		});
 		//XX元抢单
 		$(".qdbutton").click(function(e) {
 			var id = $(this).attr("val_id");
-			dealWithQd(id);
+			checkUser(function() {
+				dealWithQd(id);
+			}, myurl)
+
 		});
 	}
 
 	function getinforAjax() {
 		//请求数据
-		var wxInfoId="opT5v0qzEwWTGTRvKTwsHMHK-Jtw"//getCookie("wexinOpenId");
-		if(!wxInfoId){
+		var wxInfoId = "opT5v0iSEeH8QB5nzL7vDRtS3YeA" //getCookie("wexinOpenId");
+		if (!wxInfoId) {
 			_msg("需要您授权微信基本信息！");
 			return false;
 		}
 		$.ajax({
-			url : "getInfouserOfweixin",  
+			url : "getInfouserOfweixin",
 			type : "post",
 			contentType : "application/x-www-form-urlencoded",
 			data : {
-				wxInfoId:wxInfoId
+				wxInfoId : wxInfoId
 			},
 			success : function(code) {
-			    var res=JSON.parse(code)[0];
-			    if(!res.sjh){
-			    	$("#shenqing-status").text("身份认证");
-			    	var imgsrc= $("#shengqing_pic").attr('src');
-			    	$("#shengqing_pic").attr('src',imgsrc+"no_rz.png");
-			    }else if(!res.status){
-			    	$("#shenqing-status").text("认证中");
-			    }
-			    if(res.imgsrc){
-			    	$(".mycenhead").find("img").attr("src",res.imgsrc);
-			    }
-			    if(res.nickname){
-			    	$("#_name_xd").text(res.nickname);
-			    }
-			   
-			    $("#shenqing-status").parents("li").click(function(){
-			    	 window.location.href="../rwjr/sqrz";
-			    });
+				var res = JSON.parse(code);
+				var weixin_info=res[0][0];
+				var user_info=res[3][0];
+				var sfrz_info=res[2][0];
+				var gzrz_info=res[1][0];
+				
+				console.info(res);
+				if(sfrz_info){
+					if(sfrz_info._ispass==0){
+						setRz("身份审核中","shz.png");
+					}else if(sfrz_info._ispass==2){
+						setRz("身份审核不通过","no_rz.png");
+					}else if(sfrz_info._ispass==1){
+						if(gzrz_info){
+							if(gzrz_info.ispass==0){
+								setRz("工作认证审核中","shz.png");
+							}else if(gzrz_info.ispass==2){
+								setRz("工作认证不通过","no_rz.png");
+							}else{
+								setRz("已认证","yes_rz.png");
+							}
+							
+						}else{
+							setRz("工作认证","no_rz.png");
+						}
+					}
+				}else{
+					setRz("身份认证","no_rz.png");
+				}
+				
+				function setRz(text,pic){
+					$("#shenqing-status").text(text);
+					var imgsrc = $("#shengqing_pic").attr('img_url');
+					$("#shengqing_pic").attr('src', imgsrc + pic);
+				}
+			
+				if (weixin_info.imgsrc) {
+					$(".mycenhead").find("img").attr("src",weixin_info.imgsrc);
+				}
+				if (user_info.realname) {
+					$("#_name_xd").text(user_info.realname);
+				}else if(weixin_info.nickname){
+					$("#_name_xd").text(weixin_info.nickname);
+				}
+
+				$("#shenqing-status").parents("li").click(function() {
+					window.location.href = "../rwjr/sqrz";
+				});
+				
 			},
 			error : function(error) {
 				_msg("系统错误！");
 			}
 		});
 	}
-	
+
 	function init() {
 		//填充列表
 		sendAjax(attrs, appendHtml, 0);
 		sendAjax(attrs2, appendHtml2, 1);
 		//获取信贷经理信息
-		getinforAjax();
-		
+		//检查登录状态
+		$.ajax({
+			url : "../loginManager/checkLogin", //判断登录状态
+			type : "post",
+			contentType : "application/x-www-form-urlencoded",
+			success : function(code) {
+				if(code!="login_100"){
+					xunwenkuang("您尚未登录，请登录，后续内容更丰富^_^", [ '去登陆' ], function() {
+						window.location.href = "../rwjr/login#" + myurl
+					});
+				}else{
+					getinforAjax();
+				}
+			},
+			error : function(error) {
+				_msg("系统繁忙！稍后重试");
+			}
+		});
 	}
-	
+
 
 	function dealWithQd(id) {
 		//处理抢单
@@ -272,7 +355,7 @@ $(function() {
 			anim : 'up',
 			content : html
 		});
-
+		$(".layui-m-layercont").css("padding","0px");
 	}
 	main();
 })

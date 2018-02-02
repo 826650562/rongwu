@@ -78,7 +78,7 @@
 							<div class="z-col" id="_dkrSr">元</div>
 						</div>
 						<div class="z-row xxheadevery">
-							<div class="z-col">月收入</div>
+							<div class="z-col">收入形式</div>
 						</div>
 					</div>
 					<div class="z-col xxhlineright">
@@ -123,10 +123,6 @@
 									<div class="z-col" id="dksq_sf"></div>
 								</div>
 								<div class="z-row xxitemli">
-									<div class="padR5">工资发放形式：</div>
-									<div class="z-col">现金</div>
-								</div>
-								<div class="z-row xxitemli">
 									<div class="padR5">是否有公积金：</div>
 									<div class="z-col" id="sq_gjj">有</div>
 								</div>
@@ -162,7 +158,7 @@
 									<div class="z-col" id="sq_che"></div>
 								</div>
 								<div class="z-row xxitemli">
-									<div class="padR5">每月车贷：</div>
+									<div class="padR5">是否有保险：</div>
 									<div class="z-col" id="sq_cd"></div>
 								</div>
 							</div>
@@ -181,11 +177,22 @@
 						<div class="z-row xxitemcont">
 							<div class="z-col">
 								<div class="z-row xxitemli">
+									<div class="padR5">信用：</div>
+									<div class="z-col" id="_xyzk">一般</div>
+								</div>
+								<div class="z-row xxitemli">
 									<div class="padR5">芝麻信用：</div>
 									<div class="z-col" id="sq_zmf">0分</div>
 								</div>
+
+								<div class="z-row xxitemli">
+									<div class="padR5">微粒贷：</div>
+									<div class="z-col" id="sq_vld">0元</div>
+								</div>
 							</div>
+
 						</div>
+
 					</div>
 				</div>
 
@@ -218,40 +225,27 @@
          }
          $("#_dkrSjh").text(user_dkxq.sjh.substr(0,3)+"***"+user_dkxq.sjh.substr(user_dkxq.sjh.length-3,3));
          $("#_dkrCity").text("城市："+user_dkxq.adress);
-         $("#_dkrSr").text(user_dkxq.gz+"元");
+         $("#_dkrSr").text(user_dkxq.gz);
          $("#_dkDkjine").text(user_dkxq.jine+"元");
-         $("#dk_qx").text(user_dkxq.daikuanqixian+"个月");
-         $("#dk_sqsj").text(user_dkxq.date);
+         $("#dk_qx").text(user_dkxq.qixian);
+         $("#dk_sqsj").text(format(parseInt(user_dkxq.date)));
          
-         $("#dksq_sf").text(user_dkxq.gzffxs);
-         if(user_dkxq.gjj==1){
-         $("#sq_gjj").text("有公积金"); 
-         }else{
-           $("#sq_gjj").text("无公积金"); 
-         }
-          
-        if(user_dkxq.shebao==1){
-         $("#sq_sb").text("有社保"); 
-         }else{
-           $("#sq_sb").text("无社保"); 
-         }
+         $("#dksq_sf").text(user_dkxq.gz);
+         $("#sq_gjj").text(user_dkxq.gjj); 
+         $("#sq_sb").text(user_dkxq.shebao); 
          
          $("#sq_xl").text(user_dkxq.xueli);
-        if(user_dkxq.fangchan==1){
-         $("#sq_fc").text("有房产"); 
-         }else{
-           $("#sq_fc").text("无房产"); 
-         }
-        if(user_dkxq.sq_che==1){
-         $("#sq_che").text("有车"); 
-         }else{
-           $("#sq_che").text("无车"); 
-         } 
+          $("#sq_fc").text(user_dkxq.fangchan); 
+         $("#sq_che").text(user_dkxq.che); 
           
-         $("#sq_cd").text(user_dkxq.chedaijine);
+         $("#sq_cd").text(user_dkxq.rsbx);
          
-         $("#sq_zmf").text(user_dkxq.zhima);
-        
+         $("#sq_zmf").text(user_dkxq.zhima||"无"); 
+         $("#sq_vld").text(user_dkxq.wldje||"无");
+         
+         $("#_xyzk").text(user_dkxq.xyzk);
+         
+         
       }
      
      

@@ -240,15 +240,10 @@ public class Sfyz {
 		
 		List sjhList = this.mapService.getListBySql("select * from user  where  sjh = '" + _sjh + "'");
 		if (sjhList.size() >= 0) {
-		/*	this.mapService.execute("insert into user (sfz,realname) values('" + _sfz + "','"
-					+ _xm +  "');");*/
-			System.out.println(
-					"UPDATE user SET  sfz='" + _sfz + "', realname='" +_xm + "' where sjh = '" + _sjh + "'");
 			this.mapService.execute(
 					"UPDATE user SET  sfz='" + _sfz + "', realname='" +_xm + "' where sjh = '" + _sjh + "'");
 		}  
 		response.getWriter().write("10071");
-       	
 	}
 	
 	@RequestMapping(value = "/getuserInfo")

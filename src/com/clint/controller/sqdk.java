@@ -123,10 +123,10 @@ public class sqdk {
 		String _name_sq = (String) req.getParameter("_name_sq");
 
 		StringBuffer sql2 = new StringBuffer("insert into shenqing_user ("
-				+ "name,sjh,date,adress,gz,gjj,shebao,xueli,fangchan,che,sfzh,rsbx,wldje,zhima" + ")values('" + _name_sq
+				+ "name,sjh,date,adress,gz,gjj,shebao,xueli,fangchan,che,sfzh,rsbx,wldje,zhima,xyzk" + ")values('" + _name_sq
 				+ "','" + _w_sjh + "','" + new Date().getTime() + "','" + cityResult3 + "','" + userResult + "','"
 				+ haveGjjResult + "','" + haveSbResult + "','" + haveZgxlResult + "','" + haveHouseResult + "','"
-				+ haveCarResult + "','" + _sq_sfz + "','" + haveYwrsbxResult + "','" + sq_wld + "','" + sq_zm + "')");
+				+ haveCarResult + "','" + _sq_sfz + "','" + haveYwrsbxResult + "','" + sq_wld + "','" + sq_zm +"','" + haveXyqkResult + "')");
 		try {
 			mapService.execute(" DELETE FROM shenqing_user WHERE sjh='" + _w_sjh + "' and name='" + _name_sq + "'");
 			mapService.execute(sql2.toString());
