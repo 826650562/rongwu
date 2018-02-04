@@ -93,9 +93,8 @@ public class Qd {
 	public String wodejifen() {
 		return "wodejifen";
 	}
-	
-	
-	//  公司名称修改
+
+	// 公司名称修改
 	@RequestMapping(value = "/setgsmc")
 	public String setgsmc() {
 		return "setgsmc";
@@ -106,7 +105,6 @@ public class Qd {
 	public String grzwxg() {
 		return "grzwxg";
 	}
-	
 
 	@RequestMapping(value = "/getuserInfo")
 	public String getuserInfo(HttpServletRequest req, HttpServletResponse response, Model model)
@@ -138,6 +136,22 @@ public class Qd {
 	@RequestMapping(value = "/dkrxx")
 	public String dkrxx() {
 		return "dkrxx";
+	}
+
+	// 更新
+	@RequestMapping(value = "/updateInfo")
+	public void updateInfo(HttpServletRequest req, HttpServletResponse response) throws IOException {
+		String info = (String) req.getParameter("info");
+		String value = (String) req.getParameter("value");
+		String id = (String) req.getParameter("id");
+		String Sql = "update user set " + info + "='" + value + "' where id=" + "'" + id + "'";
+		try {
+			this.mapService.execute(Sql);
+			response.getWriter().write("updateInfo_100");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
 	}
 
 	@RequestMapping(value = "/getInfouserOfweixin")

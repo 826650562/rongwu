@@ -179,11 +179,11 @@
 									<i class="fa fa-file-photo-o fa-fw"></i>
 								</div>
 								<div class="z-col">
-									<input type="text" placeholder="图形验证码请问权威" id="_txyzm"
+									<input type="text" placeholder="图形验证码" id="_txyzm"
 										class="zInput">
 								</div>
 								<div class="tpyzm">
-									<img src="images/txyzm.jpg" width="80" height="35">
+									<img src="" width="80" height="35">
 								</div>
 								<div class="tpyzmsx">
 									<i class="fa fa-refresh fa-fw"></i>

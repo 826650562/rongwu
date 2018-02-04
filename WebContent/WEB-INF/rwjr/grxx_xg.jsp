@@ -219,7 +219,7 @@ h5.mui-content-padded:first-child {
 				<div class="xxbcltxt">头像</div>
 				<div class="z-col"></div>
 				<div class="grxxhead sethead">
-					<img src="${basePath }/rwjr/images/head.jpg">
+					<img src=" ">
 				</div>
 				<div class="xxbcrjt sethead">
 					<i class="fa fa-angle-right fa-lg"></i>
@@ -322,31 +322,52 @@ h5.mui-content-padded:first-child {
 		})(mui, document);
 	</script>
 	<script type="text/javascript">
-		var code = getCookie("TEMP_USER_INFO");
-		console.info(code);
-		var res = JSON.parse(code);
-		var weixin_info = res[0][0];
-		var user_info = res[3][0];
-		var sfrz_info = res[2][0];
-		var gzrz_info = res[1][0];
-		if (weixin_info.imgsrc) {
-			$(".grxxhead").find("img").attr("src", weixin_info.imgsrc);
-		}
-		if (user_info.realname) {
-			$("#realname").text(user_info.realname);
-		} else if (weixin_info.nickname) {
-			$("#realname").text(weixin_info.nickname);
-		}
-		$(".sethead").click(function() {
-			 _msg("调摄像头");
-		});
+		function getinforAjax() {
+			//请求数据
+			var wxInfoId = "opT5v0iSEeH8QB5nzL7vDRtS3YeA" //getCookie("wexinOpenId");
+			if (!wxInfoId) {
+				_msg("需要您授权微信基本信息！");
+				return false;
+			}
+			$.ajax({
+				url : "getInfouserOfweixin?date=" + new Date(),
+				type : "post",
+				contentType : "application/x-www-form-urlencoded",
+				data : {
+					wxInfoId : wxInfoId
+				},
+				success : function(code) {
+					console.info(code);
+					var res = JSON.parse(code);
+					var weixin_info = res[0][0];
+					var user_info = res[3][0];
+					var sfrz_info = res[2][0];
+					var gzrz_info = res[1][0];
+					if (weixin_info.imgsrc) {
+						$(".grxxhead").find("img").attr("src", weixin_info.imgsrc);
+					}
+					if (user_info.realname) {
+						$("#realname").text(user_info.realname);
+					} else if (weixin_info.nickname) {
+						$("#realname").text(weixin_info.nickname);
+					}
+					$(".sethead").click(function() {
+						_msg("调摄像头");
+					});
 	
-		$(".setgsmc").click(function() {
-			window.location.href = "setgsmc";
-		});
-		$(".setgrzw").click(function() {
-			window.location.href = "grzwxg";
-		});
+					$(".setgsmc").click(function() {
+						window.location.href = "setgsmc#" + user_info.gsmc + "," + user_info.id;
+					});
+					$(".setgrzw").click(function() {
+						window.location.href = "grzwxg#" + user_info.grzw + "," + user_info.id;
+					});
+				},
+				error : function(error) {
+					_msg("系统错误！");
+				}
+			});
+		}
+		getinforAjax();
 	</script>
 
 </body>
