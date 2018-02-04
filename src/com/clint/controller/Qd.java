@@ -64,16 +64,47 @@ public class Qd {
 		return "grxx_xg";
 	}
 
-	// 密码信息修改信息修改
+	// 支付密码信息修改信息修改
 	@RequestMapping(value = "/zfmm_xg")
 	public String zfmm_xg() {
 		return "zfmm_xg";
 	}
-	
+
 	// 密码信息修改信息修改
 	@RequestMapping(value = "/mmsz_xg")
 	public String mmsz_xg() {
 		return "mmsz_xg";
+	}
+
+	// 我的余额
+	@RequestMapping(value = "/myye")
+	public String myye() {
+		return "myye";
+	}
+
+	// 充值记录
+	@RequestMapping(value = "/chongzhiJL")
+	public String chongzhiJL() {
+		return "chongzhiJL";
+	}
+
+	// 我的积分
+	@RequestMapping(value = "/wodejifen")
+	public String wodejifen() {
+		return "wodejifen";
+	}
+	
+	
+	//  公司名称修改
+	@RequestMapping(value = "/setgsmc")
+	public String setgsmc() {
+		return "setgsmc";
+	}
+
+	// 个人职位修改
+	@RequestMapping(value = "/grzwxg")
+	public String grzwxg() {
+		return "grzwxg";
 	}
 	
 

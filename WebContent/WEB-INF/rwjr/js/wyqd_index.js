@@ -148,7 +148,26 @@ $(function() {
 				window.location.href = "_sz";
 			}, myurl)
 		});
-
+		
+		$("#_wdye").click(function() {
+			//余额
+			checkUser(function() {
+				window.location.href = "myye";
+			}, myurl)
+		});
+		
+		$("#_wdjf").click(function() {
+			// 积分
+			checkUser(function() {
+				window.location.href = "wodejifen";
+			}, myurl)
+		});
+		$("#_czjl").click(function() {
+			// 充值记录
+			checkUser(function() {
+				window.location.href = "chongzhiJL";
+			}, myurl)
+		});
 	}
 
 	function sortByName(name, fc,self) {
@@ -270,7 +289,8 @@ $(function() {
 				var sfrz_info=res[2][0];
 				var gzrz_info=res[1][0];
 				
-				console.info(res);
+				setCookie("TEMP_USER_INFO",code);
+				
 				if(sfrz_info){
 					if(sfrz_info._ispass==0){
 						setRz("身份审核中","shz.png");

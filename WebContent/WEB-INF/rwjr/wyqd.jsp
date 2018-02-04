@@ -360,7 +360,7 @@ html, body {
 
 
 			<ul class="mui-table-view mui-grid-view mui-grid-9">
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+				<li id='_sqrz' class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
 					<span class="renzheng"><img id="shengqing_pic" img_url="${basePath }/rwjr/images/"
 						src="${basePath }/rwjr/images/no_rz.png"> <!--<img src="${basePath }/rwjr/images/yes_rz.png">--></span>
 					<a href="#"> <span class="mycenterxtb"><img
@@ -368,25 +368,25 @@ html, body {
 						<div class="mui-media-body" id="shenqing-status">申请认证</div>
 				</a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+				<li id='_khsq'  class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
 					<a href="#tabbar-with-chat"> <span class="mycenterxtb"><img
 							src="${basePath }/rwjr/images/myxtb2.png"></span>
 						<div class="mui-media-body">客户申请</div>
 				</a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+				<li id='_wdye'  class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
 					<a href="#"> <span class="mycenterxtb"><img
 							src="${basePath }/rwjr/images/myxtb3.png"></span>
 						<div class="mui-media-body">我的余额</div>
 				</a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+				<li id='_czjl'  class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
 					<a href="#"> <span class="mycenterxtb"><img
 							src="${basePath }/rwjr/images/myxtb4.png"></span>
 						<div class="mui-media-body">充值记录</div>
 				</a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+				<li id='_wdjf'  class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
 					<a href="#"> <span class="mycenterxtb"><img
 							src="${basePath }/rwjr/images/myxtb5.png"></span>
 						<div class="mui-media-body">我的积分</div>

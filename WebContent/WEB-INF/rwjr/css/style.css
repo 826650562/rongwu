@@ -1,4 +1,4 @@
-Ôªø*{padding:0px;margin:0px;}
+*{padding:0px;margin:0px;}
 body {font-family: 'microsoft yahei', Arial, Helvetica, sans-serif;color: #313131;background-color: #f6f6f6; font-size:15px;padding:0px;margin:0px; position:relative;}
 a{color:#313131;}
 a:hover{color:#313131; text-decoration:none;}
@@ -50,7 +50,7 @@ p{color:#313131;}
 
 
 
-/*--layuiÈáçÂÆö‰πâ--*/
+/*--layui÷ÿ∂®“Â--*/
 .layui-tab-title li {min-width: 50%; padding:0px; font-size:15px;    line-height: 45px;}
 .layui-tab {margin:0px;text-align: left!important;}
 .layui-btn { height: 45px; line-height: 45px;  font-size:15px;   border-radius: 4px; }
@@ -61,7 +61,7 @@ p{color:#313131;}
 .layui-tab-brief>.layui-tab-title .layui-this {
     color: #fc4023;
 }
-/*---mui ÈáçÂÆö‰πâ---*/
+/*---mui ÷ÿ∂®“Â---*/
 
 /*--login--*/
 .topbar{width:100%; height:45px; background:#fff;-moz-box-shadow:0px 1px 3px #e6e6e6; -webkit-box-shadow:0px 1px 3px #e6e6e6; box-shadow:0px 1px 3px #e6e6e6; color:#313131;}
@@ -81,7 +81,7 @@ p{color:#313131;}
 background: -webkit-linear-gradient(left, #ffe582 , #fcd84e); /* Safari 5.1 - 6.0 */
   background: -o-linear-gradient(right, #ffe582 , #fcd84e); /* Opera 11.1 - 12.0 */
   background: -moz-linear-gradient(right, #ffe582 , #fcd84e); /* Firefox 3.6 - 15 */
-  background: linear-gradient(to right, #ffe582 , #fcd84e); /* Ê†áÂáÜÁöÑËØ≠Ê≥ï */
+  background: linear-gradient(to right, #ffe582 , #fcd84e); /* ±Í◊ºµƒ”Ô∑® */
 
  padding:15px; box-sizing:border-box; margin-bottom:10px;-moz-box-shadow:0px 0px 10px #fef3c9; -webkit-box-shadow:0px 0px 10px #fef3c9; box-shadow:0px 0px 10px #fef3c9;}
 .sjrzitemtxt{text-align:center;  color:#313131; height:45px; line-height:45px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
@@ -279,3 +279,30 @@ position:relative;}
 .grxxhead{width:35px; height:35px; margin-top:5px; cursor:pointer; border-radius:35px; border:1px solid #e6e6e6; box-sizing:border-box;}
 .grxxhead img{width:100%; border-radius:35px; display:block;padding:0px; margin:0px;}
 .wjmm{color:#0873bd; float:right;}
+/*-----czjl html css------*/
+.czjlbox{padding:15px; width:100%; box-sizing:border-box;}
+.czjlitem{margin:0px;box-shadow: 0 0px 10px rgba(0,0,0,.1);border-radius: 3px; background:#fff; box-sizing:border-box;
+padding:10px; margin-bottom:10px;}
+.czjltime{font-size:13px; color:#999;}
+.czjltxt{height:26px; line-height:26px;}
+/*-------wdye html css----------*/
+.wdyebox{width:100%; padding:20px 30px; box-sizing:border-box; background:url(../images/wdye.jpg) no-repeat top center;}
+.wdyetoptxt{color:#fc4023; font-size:20px;}
+.czjltopcont{margin:0px;box-shadow: 0 0px 10px rgba(0,0,0,.1);border-radius: 3px; background:#fff; box-sizing:border-box;padding:15px 10px;}
+.wdyebtn{padding:15px;}
+.czmxright{height:45px; line-height:45px;font-size:14px; color:#666; padding:0px 0px 0px 10px; cursor:pointer;}
+.wdjfbox{width:100%; padding:15px;  box-sizing:border-box;}
+.wdjfyecont{padding:20px 10px; border-bottom:1px solid #e6e6e6;color:#fff;background:url(../images/wdye.jpg) no-repeat top center; border-top-left-radius:3px; border-top-right-radius:3px;}
+.wdjfitem{margin:0px;box-shadow: 0 0px 10px rgba(0,0,0,.1);border-radius: 3px; background:#fff; box-sizing:border-box; margin-bottom:10px;}
+.jfjlcont{padding:10px 15px;border-bottom:1px solid #e6e6e6;}
+/*-------grcp html css--------*/
+.grcpbox{padding:15px;}
+.grcptixx{font-size:14px; color:#fc4023; height:30px; line-height:30px; padding:0px 15px; background:#feebe8; }
+.grcpitem{border-radius:5px; background:#fff;}
+.gixtbbox{padding:10px 15px;}
+.cpitemxtb{position:relative; width:40px; height:40px;}
+.cpitemxtb img{width:40px; height:40px; display:block;}
+.cpmc{height:40px; line-height:40px;padding:0px 10px 0px 10px;}
+.cpitembtnbox{border-top:1px solid #e6e6e6;}
+.cpitemleftbtn{height:35px; background:#fff; color:#313131; width:100%;line-height:35px; border-top-right-radius:0px; border-bottom-right-radius:0px; border-top-left-radius:0px; border-right:1px solid #e6e6e6; font-size:14px; color:#666;}
+.cpitemrightbtn{height:35px; background:#fff;  color:#313131; width:100%; line-height:35px; border-top-left-radius:0px; border-bottom-left-radius:0px; border-top-right-radius:0px; font-size:14px; color:#666;}
