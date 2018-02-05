@@ -106,6 +106,30 @@ public class Qd {
 		return "grzwxg";
 	}
 
+	// 个人产品
+	@RequestMapping(value = "/grcp_wd")
+	public String grcp_wd() {
+		return "grcp";
+	}
+
+	// 分享微店
+	@RequestMapping(value = "/fxwd_wd")
+	public String fxwd_wd() {
+		return "fxwd";
+	}
+
+	// 微店排行
+	@RequestMapping(value = "/wdph_wd")
+	public String wdph_wd() {
+		return "wdph";
+	}
+
+	// 民间风控
+	@RequestMapping(value = "/mjfk_wd")
+	public String mjfk_wd() {
+		return "mjfk";
+	}
+
 	@RequestMapping(value = "/getuserInfo")
 	public String getuserInfo(HttpServletRequest req, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
