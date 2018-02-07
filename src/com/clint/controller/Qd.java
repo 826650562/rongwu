@@ -130,6 +130,27 @@ public class Qd {
 		return "mjfk";
 	}
 
+	
+	//  引导页
+		@RequestMapping(value = "/ydy_wd")
+		public void ydy_wd(HttpServletRequest req, HttpServletResponse response) {
+			String rqwxfje = (String) req.getParameter("rqwxfje");
+			String rqwddbs = (String) req.getParameter("rqwddbs");
+			String wd_area = (String) req.getParameter("wd_area");
+			String sjh = (String) req.getParameter("sjh");
+			
+			String sql = "insert into wd (rqxfje,rqdds,sm,sjh)values('"
+					+ rqwxfje + "','" + rqwddbs + "','" + wd_area + "','"
+					+ sjh + "'"  + ");";
+			try {
+				this.mapService.execute(sql);
+				response.getWriter().write("wdInfo_100");
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+	
+	
 	@RequestMapping(value = "/getuserInfo")
 	public String getuserInfo(HttpServletRequest req, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
@@ -192,13 +213,15 @@ public class Qd {
 			String gzsql = "select * from sjh_gzzpic where sjh='" + sjh + "'";
 			String grsql = "select * from sjh_sfzpic where sjh='" + sjh + "'";
 			String usersql = "select * from user where sjh='" + sjh + "'";
+			String wdsql = "select * from wd where sjh='" + sjh + "'";
 			List gzsqllist = mapService.getListBySql(gzsql);
 			List grsqllist = mapService.getListBySql(grsql);
 			List userlist = mapService.getListBySql(usersql);
-
+			List wdlist = mapService.getListBySql(wdsql);
 			allres.add(gzsqllist);
 			allres.add(grsqllist);
 			allres.add(userlist);
+			allres.add(wdlist);
 		}
 		JSONArray jsonArray = JSONArray.fromObject(allres);
 		try {

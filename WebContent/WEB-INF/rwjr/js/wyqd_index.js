@@ -264,9 +264,7 @@ $(function() {
 			checkUser(function() {
 				dealWithQd(id);
 			}, myurl)
-
 		});
-
 	}
 	//第二页
 	function appendHtml2(res) {
@@ -314,6 +312,7 @@ $(function() {
 				var user_info = res[3][0];
 				var sfrz_info = res[2][0];
 				var gzrz_info = res[1][0];
+				var wd_info = res[4][0];
 
 				setCookie("TEMP_USER_INFO", code);
 
@@ -345,9 +344,9 @@ $(function() {
 					var imgsrc = $("#shengqing_pic").attr('img_url');
 					$("#shengqing_pic").attr('src', imgsrc + pic);
 				}
-
-				if (weixin_info.imgsrc) {
-					$(".mycenhead").find("img").attr("src", weixin_info.imgsrc);
+                var img=user_info.headimg|| weixin_info.imgsrc;
+				if (img) {
+					$(".mycenhead").find("img").attr("src", img);
 				}
 				if (user_info.realname) {
 					$("#_name_xd").text(user_info.realname);
@@ -358,12 +357,79 @@ $(function() {
 				$("#shenqing-status").parents("li").click(function() {
 					window.location.href = "../rwjr/sqrz";
 				});
+				
+
+				if(!wd_info){
+					//不存在
+					initYdy(user_info,img);
+				}else{
+					$(".wdydycont").fadeOut(0);
+					$(".wdsybox").fadeIn(0);
+					fullwdInfo(user_info,img,wd_info);
+				}
+				
 
 			},
 			error : function(error) {
 				_msg("系统错误！");
 			}
 		});
+	}
+	//初始化引导页
+	function initYdy(user_info,img){
+		//引导页
+		$("#ktwdwd").click(function() {
+			var rqwxfje = $.trim($("#rqwxfje").val());
+			var rqwddbs = $.trim($("#rqwddbs").val());
+			var wd_area = $.trim($("#wd_area").val());
+			var data = {
+				rqwxfje : rqwxfje,
+				rqwddbs : rqwddbs,
+				wd_area : wd_area,
+				sjh:user_info.sjh
+			}
+
+			if (rqwxfje.length <= 0 || rqwddbs.length <= 0 || wd_area.length <= 0) {
+				_msg("请将信息填写完整！");
+			} else {
+				if (wd_area.length >= 150) {
+					_msg("微店说明太长！");
+				} else
+					$.ajax({
+						url : "ydy_wd",
+						type : "post",
+						contentType : "application/x-www-form-urlencoded",
+						data : data,
+						success : function(code) {
+							if (code == 'wdInfo_100') {
+								$(".wdydycont").fadeOut(300);
+								$(".wdsybox").fadeIn(200);
+								fullwdInfo(user_info,img,data)
+							} 
+						},
+						error : function(error) {
+							_msg("系统错误！稍后重试");
+						}
+					});
+			}
+		});
+	}
+	
+	function fullwdInfo(user_info,img,wd_info){
+	 //添加微店信息
+		if (img) {
+			$(".wdsyhead").find("img").attr("src", img);
+		}
+		if (user_info.realname) {
+			$(".wdsyhead").text(user_info.realname);
+		} else if (weixin_info.nickname) {
+			$(".wdsyhead").text(weixin_info.nickname);
+		}
+		
+		$(".wdsyheadAddr").text(user_info.city);
+		$(".wdsyheadms").text(wd_info.sm);
+		$("#rqwxfjenumber").text(wd_info.rqxfje);
+		$("#rqwxfbsnumber").text(wd_info.rqdds);
 	}
 
 	function init() {

@@ -409,7 +409,7 @@ textarea{border:1px solid #e6e6e6; resize:none !important; border-radius:5px; }
 					<div class="z-row loginInput">
 						<div class="sfzrzitemtxt">日期望消费金额：</div>
 						<div class="z-col">
-							<input type="text" placeholder="请输入" class="zInput">
+							<input type="text" placeholder="请输入" id="rqwxfje"  class="zInput">
 						</div>
 						<div class="sfzrzitemtxt">万元</div>
 					</div>
@@ -417,7 +417,7 @@ textarea{border:1px solid #e6e6e6; resize:none !important; border-radius:5px; }
 					<div class="z-row loginInput">
 						<div class="sfzrzitemtxt">日期望订单笔数：</div>
 						<div class="z-col">
-							<input type="text" placeholder="请输入" class="zInput">
+							<input type="text" placeholder="请输入" id="rqwddbs" class="zInput">
 						</div>
 						<div class="sfzrzitemtxt">笔</div>
 					</div>
@@ -430,7 +430,7 @@ textarea{border:1px solid #e6e6e6; resize:none !important; border-radius:5px; }
 
 					<div class="z-row">
 						<div class="z-col">
-							<textarea placeholder="150字以内" class="layui-textarea"></textarea>
+							<textarea placeholder="150字以内" id="wd_area" class="layui-textarea"></textarea>
 						</div>
 					</div>
 
@@ -466,7 +466,7 @@ textarea{border:1px solid #e6e6e6; resize:none !important; border-radius:5px; }
         <div class="wdsycontinner">
            <div class="z-row">
               <div class="z-col borRgray"> 
-                 <div class="rqwxfnumber"> 
+                 <div class="rqwxfnumber" id="rqwxfjenumber"> 
                    无上限
                  </div>
                  <div class="rqwxf"> 
@@ -474,7 +474,7 @@ textarea{border:1px solid #e6e6e6; resize:none !important; border-radius:5px; }
                  </div>
               </div>
               <div class="z-col"> 
-                 <div class="rqwxfnumber"> 
+                 <div class="rqwxfnumber" id="rqwxfbsnumber"> 
                    无上限
                  </div>
                  <div class="rqwxf"> 
