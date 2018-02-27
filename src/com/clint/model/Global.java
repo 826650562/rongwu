@@ -3,6 +3,8 @@ package com.clint.model;
 public class Global {
 	public final static String USER_SESSION_KEY = "auto_login_user";
 	
+	public final static String USER_SESSION_DAIKUAN_KEY = "dk_login_user";
+	
 	public final static String WEIXINOPENID = "openid";
 
 	// 已经登录返回码

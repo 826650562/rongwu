@@ -83,8 +83,8 @@
 	</div>
 	<script>
 		$(function() {
+		    var sjh = "${auto_login_user}".split("_")[1];
 			if (!$.trim($("#_city").val())) {
-	
 				$.ajax({
 					url : "scPics",
 					type : "post",
@@ -141,7 +141,6 @@
 					dosomething();
 				}
 			} else {
-				var sjh = getCookie("_user");
 				var _gsmc = getCookie("_gsmc")
 				var _grzw = getCookie("_grzw")
 				var _city = getCookie("_city")
@@ -232,7 +231,6 @@
 					if (!$("#scgzz").attr("sfzzp_ok")) {
 						_msg("请先上传工作证照片");return false;
 					} else if (check()) {
-						var sjh = getCookie("_user");
 						var _gsmc = $.trim($("#_gsmc").val());
 						var _grzw = $.trim($("#_grzw").val());
 						var _city = $.trim($("#_city").val());

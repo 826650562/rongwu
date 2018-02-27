@@ -1,7 +1,4 @@
 $(function() {
-	/*	if (getCookie("_user")) {
-			window.location.href = 'sjrz';
-		} else {}*/
 	var w_sjh = 0;
 	var is_tupianYanzheng = false;
 	function getYzm() {
@@ -44,16 +41,13 @@ $(function() {
 									//登录成功
 									_msg("登录成功!");
 									window.timer && window.clearInterval(timer);
-									//放入cookie
-									setCookie("USER_SHOUJIHAO", w_sjh);
-									var search = window.location.href;
-									search = search.split("#")[1];
+									var search =  window.location.href.split("#")[1];
 									if (search) {
 										window.location.href = search;
 									} else {
+										//商家认证
 										window.location.href = 'sjrz';
 									}
-
 								} else {
 									_msg("*—* 手机验证码错误！");
 

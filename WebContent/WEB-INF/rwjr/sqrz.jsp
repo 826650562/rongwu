@@ -46,32 +46,29 @@
   <div class="pad15">
 
 
-      <a href="#">  
+      <a href="#" id="_sfzsqrz">  
       <div class="z-row rzsq">
         <div class="sjrzxtb"><img src="images/sfzxtb.png"></div>
         <div class="z-col rzsqtxt colorRed">身份认证</div>
-        <div class="rzsqjt" id="_sfzsqrz"><i class="fa fa-angle-right fa-2x"></i></div>
+        <div class="rzsqjt" ><i class="fa fa-angle-right fa-2x"></i></div>
       </div>
       </a>
 
       
-     <a href="#">  
+     <a href="#" id="_gzzrz" >  
       <div class="z-row rzsq">
         <div class="sjrzxtb"> <img src="images/gpxtb.png"></div>
         <div class="z-col rzsqtxt colorZise">工作认证</div>
-        <div class="rzsqjt" id="_gzzrz" ><i class="fa fa-angle-right fa-2x"></i></div>
+        <div class="rzsqjt" ><i class="fa fa-angle-right fa-2x"></i></div>
       </div>
       </a>
       
-
-      
-
   </div>
 </div>  
 <script>
 $(function(){
   $("#_sfzsqrz").click(function(){
-      window.location.href="../sfzyz/index";
+      window.location.href="../sfzyz/sfzrz";
   });
   
   $("#_gzzrz").click(function(){

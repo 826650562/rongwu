@@ -22,11 +22,13 @@ import com.google.gson.JsonParser;
 
 import net.sf.json.JSONObject;
 
+import com.clint.controller.Constant;
+
 public class JsapiTicketUtil {
 	public static final String GET_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token";// 获取access
 																							// url
-	public static final String APP_ID = "wxc3691f09dbfd769d";
-	public static final String SECRET = "c1d465d27a459096f805d7e7f4c7f827";
+	public static final String APP_ID = Constant.APP_ID;//"wxc3691f09dbfd769d";
+	public static final String SECRET = Constant.APP_SECRET;
 
 	// 获取token
 	public static String getToken(String apiurl, String appid, String secret) {

@@ -19,9 +19,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.clint.model.Global;
 import com.clint.service.MapService;
 import com.clint.service.PersonService;
 import com.clint.untils.DloadImgUtil;
@@ -38,16 +41,27 @@ public class Gzyz {
 	private MapService mapService;
 
 	@RequestMapping(value = "/index")
-	public String sfzrz() {
+	public String gzzrz(HttpServletRequest req, Model model) {
+		String auto_login_user = (String) req.getSession().getAttribute(Global.USER_SESSION_KEY);
+		if (StringUtils.isNotEmpty(auto_login_user)) {
+			model.addAttribute("auto_login_user", auto_login_user);
+		} else {
+			model.addAttribute("auto_login_user", "");
+		}
 		return "gzzrzinfo";
 	}
 
 	@RequestMapping(value = "/scsgzzJsp")
-	public String scsgzzJsp() {
+	public String scsgzzJsp(HttpServletRequest req, Model model) {
+		String auto_login_user = (String) req.getSession().getAttribute(Global.USER_SESSION_KEY);
+		if (StringUtils.isNotEmpty(auto_login_user)) {
+			model.addAttribute("auto_login_user", auto_login_user);
+		} else {
+			model.addAttribute("auto_login_user", "");
+		}
 		return "scsgzzJsp";
 	}
 
-	// 检查手机验证码
 	@RequestMapping(value = "/scPics")
 	public void scPics(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		String _url = (String) req.getParameter("url");
@@ -191,18 +205,18 @@ public class Gzyz {
 	@RequestMapping(value = "/savePicsAndIpone")
 	public void savePicsAndIpone(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		String pics = (String) req.getParameter("serverIds");
-		String sjh= (String) req.getParameter("_sjh");
+		String sjh = (String) req.getParameter("_sjh");
 		if (!pics.isEmpty()) {
 			// 分割字符串
 			String[] picArr = pics.split(",");
 			HttpSession session = req.getSession();
 			List sjhList = this.mapService.getListBySql("select * from sjh_gzzpic  where  sjh = '" + sjh + "'");
 			if (sjhList.size() <= 0) {
-				this.mapService.execute("insert into sjh_gzzpic (sjh,gzzp ) values('" + sjh + "','"
-						+ picArr[0] +   "');");
+				this.mapService
+						.execute("insert into sjh_gzzpic (sjh,gzzp ) values('" + sjh + "','" + picArr[0] + "');");
 			} else {
-				this.mapService.execute(
-						"UPDATE sjh_gzzpic SET sjh='" + sjh + "', gzzp='" + picArr[0] + "', _ispass='" + 0 + "' where sjh = '" + sjh + "'");
+				this.mapService.execute("UPDATE sjh_gzzpic SET sjh='" + sjh + "', gzzp='" + picArr[0] + "', _ispass='"
+						+ 0 + "' where sjh = '" + sjh + "'");
 			}
 			response.getWriter().write("10071");
 		}
@@ -210,45 +224,47 @@ public class Gzyz {
 
 	@RequestMapping(value = "/getstatusOfsqgzz")
 	public void getstatusOfsqgzz(HttpServletRequest req, HttpServletResponse response) throws IOException {
-		String sjh= (String) req.getParameter("_sfrzsjh");
-		String sql="select t.ispass from sjh_gzzpic t where t.sjh="+sjh;
-		List list=mapService.getListBySql(sql);
-        if(list.size()<=0){
-        	//不存在记录 需要申请
-        	response.getWriter().write("10703");
-        }else {
-        	Map map=(Map) list.get(0);
-        	Integer _ispass=(Integer) map.get("ispass");
-        	if(String.valueOf(_ispass).endsWith("0")){
-        		//等于0 审核中  等于1 通过  2 退回 otherInfo
-        		response.getWriter().write("10700");
-        	}else if(String.valueOf(_ispass).endsWith("1")){
-        		response.getWriter().write("10701");
-        	}else if(String.valueOf(_ispass).endsWith("2")){
-        		map.put("code", "10702");
-        		JSONArray jsonArray = JSONArray.fromObject(map);
-    			response.getWriter().write(jsonArray.toString());
-        	}
-        }		
+		String sjh = (String) req.getParameter("_sfrzsjh");
+		String sql = "select t.ispass from sjh_gzzpic t where t.sjh=" + sjh;
+		List list = mapService.getListBySql(sql);
+		if (list.size() <= 0) {
+			// 不存在记录 需要申请
+			response.getWriter().write("10703");
+		} else {
+			Map map = (Map) list.get(0);
+			Integer _ispass = (Integer) map.get("ispass");
+			if (String.valueOf(_ispass).endsWith("0")) {
+				// 等于0 审核中 等于1 通过 2 退回 otherInfo
+				response.getWriter().write("10700");
+			} else if (String.valueOf(_ispass).endsWith("1")) {
+				response.getWriter().write("10701");
+			} else if (String.valueOf(_ispass).endsWith("2")) {
+				map.put("code", "10702");
+				JSONArray jsonArray = JSONArray.fromObject(map);
+				response.getWriter().write(jsonArray.toString());
+			}
+		}
 	}
+
 	@RequestMapping(value = "/saveInfoForuser")
 	public void saveInfoForuser(HttpServletRequest req, HttpServletResponse response) throws IOException {
-		String _gsmc= (String) req.getParameter("_gsmc");
-		String _grzw= (String) req.getParameter("_grzw");
-		String _city= (String) req.getParameter("_city");
-		String _sjh= (String) req.getParameter("_sjh");
-		
+		String _gsmc = (String) req.getParameter("_gsmc");
+		String _grzw = (String) req.getParameter("_grzw");
+		String _city = (String) req.getParameter("_city");
+		String _sjh = (String) req.getParameter("_sjh");
+
 		List sjhList = this.mapService.getListBySql("select * from user  where  sjh = '" + _sjh + "'");
 		if (sjhList.size() >= 0) {
-		/*	this.mapService.execute("insert into user (sfz,realname) values('" + _sfz + "','"
-					+ _xm +  "');");*/
-			 this.mapService.execute(
-					"UPDATE user SET  gsmc='" + _gsmc + "', grzw='" +_grzw+ "', city='" +_city + "' where sjh = '" + _sjh + "'");
-		}  
+			/*
+			 * this.mapService.execute(
+			 * "insert into user (sfz,realname) values('" + _sfz + "','" + _xm +
+			 * "');");
+			 */
+			this.mapService.execute("UPDATE user SET  gsmc='" + _gsmc + "', grzw='" + _grzw + "', city='" + _city
+					+ "' where sjh = '" + _sjh + "'");
+		}
 		response.getWriter().write("10071");
-       	
+
 	}
-	
-	
 
 }

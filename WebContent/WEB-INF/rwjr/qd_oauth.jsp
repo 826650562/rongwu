@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>抢单登陆授权</title>
+<title>数据加载...</title>
 <script type="text/javascript" src="${basePath }/rwjr/js/common.js"></script>
 <script type="text/javascript"
 	src="${basePath }/rwjr/js/jquery-1.9.1.min.js"></script>
@@ -16,10 +16,10 @@
 <body>
 	<script>
 		//请求用户基本信息
-		if (!getCookie("wexinOpenId")) {
-			var url = encodeURI("http://www.80wangjian.com/springmvc/wyqd/getuserInfo");
-			url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc3691f09dbfd769d&redirect_uri=" + url + "&response_type=code&scope=snsapi_userinfo&state=index.html#wechat_redirect";
-		    window.location.href=url
+		var wexinOpenId="${openid}";
+		if (wexinOpenId.length<=0) {
+			var url = encodeURI("http://www.80wangjian.com/springmvc/wyqd/getuserInfo?jsp=../wyqd/wyqdjsp");
+			window.location.href= "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc3691f09dbfd769d&redirect_uri=" + url + "&response_type=code&scope=snsapi_userinfo&state=index.html#wechat_redirect";
 		}else{
 		   window.location.href="wyqdjsp";
 		 }

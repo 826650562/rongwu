@@ -1,5 +1,9 @@
 //身份认证 上传图片
 $(function() {
+	var sjh = "${auto_login_user}".split("_")[1];
+	if(!sjh){
+	    window.location.href="login";
+	}
 	$.ajax({
 		url : "scPics",
 		type : "post",
@@ -101,14 +105,11 @@ $(function() {
 							});
 
 						}
-
 					}
-
 				});
 
               function savePicsTOdata(serverIds){
             	  var serverIds=serverIds.substring(0,serverIds.length-1);
-            		var sjh = getCookie("_user");
             		$.ajax({
 						url : "savePicsAndIpone",
 						type : "post",

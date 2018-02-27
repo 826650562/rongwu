@@ -25,7 +25,7 @@ import com.clint.untils.Oauth2Action;
 import com.clint.untils.Outer;
 
 import net.sf.json.JSONArray;
-
+import org.springframework.ui.Model;
 //抢单相关
 @Controller
 @RequestMapping(value = "/wyqd")
@@ -35,14 +35,24 @@ public class Qd {
 	private MapService mapService;
 
 	@RequestMapping(value = "/index")
-	public String savePersonUI() {
+	public String index(HttpServletRequest req, Model model) {
+		String wexinOpenId=(String) req.getSession().getAttribute(Global.WEIXINOPENID);
+		if(StringUtils.isNotEmpty(wexinOpenId)){
+			model.addAttribute("wexinOpenId", wexinOpenId);	
+		}else{
+			model.addAttribute("wexinOpenId", "");
+		}
 		return "qd_oauth";
 	}
 
 	@RequestMapping(value = "/wyqdjsp")
-	public String wyqdjsp(HttpServletRequest req, HttpServletResponse response) {
-		req.getSession().setMaxInactiveInterval(-1);
-		req.getSession().setAttribute(Global.WEIXINOPENID, "opT5v0iSEeH8QB5nzL7vDRtS3YeA");
+	public String wyqdjsp(HttpServletRequest req, HttpServletResponse response, Model model) {
+		String wexinOpenId=(String) req.getSession().getAttribute(Global.WEIXINOPENID);
+		if(StringUtils.isNotEmpty(wexinOpenId)){
+			model.addAttribute("wexinOpenId", wexinOpenId);	
+		}else{
+			model.addAttribute("wexinOpenId", "");
+		}
 		return "wyqd";
 	}
 
@@ -54,7 +64,8 @@ public class Qd {
 
 	// 充值
 	@RequestMapping(value = "/_cz")
-	public String cz() {
+	public String cz(Model model) {
+		model.addAttribute("payURL", Constant.PAY_URL);
 		return "cz";
 	}
 
@@ -130,31 +141,29 @@ public class Qd {
 		return "mjfk";
 	}
 
-	
-	//  引导页
-		@RequestMapping(value = "/ydy_wd")
-		public void ydy_wd(HttpServletRequest req, HttpServletResponse response) {
-			String rqwxfje = (String) req.getParameter("rqwxfje");
-			String rqwddbs = (String) req.getParameter("rqwddbs");
-			String wd_area = (String) req.getParameter("wd_area");
-			String sjh = (String) req.getParameter("sjh");
-			
-			String sql = "insert into wd (rqxfje,rqdds,sm,sjh)values('"
-					+ rqwxfje + "','" + rqwddbs + "','" + wd_area + "','"
-					+ sjh + "'"  + ");";
-			try {
-				this.mapService.execute(sql);
-				response.getWriter().write("wdInfo_100");
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
+	// 引导页
+	@RequestMapping(value = "/ydy_wd")
+	public void ydy_wd(HttpServletRequest req, HttpServletResponse response) {
+		String rqwxfje = (String) req.getParameter("rqxfje");
+		String rqwddbs = (String) req.getParameter("rqdds");
+		String wd_area = (String) req.getParameter("sm");
+		String sjh = (String) req.getParameter("sjh");
+
+		String sql = "insert into wd (rqxfje,rqdds,sm,sjh)values('" + rqwxfje + "','" + rqwddbs + "','" + wd_area
+				+ "','" + sjh + "'" + ");";
+		try {
+			this.mapService.execute(sql);
+			response.getWriter().write("wdInfo_100");
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
-	
-	
+	}
+
 	@RequestMapping(value = "/getuserInfo")
 	public String getuserInfo(HttpServletRequest req, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
 		String echostr = req.getParameter("echostr");
+		String jsp = req.getParameter("jsp");
 		Oauth2Action oa = new Oauth2Action();
 		HashMap map = Oauth2Action.auth(req, response, echostr);
 		if (map.size() > 0) {
@@ -172,7 +181,8 @@ public class Qd {
 			req.getSession().setMaxInactiveInterval(-1);
 			req.getSession().setAttribute(Global.WEIXINOPENID, map.get("openid"));
 			model.addAttribute(Global.WEIXINOPENID, map.get("openid"));
-			return "wyqd";
+			System.out.println("redirect:"+jsp);
+			return "redirect:"+jsp;
 		} else {
 			return "login";
 		}
@@ -206,6 +216,7 @@ public class Qd {
 		List allres = new ArrayList();
 		String sql = "select * from weixin_info where openid='" + _wxInfoId + "'";
 		List list = mapService.getListBySql(sql);
+		System.out.println(sql);
 		allres.add(list);
 		Map wx_user = (Map) list.get(0);
 		String sjh = (String) wx_user.get("sjh");

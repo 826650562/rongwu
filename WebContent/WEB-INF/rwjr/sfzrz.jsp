@@ -90,12 +90,15 @@
 				</div>
 			</div>
 
-
 		</div>
 
 	</div>
 	<script>
 		$(function() {
+		    var sjh = "${auto_login_user}".split("_")[1];
+		    if(!sjh){
+		       window.location.href="login";
+		    }
 			var search = window.location.href;
 			search = search.split("#")[1];
 			if (search) {
@@ -109,16 +112,16 @@
 					dosomething();
 				}
 			} else {
-				var sjh = getCookie("_user");
 				if (sjh) {
 					$.ajax({
 						url : "getstatusOfsq", //判断申请状态
 						type : "post",
 						contentType : "application/x-www-form-urlencoded",
 						data : {
-							_sfrzsjh : sjh
+							_sfrzsjh :sjh
 						},
 						success : function(code) {
+							alert(code);
 							var _xm = getCookie("_xm") || "请输入名字";
 							var _sfz = getCookie("_sfz") || "请输入身份证号";
 							if (code == "10703") {
@@ -188,7 +191,6 @@
 					} else {
 						var _xm = $.trim($("#_xm").val());
 						var _sfz = $.trim($("#_sfz").val());
-					    var sjh = getCookie("_user");
 						if (_xm.length <= 0) {
 							_msg("姓名不能为空！"); return false;
 						}
@@ -208,9 +210,10 @@
 								if (code == '10071') {
 									setCookie("_xm", _xm);
 									setCookie("_sfz", _sfz);
-									_msg("信息已提交！",function(){
+									window.location.href = '../rwjr/sjrz';
+									/* _msg("信息已提交！",function(){
 								    	window.location.href = '../rwjr/sjrz';
-									});
+									}); */
 								
 									
 								}
