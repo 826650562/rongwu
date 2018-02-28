@@ -363,7 +363,8 @@ $(function() {
 				} else {
 					$(".wdydycont").fadeOut(0);
 					$(".wdsybox").fadeIn(0);
-					fullwdInfo(user_info, img, wd_info);
+					var city=user_info.city||weixin_info.city;
+					fullwdInfo($.extend(user_info,weixin_info), img, wd_info,city);
 				}
 
 
@@ -413,7 +414,7 @@ $(function() {
 		});
 	}
 
-	function fullwdInfo(user_info, img, wd_info) {
+	function fullwdInfo(user_info, img, wd_info,city) {
 		//添加微店信息
 		if (img) {
 			$(".wdsyhead").find("img").attr("src", img);
@@ -426,14 +427,17 @@ $(function() {
 		}
 
 		
-		var city_index =user_info.city.indexOf("市");
-		var city=user_info.city.substr(0,city_index+1);
-		if(city.length>=2){
-			$(".wdsyheadAddr").text(city);
+		var city_index =city.indexOf("市");
+		var _city;
+		if(city_index>=0){
+			_city=city.substr(0,city_index+1);
+		}else{
+			_city=city;
 		}
+		$(".wdsyheadAddr").text(_city);
 		
 		$(".wdsyheadms").text(wd_info.sm);
-		$("#rqwxfjenumber").text(wd_info.rqxfje);
+		$("#rqwxfjenumber").text(wd_info.rqxfje+"万元");
 		$("#rqwxfbsnumber").text(wd_info.rqdds);
 	}
 

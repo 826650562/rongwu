@@ -128,7 +128,8 @@ public class Qd {
 
 	// 分享微店
 	@RequestMapping(value = "/fxwd_wd")
-	public String fxwd_wd() {
+	public String fxwd_wd( Model model) {
+		model.addAttribute("userInfo",Global.USER_SESSION_KEY);
 		return "fxwd";
 	}
 
