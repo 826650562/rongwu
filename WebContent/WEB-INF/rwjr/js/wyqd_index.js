@@ -418,7 +418,6 @@ $(function() {
 		if (img) {
 			$(".wdsyhead").find("img").attr("src", img);
 		}
-		
 	
 		if (user_info.realname) {
 			$(".wdsyheadName").text(user_info.realname);

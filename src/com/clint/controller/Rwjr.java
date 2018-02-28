@@ -53,13 +53,13 @@ public class Rwjr {
 	@RequestMapping(value = "/getyzm")
 	public void _getYzm(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		HttpSession session = req.getSession();
-		String validateCode= (String) session.getAttribute("validateCode");
-		if(validateCode != null && validateCode.endsWith("")){
-			response.getWriter().write(validateCode);	
-		}else{
-			response.getWriter().write("wyzm1000000");	
+		String validateCode = (String) session.getAttribute("validateCode");
+		if (validateCode != null && validateCode.endsWith("")) {
+			response.getWriter().write(validateCode);
+		} else {
+			response.getWriter().write("wyzm1000000");
 		}
-	
+
 	}
 
 	@RequestMapping(value = "/getsjyzm")
@@ -102,8 +102,8 @@ public class Rwjr {
 		} else if (yzm.equals(sjyzm)) {
 			String jsp = (String) req.getParameter("jsp");
 			if (jsp != null && jsp.endsWith("dksq")) {
-                //是贷款申请
-				session.setAttribute(Global.USER_SESSION_DAIKUAN_KEY, "rwjr_" + sjh );
+				// 是贷款申请
+				session.setAttribute(Global.USER_SESSION_DAIKUAN_KEY, "rwjr_" + sjh);
 			} else {
 				// 抢单 将手机号存入数据库
 				List sjhList = this.mapService.getListBySql("select * from user where sjh = '" + sjh + "'");
@@ -121,6 +121,12 @@ public class Rwjr {
 					this.mapService
 							.execute("UPDATE weixin_info SET sjh='" + sjh + "' where openid = '" + weixinOpenid + "'");
 					session.setAttribute(Global.USER_SESSION_KEY, "rwjr_" + sjh + "_" + weixinOpenid);
+				}
+				// 屏蔽登陆
+				else {
+					this.mapService
+							.execute("UPDATE weixin_info SET sjh='" + sjh + "' where openid = '" + weixinOpenid + "'");
+					session.setAttribute(Global.USER_SESSION_KEY, "rwjr_" + sjh + "_" + "opT5v0iSEeH8QB5nzL7vDRtS3YeA");
 				}
 			}
 

@@ -40,7 +40,8 @@ public class Qd {
 		if(StringUtils.isNotEmpty(wexinOpenId)){
 			model.addAttribute("wexinOpenId", wexinOpenId);	
 		}else{
-			model.addAttribute("wexinOpenId", "");
+			//model.addAttribute("wexinOpenId", "");
+			 model.addAttribute("wexinOpenId", "opT5v0iSEeH8QB5nzL7vDRtS3YeA");
 		}
 		return "qd_oauth";
 	}
@@ -51,7 +52,9 @@ public class Qd {
 		if(StringUtils.isNotEmpty(wexinOpenId)){
 			model.addAttribute("wexinOpenId", wexinOpenId);	
 		}else{
-			model.addAttribute("wexinOpenId", "");
+			//model.addAttribute("wexinOpenId", "");
+			 model.addAttribute("wexinOpenId", "opT5v0iSEeH8QB5nzL7vDRtS3YeA");
+			
 		}
 		return "wyqd";
 	}
