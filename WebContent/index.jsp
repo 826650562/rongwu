@@ -10,7 +10,6 @@
 <title>Insert title here</title>
 <script type="text/javascript"
 	src="${basePath }/js/jquery-1.11.1.min.js"></script>
-
 </head>
 <body>
 	<input type="button" value="点击" onclick="getJson()" />
