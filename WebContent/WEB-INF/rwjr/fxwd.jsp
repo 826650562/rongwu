@@ -33,7 +33,8 @@
 <link
 	href="${basePath }/rwjr/mui-master/examples/hello-mui/css/mui.poppicker.css"
 	rel="stylesheet" />
-
+<script type="text/javascript"
+	src="${basePath }/rwjr/js/jquery-1.9.1.min.js"></script>
 <style>
 .mui-table-view-cell:after {
 	background-color: #fff;
@@ -312,11 +313,11 @@
 					sliderApi.gotoItem(0);
 				}
 			}
-			//按下“循环”按钮的处理逻辑；
+		/* 	//按下“循环”按钮的处理逻辑；
 			document.getElementById('Gallery_Toggle').addEventListener('toggle', function(e) {
 				var loop = e.detail.isActive;
 				toggleLoop(loop);
-			});
+			}); */
 		});
 	</script>
 
