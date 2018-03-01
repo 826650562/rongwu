@@ -4,6 +4,10 @@
 
 //USER_SHOUJIHAO  用户手机号
 
+//TEMP_USER_INFO  登陆获取的用户信息
+
+
+ 
 function  _msg(info,fn){
 	layer.open({
 		content : info,

@@ -106,34 +106,34 @@ $(function() {
 		$("._dkfbsj").find(".fa-caret-up").click(function() {
 			sortByName(".wyqdtime", function(a, b) {
 				return a.date - b.date;
-			},this);
+			}, this);
 		});
 		$("._dkfbsj").find(".fa-caret-down").click(function() {
 			sortByName(".wyqdtime", function(a, b) {
 				return b.date - a.date;
-			},this);
+			}, this);
 		});
 
 		$("._dkjine").find(".fa-caret-up").click(function() {
 			sortByName(".wyqdcash", function(a, b) {
 				return a.date - b.date;
-			},this);
+			}, this);
 		});
 		$("._dkjine").find(".fa-caret-down").click(function() {
 			sortByName(".wyqdcash", function(a, b) {
 				return b.date - a.date;
-			},this);
+			}, this);
 		});
 
 		$("._dkjiage").find(".fa-caret-up").click(function() {
 			sortByName("._qdjg", function(a, b) {
 				return b.date - a.date;
-			},this);
+			}, this);
 		});
 		$("._dkjiage").find(".fa-caret-down").click(function() {
 			sortByName("._qdjg", function(a, b) {
 				return b.date - a.date;
-			},this);
+			}, this);
 		});
 
 		$(".shezhibtn").click(function() {
@@ -149,19 +149,64 @@ $(function() {
 			}, myurl)
 		});
 
+		$("#_wdye").click(function() {
+			//余额
+			checkUser(function() {
+				window.location.href = "myye";
+			}, myurl)
+		});
+
+		$("#_wdjf").click(function() {
+			// 积分
+			checkUser(function() {
+				window.location.href = "wodejifen";
+			}, myurl)
+		});
+		$("#_czjl").click(function() {
+			// 充值记录
+			checkUser(function() {
+				window.location.href = "chongzhiJL";
+			}, myurl)
+		});
+
+
+		//我的微店
+		$("#ktwdwd").click(function() {
+			$(".wdydycont").fadeOut(300);
+			$(".wdsybox").fadeIn(200);
+		})
+
+		//个人产品
+		$("#grcp_wd").click(function() {
+			window.location.href = "grcp_wd";
+		});
+		//分享微店
+		$("#fxwd_wd").click(function() {
+			window.location.href = "fxwd_wd";
+		});
+
+		//微店排行
+		$("#wdph_wd").click(function() {
+			window.location.href = "wdph_wd";
+		});
+
+		//民间风控
+		$("#mjfk_wd").click(function() {
+			window.location.href = "mjfk_wd";
+		});
 	}
 
-	function sortByName(name, fc,self) {
-		var _index=$(self).index();
+	function sortByName(name, fc, self) {
+		var _index = $(self).index();
 		var qdliitem = $(".ptkh").eq(_index).find(".qdliitem");
 		//排序
 		var dates = [];
 		qdliitem.each(function(item) {
 			var date = qdliitem.eq(item).find(name).children("span").attr("value");
-			var _id=qdliitem.eq(item).find(".xiangqing_ofDz").attr("val_id");
+			var _id = qdliitem.eq(item).find(".xiangqing_ofDz").attr("val_id");
 			dates.push({
-				_id:_id,
-				date:parseInt(date)
+				_id : _id,
+				date : parseInt(date)
 			});
 		});
 		dates.sort(fc);
@@ -169,8 +214,8 @@ $(function() {
 		dates.map(function(elt) {
 			qdliitem.each(function(item) {
 				var realtime = qdliitem.eq(item).find(name).children("span").attr("value");
-				var _id=qdliitem.eq(item).find(".xiangqing_ofDz").attr("val_id");
-				if (elt.date == realtime && elt._id==_id) {
+				var _id = qdliitem.eq(item).find(".xiangqing_ofDz").attr("val_id");
+				if (elt.date == realtime && elt._id == _id) {
 					$(".ptkh").append(qdliitem.eq(item));
 				}
 			});
@@ -219,9 +264,7 @@ $(function() {
 			checkUser(function() {
 				dealWithQd(id);
 			}, myurl)
-
 		});
-
 	}
 	//第二页
 	function appendHtml2(res) {
@@ -245,16 +288,14 @@ $(function() {
 			checkUser(function() {
 				dealWithQd(id);
 			}, myurl)
-
 		});
 	}
 
 	function getinforAjax() {
 		//请求数据
-		var wxInfoId = "opT5v0iSEeH8QB5nzL7vDRtS3YeA" //getCookie("wexinOpenId");
 		if (!wxInfoId) {
 			_msg("需要您授权微信基本信息！");
-			return false;
+			window.location.href="index";
 		}
 		$.ajax({
 			url : "getInfouserOfweixin",
@@ -265,59 +306,139 @@ $(function() {
 			},
 			success : function(code) {
 				var res = JSON.parse(code);
-				var weixin_info=res[0][0];
-				var user_info=res[3][0];
-				var sfrz_info=res[2][0];
-				var gzrz_info=res[1][0];
-				
-				console.info(res);
-				if(sfrz_info){
-					if(sfrz_info._ispass==0){
-						setRz("身份审核中","shz.png");
-					}else if(sfrz_info._ispass==2){
-						setRz("身份审核不通过","no_rz.png");
-					}else if(sfrz_info._ispass==1){
-						if(gzrz_info){
-							if(gzrz_info.ispass==0){
-								setRz("工作认证审核中","shz.png");
-							}else if(gzrz_info.ispass==2){
-								setRz("工作认证不通过","no_rz.png");
-							}else{
-								setRz("已认证","yes_rz.png");
+				var weixin_info = res[0][0];
+				var user_info = res[3][0];
+				var sfrz_info = res[2][0];
+				var gzrz_info = res[1][0];
+				var wd_info = res[4][0];
+
+				setCookie("TEMP_USER_INFO", code);
+
+				if (sfrz_info) {
+					if (sfrz_info._ispass == 0) {
+						setRz("身份审核中", "shz.png");
+					} else if (sfrz_info._ispass == 2) {
+						setRz("身份审核不通过", "no_rz.png");
+					} else if (sfrz_info._ispass == 1) {
+						if (gzrz_info) {
+							if (gzrz_info.ispass == 0) {
+								setRz("工作认证审核中", "shz.png");
+							} else if (gzrz_info.ispass == 2) {
+								setRz("工作认证不通过", "no_rz.png");
+							} else {
+								setRz("已认证", "yes_rz.png");
 							}
-							
-						}else{
-							setRz("工作认证","no_rz.png");
+
+						} else {
+							setRz("工作认证", "no_rz.png");
 						}
 					}
-				}else{
-					setRz("身份认证","no_rz.png");
+				} else {
+					setRz("身份认证", "no_rz.png");
 				}
-				
-				function setRz(text,pic){
+
+				function setRz(text, pic) {
 					$("#shenqing-status").text(text);
 					var imgsrc = $("#shengqing_pic").attr('img_url');
 					$("#shengqing_pic").attr('src', imgsrc + pic);
 				}
-			
-				if (weixin_info.imgsrc) {
-					$(".mycenhead").find("img").attr("src",weixin_info.imgsrc);
+				var img = user_info.headimg || weixin_info.imgsrc;
+				if (img) {
+					$(".mycenhead").find("img").attr("src", img);
 				}
 				if (user_info.realname) {
 					$("#_name_xd").text(user_info.realname);
-				}else if(weixin_info.nickname){
+				} else if (weixin_info.nickname) {
 					$("#_name_xd").text(weixin_info.nickname);
 				}
 
 				$("#shenqing-status").parents("li").click(function() {
 					window.location.href = "../rwjr/sqrz";
 				});
-				
+
+
+				if (!wd_info) {
+					//不存在
+					initYdy(user_info, img);
+				} else {
+					$(".wdydycont").fadeOut(0);
+					$(".wdsybox").fadeIn(0);
+					var city=user_info.city||weixin_info.city;
+					fullwdInfo($.extend(user_info,weixin_info), img, wd_info,city);
+				}
+
+
 			},
 			error : function(error) {
 				_msg("系统错误！");
 			}
 		});
+	}
+	//初始化引导页
+	function initYdy(user_info, img) {
+		//引导页
+		$("#ktwdwd").click(function() {
+			var rqwxfje = $.trim($("#rqwxfje").val());
+			var rqwddbs = $.trim($("#rqwddbs").val());
+			var wd_area = $.trim($("#wd_area").val());
+			var data = {
+				rqxfje : rqwxfje,
+				rqdds : rqwddbs,
+				sm : wd_area,
+				sjh : user_info.sjh
+			}
+
+			if (rqwxfje.length <= 0 || rqwddbs.length <= 0 || wd_area.length <= 0) {
+				_msg("请将信息填写完整！");
+			} else {
+				if (wd_area.length >= 150) {
+					_msg("微店说明太长！");
+				} else
+					$.ajax({
+						url : "ydy_wd",
+						type : "post",
+						contentType : "application/x-www-form-urlencoded",
+						data : data,
+						success : function(code) {
+							if (code == 'wdInfo_100') {
+								$(".wdydycont").fadeOut(300);
+								$(".wdsybox").fadeIn(200);
+								fullwdInfo(user_info, img, data)
+							}
+						},
+						error : function(error) {
+							_msg("系统错误！稍后重试");
+						}
+					});
+			}
+		});
+	}
+
+	function fullwdInfo(user_info, img, wd_info,city) {
+		//添加微店信息
+		if (img) {
+			$(".wdsyhead").find("img").attr("src", img);
+		}
+	
+		if (user_info.realname) {
+			$(".wdsyheadName").text(user_info.realname);
+		} else if (weixin_info.nickname) {
+			$(".wdsyheadName").text(weixin_info.nickname);
+		}
+
+		
+		var city_index =city.indexOf("市");
+		var _city;
+		if(city_index>=0){
+			_city=city.substr(0,city_index+1);
+		}else{
+			_city=city;
+		}
+		$(".wdsyheadAddr").text(_city);
+		
+		$(".wdsyheadms").text(wd_info.sm);
+		$("#rqwxfjenumber").text(wd_info.rqxfje+"万元");
+		$("#rqwxfbsnumber").text(wd_info.rqdds);
 	}
 
 	function init() {
@@ -331,11 +452,11 @@ $(function() {
 			type : "post",
 			contentType : "application/x-www-form-urlencoded",
 			success : function(code) {
-				if(code!="login_100"){
+				if (code != "login_100") {
 					xunwenkuang("您尚未登录，请登录，后续内容更丰富^_^", [ '去登陆' ], function() {
 						window.location.href = "../rwjr/login#" + myurl
 					});
-				}else{
+				} else {
 					getinforAjax();
 				}
 			},
@@ -355,7 +476,7 @@ $(function() {
 			anim : 'up',
 			content : html
 		});
-		$(".layui-m-layercont").css("padding","0px");
+		$(".layui-m-layercont").css("padding", "0px");
 	}
 	main();
 })

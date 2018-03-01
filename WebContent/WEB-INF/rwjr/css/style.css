@@ -6,11 +6,13 @@ p{color:#313131;}
 
 
 .mar0{margin:0px  !important;}
+.marB10{margin:0px 0px  10px 0px !important;}
 .marB15{margin:0px 0px  15px 0px !important;}
 .marB20{margin:0px 0px 20px 0px !important;}
 .marT15{margin-top:15px;}
 .marT30{margin-top:30px;}
 .marLR15{margin:0px 15px;}
+.marTB10{margin:10px 0px 10px 0px !important;}
 
 .colorBlue{color:#0873bd !important;}
 .colorGray{color:#999 !important;}
@@ -22,9 +24,11 @@ p{color:#313131;}
 .pad0{padding:0px !important;}
 .pad10{padding:10px !important;}
 .pad15{padding:15px !important;}
+.padB10{padding:0px 0px 10px 0px !important;}
 .padB15{padding:0px 0px 15px 0px !important;}
 .padT15{padding-top:15px !important;}
 .padT20{padding-top:20px !important;}
+.padL5{padding-left:5px !important;}
 .padR5{padding-right:5px !important;}
 .padL10{padding-left:10px !important;}
 .padLR8{padding:0px 8px !important;}
@@ -43,11 +47,14 @@ p{color:#313131;}
 .bgWhite{ background:#fff;}
 .bgBlue{ background:#0873bd;}
 .bgBlack{ background:#333;}
+.bgGreen{ background:#04ae0f !important;}
 .ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
 
 .zInput{width:100%; height:45px;border:none; border-top-right-radius:4px; border-bottom-right-radius:4px;}
 .width100{width:100% !important;}
-
+.borRgray{border-right:1px solid #e6e6e6;}
+.borBgray{border-bottom:1px solid #e6e6e6;}
+.borRBgray{border-right:1px solid #e6e6e6; border-bottom:1px solid #e6e6e6;}
 
 
 /*--layui重定义--*/
@@ -187,7 +194,7 @@ position:relative;}
 .xxhlineright{border-right:1px solid #626373;}
 /*----self center---*/
 .mycenterxtb img{width:50px; height:50px;}
-.mui-table-view-cell:nth-child(3n+0){border-right:none !important;}
+/*.mui-table-view-cell:nth-child(3n+0){border-right:none !important;}*/
 .renzheng{width:50px; height:35px;position:absolute; z-index:100; top:0px; left:0px;}
 .renzheng img{width:100%;}
 .mytopbox{width:100%; height:200px; background:url(../images/mytopboxbg.jpg) no-repeat top center; margin-bottom:15px;}
@@ -279,3 +286,140 @@ position:relative;}
 .grxxhead{width:35px; height:35px; margin-top:5px; cursor:pointer; border-radius:35px; border:1px solid #e6e6e6; box-sizing:border-box;}
 .grxxhead img{width:100%; border-radius:35px; display:block;padding:0px; margin:0px;}
 .wjmm{color:#0873bd; float:right;}
+/*-----czjl html css------*/
+.czjlbox{padding:15px; width:100%; box-sizing:border-box;}
+.czjlitem{margin:0px;box-shadow: 0 0px 10px rgba(0,0,0,.1);border-radius: 3px; background:#fff; box-sizing:border-box;
+padding:10px; margin-bottom:10px;}
+.czjltime{font-size:13px; color:#999;}
+.czjltxt{height:26px; line-height:26px;}
+/*-------wdye html css----------*/
+.wdyebox{width:100%; padding:20px 30px; box-sizing:border-box; background:url(../images/wdye.jpg) no-repeat top center;}
+.wdyetoptxt{color:#fc4023; font-size:20px;}
+.czjltopcont{margin:0px;box-shadow: 0 0px 10px rgba(0,0,0,.1);border-radius: 3px; background:#fff; box-sizing:border-box;padding:15px 10px;}
+.wdyebtn{padding:15px;}
+.czmxright{height:45px; line-height:45px;font-size:14px; color:#666; padding:0px 0px 0px 10px; cursor:pointer;}
+.wdjfbox{width:100%; padding:15px;  box-sizing:border-box;}
+.wdjfyecont{padding:20px 10px; border-bottom:1px solid #e6e6e6;color:#fff;background:url(../images/wdye.jpg) no-repeat top center; border-top-left-radius:3px; border-top-right-radius:3px;}
+.wdjfitem{margin:0px;box-shadow: 0 0px 10px rgba(0,0,0,.1);border-radius: 3px; background:#fff; box-sizing:border-box; margin-bottom:10px;}
+.jfjlcont{padding:10px 15px;border-bottom:1px solid #e6e6e6;}
+/*-------grcp html css--------*/
+.grcpbox{padding:10px 15px;}
+.grcptixx{font-size:14px; color:#fc4023; height:30px; line-height:30px; padding:0px 15px; background:#feebe8; }
+.grcpitem{border-radius:5px; background:#fff; margin-bottom:10px;-moz-box-shadow:0px 0px 10px #e6e6e6; -webkit-box-shadow:0px 0px 10px #e6e6e6; box-shadow:0px 0px 10px #e6e6e6;}
+.grcpitem:last-child{margin-bottom:0px;}
+.gixtbbox{padding:15px 15px 10px 15px;}
+.cpitemxtb{position:relative; width:40px; height:40px;}
+.cpitemxtb img{width:40px; height:40px; display:block;}
+.cpmc{height:40px; line-height:40px;padding:0px 10px 0px 10px;}
+.cpitembtnbox{border-top:1px solid #e6e6e6;}
+.cpitemleftbtn{height:35px; background:#fff; color:#313131; width:100%;line-height:35px; border-top-right-radius:0px; border-bottom-right-radius:0px; border-top-left-radius:0px; border-right:1px solid #e6e6e6; font-size:14px; color:#666;}
+.cpitemrightbtn{height:35px; background:#fff;  color:#313131; width:100%; line-height:35px; border-top-left-radius:0px; border-bottom-left-radius:0px; border-top-right-radius:0px; font-size:14px; color:#666;}
+.cjkk{padding:0px 15px 10px 15px;}
+.cjktxt{height:26px; line-height:26px;}
+.cpjsbox{padding:10px 15px 0px 15px; background:#fff;}
+.smscptitle{height:30px; line-height:30px; color:#fc4023; font-weight:bold;}
+
+.grcpwxtstitle{height:30px; line-height:30px; color:#666; font-weight:bold;}
+.grcpwxtstxt{font-size:13px; color:#666; line-height:24px;}
+.smscptxt{ color:#313131; line-height:24px;}
+.smsgrcp{padding:10px; background:#feebe8; border-radius:5px;}
+.wxtsbox{padding:10px 0px;}
+.tjcpbtnbox{padding:15px;}
+/*-------wdydy html css------*/
+.wdydyimgbox{width:65px; height:65px;}
+.wdydyimgbox img{width:100%;height:100%; display:block; border:none;}
+.wdydyimgtxt{height:30px; line-height:30px; color:#999; text-align:center; font-size:13px;}
+.wdydycont{background:#fff; padding:15px;}
+.wdertitle{font-size:13px; color:#666; text-align:center; padding-bottom:20px; overflow:hidden; text-overflow:ellipsis;white-space:nowrap;}
+.wdydytitle{text-align:center;padding:5px 0px; font-size:18px;overflow:hidden; text-overflow:ellipsis;white-space:nowrap;}
+/*-------fxwd html css--------*/
+.fxwdtopbox{padding:30px 15px; background:#fff;}
+.fxwdhead{width:75px; height:75px; border-radius:75px;}
+.fxwdhead img{width:100%; height:100%; border-radius:60px; display:block;}
+.scollbox{ background:#fff;}
+.fxwdtopbtnbox{padding-top:18px;}
+.phoneGreenbtn{ background:#0cde1a; height:40px; width:40px; border-radius:40px; border:none;color:#fff;}
+.shareYllowbtn{ background:#fcba1d; height:40px; width:40px; border-radius:40px; border:none;color:#fff;}
+.fxwdtopaddr{color:#666; font-size:13px; padding-top:10px;}
+.CDbox{ background:#fc4023; border-radius:5px;-moz-box-shadow:0px 0px 10px #fdd1ca; -webkit-box-shadow:0px 0px 10px #fdd1ca; box-shadow:0px 0px 10px #fdd1ca;}
+.FDbox{ background:#1ca5fc; border-radius:5px;-moz-box-shadow:0px 0px 10px #fdd1ca; -webkit-box-shadow:0px 0px 10px #fdd1ca; box-shadow:0px 0px 10px #fdd1ca;}
+.GJJbox{ background:#fda44e; border-radius:5px;-moz-box-shadow:0px 0px 10px #fdd1ca; -webkit-box-shadow:0px 0px 10px #fdd1ca; box-shadow:0px 0px 10px #fdd1ca;}
+.XDbox{background:#69d618; border-radius:5px;-moz-box-shadow:0px 0px 10px #fdd1ca; -webkit-box-shadow:0px 0px 10px #fdd1ca; box-shadow:0px 0px 10px #fdd1ca;}
+.wdfxcpmc{font-size:18px; font-weight:bold; color:#fff; height:40px; line-height:40px;padding:0px 10px;}
+.ffqh{color:#fff; height:40px; line-height:40px;}
+.wdfxlabelbox{padding:5px 15px;}
+.wdfxlabel{height:24px; line-height:22px; display:block; float:left;padding:0px 15px; box-sizing:border-box; margin:0px 5px 5px 0px; background:#fff; border-radius:23px; color:#313131; font-size:14px;}
+.wdfxtxt{height:26px; line-height:26px; color:#fff;}
+.dkfwlxbox{padding:10px; background:#fff;}
+.jkzxbtnitem{width:33%; padding:5px; float:left; box-sizing:border-box;}
+.jkzxbtn{height:35px; line-height:35px; border-radius:3px; width:100%;}
+.jkzxfwlx{font-size:14px; height:30px; line-height:30px; color:#999; text-align:center;}
+/**-----cpbqtj html css------**/
+.cpbqtjbtn{padding:0px 15px; height:40px; line-height:40px;}
+.cptjbq{height:30px; line-height:30px;border:1px solid #e6e6e6; border-radius:3px; padding:0px 10px; float:left; margin:0px 10px 10px 0px; display:block;}
+.cptjbgActive{background:#1ca5fc; border:none !important; color:#fff;}
+/*-------wdsy html css--------*/
+.wdsybox{position:relative;}
+.wdsytopbox{height:150px; background:url(../images/mytopboxbg.jpg) no-repeat top center; position:relative; padding:25px 15px;}
+.wdsyhead{width:60px; height:60px;}
+.wdsyhead img{width:60px; height:60px; border-radius:60px; display:block;}
+.wdsyheadms{ height:24px; line-height:24px; color:#fff; font-size:14px;padding:0px 15px 0px 0px;overflow:hidden;text-overflow:ellipsis; white-space:nowrap;}
+.wdsyheadName{height:30px; line-height:30px; font-size:16px; color:#fff;}
+.wdsyheadAddr{height:30px; line-height:30px; font-size:14px; color:#fff; padding-left:10px;}
+.wdsyheadright{padding-left:10px; overflow:hidden;text-overflow:ellipsis; white-space:nowrap;}
+.wdsycont{ position:absolute; top:105px; left:0px; width:100%; box-sizing:border-box; padding:0px 15px;}
+.wdsycontinner{padding:15px; background:#fff; border-radius:5px; margin-bottom:10px;}
+.rqwxf{width:100%; height:25px; line-height:25px; text-align:center; color:#666; font-size:14px;}
+.rqwxfnumber{width:100%; height:25px; line-height:25px; text-align:center;}
+.wdsycontnavbox{padding:0px; background:#fff; border-radius:5px; }
+.wdsynavitem{display:block; width:50px; height:50px;}
+.wdsynavitem img{width:50px; height:50px;}
+.wdsynavtxt{padding-top:5px;}
+/*-------wdxxy html css------*/
+.wdxxybox{ background:#fff;}
+.wwdxxyLabelbox{padding:0px 15px 0px 0px;}
+.wdxxyLabel{color:#fff; font-size:13px; height:22px; line-height:22px; margin:0px 10px 10px 0px;  display:block; float:left; border:1px solid #e6e6e6; border-radius:30px; padding:0px 10px;}
+.wdxxycpName{padding:3px 0px 10px 0px; width:100%; float:left;font-size:16px; color:#fff;}
+.wdxxyitembox{padding:15px; background:url(../images/dkbanner.jpg) no-repeat top center; height:125px; position:relative;}
+.wdxxyCont{ background:#fff; border-radius:5px; padding:12px 0px; margin-top:10px; text-align:center;
+moz-box-shadow: 0px 0px 10px #e6e6e6;
+    -webkit-box-shadow: 0px 0px 10px #e6e6e6;
+    box-shadow: 0px 0px 10px #e6e6e6;
+}
+.wdxxyli{ height:25px; line-height:25px; color:#666; font-size:14px;}
+.wdxxyMain{border-radius:5px;background:#fff; margin-top:10px;}
+.wdxxyTitle{height:35px; line-height:35px; padding:0px 10px; border-bottom:1px solid #e6e6e6; color:#fc4023;}
+.wdxxyMainInfo{ height:28px; line-height:28px;}
+.wdxxyinfocont{padding:5px 10px;}
+.wdxxyLabel{ color:#fff;font-size:13px; height:22px; line-height:22px; margin:0px 10px 10px 0px;  display:block; float:left; border:1px solid #e6e6e6; border-radius:30px; padding:0px 10px;}
+.wdxxyLabelmain{padding:10px 0px 0px 0px}
+.wdxxyBq{color:#313131;font-size:13px; height:22px; line-height:22px; margin:0px 10px 10px 0px;  display:block; float:left; border:1px solid #e6e6e6; border-radius:30px; padding:0px 10px;}
+.wdxxyCptj{padding:10px 5px; width:100%; float:left;}
+.wdxxyCptjItem{width:50%; box-sizing:border-box; padding:5px; float:left;}
+.wdxxyCplist{border:1px solid #e6e6e6; border-radius:3px; padding:10px 0px; text-align:center;}
+.wdxxyGjjdk{margin-bottom:5px;}
+.wdxxyGjjdk img{width:35px; height:35px; border-radius:35px; border:1px solid #e6e6e6;}
+.wdxxygjjtxt{height:24px; line-height:24px;}
+.wdxxygjjsmalltxt{font-size:13px; color:#666;}
+.wdxxygjjtitletxt{font-size:16px; font-weight:bold;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

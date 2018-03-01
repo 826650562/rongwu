@@ -24,8 +24,7 @@ import com.clint.untils.SmsDemo;
 @Controller
 @RequestMapping(value = "/rwjr")
 public class Rwjr {
-	@Resource(name = "personService")
-	private PersonService personService;
+
 	@Resource(name = "mapService")
 	private MapService mapService;
 
@@ -33,7 +32,8 @@ public class Rwjr {
 	public String savePersonUI() {
 		return "login";
 	}
- 
+
+	// 商家认证
 	@RequestMapping(value = "/sjrz")
 	public String sjrz(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		return "sjrz";
@@ -53,7 +53,13 @@ public class Rwjr {
 	@RequestMapping(value = "/getyzm")
 	public void _getYzm(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		HttpSession session = req.getSession();
-		response.getWriter().write((String) session.getAttribute("validateCode"));
+		String validateCode = (String) session.getAttribute("validateCode");
+		if (validateCode != null && validateCode.endsWith("")) {
+			response.getWriter().write(validateCode);
+		} else {
+			response.getWriter().write("wyzm1000000");
+		}
+
 	}
 
 	@RequestMapping(value = "/getsjyzm")
@@ -94,23 +100,36 @@ public class Rwjr {
 		if (!!(yzm == null) || yzm.isEmpty()) {
 			response.getWriter().write("10004");// 没有发送请求验证码
 		} else if (yzm.equals(sjyzm)) {
-			// 将手机号存入数据库
-			List sjhList = this.mapService.getListBySql("select * from user where sjh = '" + sjh + "'");
-			if (sjhList.size() <= 0) {
-				this.mapService
-						.execute("insert into user (sjh,dlsj)values('" + sjh + "','" + new Date().getTime() + "');");
-			}else{
-				this.mapService
-				.execute("UPDATE user SET sjh='" + sjh + "',dlsj= '" + new Date().getTime() + "' where sjh = '" + sjh + "'");
+			String jsp = (String) req.getParameter("jsp");
+			if (jsp != null && jsp.endsWith("dksq")) {
+				// 是贷款申请
+				session.setAttribute(Global.USER_SESSION_DAIKUAN_KEY, "rwjr_" + sjh);
+			} else {
+				// 抢单 将手机号存入数据库
+				List sjhList = this.mapService.getListBySql("select * from user where sjh = '" + sjh + "'");
+				if (sjhList.size() <= 0) {
+					this.mapService.execute(
+							"insert into user (sjh,dlsj)values('" + sjh + "','" + new Date().getTime() + "');");
+				} else {
+					this.mapService.execute("UPDATE user SET sjh='" + sjh + "',dlsj= '" + new Date().getTime()
+							+ "' where sjh = '" + sjh + "'");
+				}
+				// 将登录信息写入session
+				String weixinOpenid = (String) session.getAttribute(Global.WEIXINOPENID);
+				if (StringUtils.isNotEmpty(weixinOpenid)) {
+					// 加入登录信息
+					this.mapService
+							.execute("UPDATE weixin_info SET sjh='" + sjh + "' where openid = '" + weixinOpenid + "'");
+					session.setAttribute(Global.USER_SESSION_KEY, "rwjr_" + sjh + "_" + weixinOpenid);
+				}
+				// 屏蔽登陆
+				else {
+					this.mapService
+							.execute("UPDATE weixin_info SET sjh='" + sjh + "' where openid = '" + weixinOpenid + "'");
+					session.setAttribute(Global.USER_SESSION_KEY, "rwjr_" + sjh + "_" + "opT5v0iSEeH8QB5nzL7vDRtS3YeA");
+				}
 			}
-		    //将登录信息写入session
-			String weixinOpenid=(String) session.getAttribute(Global.WEIXINOPENID);
-			if(StringUtils.isNotEmpty(weixinOpenid)){
-				//加入登录信息
-				this.mapService
-				.execute("UPDATE weixin_info SET sjh='" + sjh  + "' where openid = '" + weixinOpenid + "'");
-				session.setAttribute(Global.USER_SESSION_KEY, "rwjr_"+sjh+"_"+weixinOpenid);
-			}
+
 			response.getWriter().write("10002");
 		} else {
 			response.getWriter().write("10003");// 验证码错误

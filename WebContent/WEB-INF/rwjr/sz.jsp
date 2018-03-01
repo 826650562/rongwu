@@ -98,7 +98,6 @@
 			$(".mui-table-view-cell").click(function(){
 			    var hf=$(this).attr("hf");
 			    window.location.href=hf;
-			    
 			});
 			
 		})

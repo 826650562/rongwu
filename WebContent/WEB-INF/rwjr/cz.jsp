@@ -65,7 +65,7 @@
        <div class="cztcje">50<span class="cztcjeyuan">元</span></div>
        <div class="z-col">
           <div class="z-row"> 
-            <div class="z-col cztctitle">充值50送15</div>
+            <div class="z-col cztctitle">充值50</div>
           </div>
           <div class="z-row"> 
             <div class="z-col cztczshy">送10积分</div>
@@ -79,7 +79,7 @@
        <div class="cztcje">100<span class="cztcjeyuan">元</span></div>
        <div class="z-col">
           <div class="z-row"> 
-            <div class="z-col cztctitle">充值100送50</div>
+            <div class="z-col cztctitle">充值100</div>
           </div>
           <div class="z-row"> 
             <div class="z-col cztczshy">送30积分</div>
@@ -93,7 +93,7 @@
        <div class="cztcje">200<span class="cztcjeyuan">元</span></div>
        <div class="z-col">
           <div class="z-row"> 
-            <div class="z-col cztctitle">充值200送120</div>
+            <div class="z-col cztctitle">充值200</div>
           </div>
           <div class="z-row"> 
             <div class="z-col cztczshy">送60积分</div>
@@ -107,10 +107,10 @@
        <div class="cztcje">300<span class="cztcjeyuan">元</span></div>
        <div class="z-col">
           <div class="z-row"> 
-            <div class="z-col cztctitle">充值300送200</div>
+            <div class="z-col cztctitle">充值300</div>
           </div>
           <div class="z-row"> 
-            <div class="z-col cztczshy">送1200积分</div>
+            <div class="z-col cztczshy">送120积分</div>
           </div>
        </div>  
     </div>
@@ -130,7 +130,7 @@
 </div>
 </div>
 
-<div class="z-row marT15">
+<div class="z-row marT15" id="_wxcz">
   <div class="z-col">
      <a href="#account" class="layui-btn wxzf"><i class="fa fa-comments fa-lg"></i>&nbsp;&nbsp;微信支付充值</a>
   </div>
@@ -159,9 +159,19 @@
 	  }); 
 	
 	})
-	
-	
 </script>
+<script>
+
+$(function(){
+  $("#_wxcz").click(function(){
+       var jine=$(".cztcliActive").find(".cztcje").text();
+       var realjine=parseInt(jine);
+       var url="${payURL}".replace("MYURL","http://www.80wangjian.com"+"${basePath }"+"/weChat").replace("JINE", realjine).replace("MYTYPE", "充值");
+      window.location.href=encodeURI(url);
+  });
+})
+ 
+</script>	
 </div>
 </body>
 </html>

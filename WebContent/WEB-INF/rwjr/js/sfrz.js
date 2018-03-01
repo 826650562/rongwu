@@ -1,5 +1,10 @@
 //身份认证 上传图片
 $(function() {
+	var sjh = "${auto_login_user}".split("_")[1];
+	alert(sjh);
+	if(!sjh){
+	    window.location.href="login";
+	}
 	$.ajax({
 		url : "scPics",
 		type : "post",
@@ -108,7 +113,6 @@ $(function() {
 
               function savePicsTOdata(serverIds){
             	  var serverIds=serverIds.substring(0,serverIds.length-1);
-            		var sjh = getCookie("_user");
             		$.ajax({
 						url : "savePicsAndIpone",
 						type : "post",
@@ -121,7 +125,7 @@ $(function() {
 							var search = window.location.href;
 							search = search.split("#")[1];
 							//返回页面
-							window.location.href='index#'+search+","+encodeURIComponent("身份证照片已上传");
+							window.location.href='sfzrz#'+search+","+encodeURIComponent("身份证照片已上传");
 						},
 						error : function(error) {
 						}

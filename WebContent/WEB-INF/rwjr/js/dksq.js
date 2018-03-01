@@ -44,7 +44,7 @@ $(function() {
 						_msg("*—* 请输入短信验证码!");
 					} else {
 						$.ajax({
-							url : "../rwjr/checksjyzm",
+							url : "../rwjr/checksjyzm?jsp=dksq",
 							type : "post",
 							contentType : "application/x-www-form-urlencoded",
 							data : {

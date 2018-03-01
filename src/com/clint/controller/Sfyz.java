@@ -9,6 +9,7 @@ import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,31 +21,57 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.clint.service.MapService;
-import com.clint.service.PersonService;
 import com.clint.untils.DloadImgUtil;
 import com.clint.untils.Oauth2Action;
 import com.clint.untils.Outer;
+import com.clint.controller.Constant;
+import com.clint.model.Global;
 
 import net.sf.json.JSONArray;
 
 @Controller
 @RequestMapping(value = "/sfzyz")
 public class Sfyz {
- 
+
 	@Resource(name = "mapService")
 	private MapService mapService;
 
 	@RequestMapping(value = "/index")
-	public String sfzrz() {
+	public String index(HttpServletRequest req, Model model) {
+		String wexinOpenId=(String) req.getSession().getAttribute(Global.WEIXINOPENID);
+		if(StringUtils.isNotEmpty(wexinOpenId)){
+			model.addAttribute("wexinOpenId",wexinOpenId);	
+		}else{
+			model.addAttribute("wexinOpenId", "");
+		}
 		return "xdjl_oauth";
 	}
 
+	@RequestMapping(value = "/sfzrz")
+	public String sfzrz(HttpServletRequest req, Model model) {
+		String auto_login_user=(String) req.getSession().getAttribute(Global.USER_SESSION_KEY);
+		if(StringUtils.isNotEmpty(auto_login_user)){
+			model.addAttribute("auto_login_user",auto_login_user);	
+		}else{
+			model.addAttribute("auto_login_user", "");
+		}
+		return "sfzrz";
+	}
+	
 	@RequestMapping(value = "/scsfzzJsp")
-	public String scsfzzJsp() {
+	public String scsfzzJsp(HttpServletRequest req, Model model) {
+		String auto_login_user=(String) req.getSession().getAttribute(Global.USER_SESSION_KEY);
+		if(StringUtils.isNotEmpty(auto_login_user)){
+			model.addAttribute("auto_login_user",auto_login_user);	
+		}else{
+			model.addAttribute("auto_login_user", "");
+		}
 		return "scsfzz";
 	}
 
@@ -191,7 +218,7 @@ public class Sfyz {
 	@RequestMapping(value = "/savePicsAndIpone")
 	public void savePicsAndIpone(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		String pics = (String) req.getParameter("serverIds");
-		String sjh= (String) req.getParameter("_sjh");
+		String sjh = (String) req.getParameter("_sjh");
 		if (!pics.isEmpty()) {
 			// 分割字符串
 			String[] picArr = pics.split(",");
@@ -211,64 +238,83 @@ public class Sfyz {
 
 	@RequestMapping(value = "/getstatusOfsq")
 	public void getstatusOfsq(HttpServletRequest req, HttpServletResponse response) throws IOException {
-		String sjh= (String) req.getParameter("_sfrzsjh");
-		String sql="select t._ispass from sjh_sfzpic t where t.sjh="+sjh;
-		List list=mapService.getListBySql(sql);
-        if(list.size()<=0){
-        	//不存在记录 需要申请
-        	response.getWriter().write("10703");
-        }else {
-        	Map map=(Map) list.get(0);
-        	Integer _ispass=(Integer) map.get("_ispass");
-        	if(String.valueOf(_ispass).endsWith("0")){
-        		//等于0 审核中  等于1 通过  2 退回 otherInfo
-        		response.getWriter().write("10700");
-        	}else if(String.valueOf(_ispass).endsWith("1")){
-        		response.getWriter().write("10701");
-        	}else if(String.valueOf(_ispass).endsWith("2")){
-        		map.put("code", "10702");
-        		JSONArray jsonArray = JSONArray.fromObject(map);
-    			response.getWriter().write(jsonArray.toString());
-        	}
-        }		
+		String sjh = (String) req.getParameter("_sfrzsjh");
+		String sql = "select t._ispass from sjh_sfzpic t where t.sjh=" + sjh;
+		List list = mapService.getListBySql(sql);
+		if (list.size() <= 0) {
+			// 不存在记录 需要申请
+			response.getWriter().write("10703");
+		} else {
+			Map map = (Map) list.get(0);
+			Integer _ispass = (Integer) map.get("_ispass");
+			if (String.valueOf(_ispass).endsWith("0")) {
+				// 等于0 审核中 等于1 通过 2 退回 otherInfo
+				response.getWriter().write("10700");
+			} else if (String.valueOf(_ispass).endsWith("1")) {
+				response.getWriter().write("10701");
+			} else if (String.valueOf(_ispass).endsWith("2")) {
+				map.put("code", "10702");
+				JSONArray jsonArray = JSONArray.fromObject(map);
+				response.getWriter().write(jsonArray.toString());
+			}
+		}
 	}
+
 	@RequestMapping(value = "/saveInfoForuser")
 	public void saveInfoForuser(HttpServletRequest req, HttpServletResponse response) throws IOException {
-		String _xm= (String) req.getParameter("_xm");
-		String _sfz= (String) req.getParameter("_sfz");
-		String _sjh= (String) req.getParameter("_sjh");
-		
+		String _xm = (String) req.getParameter("_xm");
+		String _sfz = (String) req.getParameter("_sfz");
+		String _sjh = (String) req.getParameter("_sjh");
+
 		List sjhList = this.mapService.getListBySql("select * from user  where  sjh = '" + _sjh + "'");
-		if (sjhList.size() >= 0) {
-			this.mapService.execute(
-					"UPDATE user SET  sfz='" + _sfz + "', realname='" +_xm + "' where sjh = '" + _sjh + "'");
-		}  
+		List yueList = this.mapService.getListBySql("select * from yue  where  sjh = '" + _sjh + "'");
+		List jifenList = this.mapService.getListBySql("select * from jifen  where  sjh = '" + _sjh + "'");
+		List jifenyue = this.mapService.getListBySql("select * from jifenyue  where  sjh = '" + _sjh + "'");
+		if (sjhList.size() > 0) {
+			this.mapService
+					.execute("UPDATE user SET  sfz='" + _sfz + "', realname='" + _xm + "' where sjh = '" + _sjh + "'");
+		}
+		
+		if (yueList.size() <= 0) {
+			this.mapService.execute("insert into yue (sjh,yue)values('" + _sjh + "','" + 0 + "');");
+		}
+		//积分记录
+		if (jifenList.size() <= 0) {
+			this.mapService.execute("insert into jifen (sjh,fene,laiyuan,timeStamp)values('" + _sjh + "','"
+					+ Constant.FENE[1] + "','" + Constant.JIFENS[1] + "','" + new Date().getTime() + "');");
+		}
+		
+		if(jifenyue.size()<=0){
+			this.mapService.execute("insert into jifenyue (sjh,jifenyue)values('" + _sjh + "','"
+					+ Constant.FENE[1] + "');");
+		}else{
+			this.mapService.execute("UPDATE jifenyue SET jifenyue='" +  Constant.FENE[1] + "' where sjh = '" + _sjh + "'");
+		}
 		response.getWriter().write("10071");
 	}
-	
-	@RequestMapping(value = "/getuserInfo")
+
+/*	@RequestMapping(value = "/getuserInfo")
 	public String getuserInfo(HttpServletRequest req, HttpServletResponse response)
 			throws ServletException, IOException {
 		String echostr = req.getParameter("echostr");
 		Oauth2Action oa = new Oauth2Action();
 		HashMap map = Oauth2Action.auth(req, response, echostr);
 		if (map.size() > 0) {
-		  //存在数据库
-			String swl="select * from weixin_info t where t.openid="+map.get("openid");
-			List sqllist=mapService.getListBySql(swl);	
-			if(sqllist.size()>0){
-			}else{
+			// 存在数据库
+			String swl = "select * from weixin_info t where t.openid=" + map.get("openid");
+			List sqllist = mapService.getListBySql(swl);
+			if (sqllist.size() > 0) {
+			} else {
 				this.mapService
-				.execute("insert into weixin_info (openid,nickname,sex,province,city,country,imgsrc)values('" + map.get("openid") + "','" + map.get("nickname")+ "','" +
-						 "','" + map.get("sex")+ "','" + map.get("province")+ "','" +map.get("city")   + "','" +map.get("country")   + "','" +map.get("imgsrc")  + "');");
+						.execute("insert into weixin_info (openid,nickname,sex,province,city,country,imgsrc)values('"
+								+ map.get("openid") + "','" + map.get("nickname") + "','" + "','" + map.get("sex")
+								+ "','" + map.get("province") + "','" + map.get("city") + "','" + map.get("country")
+								+ "','" + map.get("imgsrc") + "');");
 			}
-			//return "sfzrz";
 			response.getWriter().write("10002");
 		} else {
 			return "login";
 		}
 		return echostr;
-	}
-	
-
+	}*/
 }

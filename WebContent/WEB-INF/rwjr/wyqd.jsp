@@ -3,7 +3,6 @@
 <%
 	pageContext.setAttribute("basePath", request.getContextPath());
 %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,13 +16,23 @@
 <!--标准mui.css-->
 <link rel="stylesheet"
 	href="${basePath }/rwjr/mui-master/dist/css/mui.min.css">
+	<link href="${basePath }/rwjr/layui/css/layui.css" rel="stylesheet" type="text/css">
+	
 <link href="${basePath }/rwjr/fontawesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 <link href="${basePath }/rwjr/css/z-layout.css" rel="stylesheet"
 	type="text/css">
 <link href="${basePath }/rwjr/css/style.css" rel="stylesheet"
 	type="text/css">
-	<link href="${basePath }/rwjr/layui/layer_mobile/layer.css" rel="stylesheet" type="text/css"><!-------layui_mobile css--------->
+<link href="${basePath }/rwjr/layui/layer_mobile/layer.css"
+	rel="stylesheet" type="text/css">
+<!-------layui_mobile css--------->
+<link rel="stylesheet" type="text/css" href="${basePath }/rwjr/mui-master/examples/hello-mui/css/app.css" />
+<link href="${basePath }/rwjr/mui-master/examples/hello-mui/css/mui.picker.css" rel="stylesheet" />
+<link href="${basePath }/rwjr/mui-master/examples/hello-mui/css/mui.poppicker.css" rel="stylesheet" />
+<script>
+ wxInfoId="${wexinOpenId}";
+</script>
 
 <script type="text/javascript"
 	src="${basePath }/rwjr/js/jquery-1.9.1.min.js"></script>
@@ -65,20 +74,36 @@ html, body {
 	border-left: 1px solid #e6e6e6;
 	background-color: #fff;
 }
-
-
-
 </style>
 <style>
-.mui-table-view-cell{padding:0px;}
+.mui-table-view-cell {
+	padding: 0px;
+}
 /* .layui-m-layercont{padding:0px;border-radius:2px;} */
 .layui-m-layerchild {
-    border-radius: 2px;
+	border-radius: 2px;
 }
-.mui-table-view-cell>a:not(.mui-btn){margin:0px;}
+
+.mui-table-view-cell>a:not (.mui-btn ){
+	margin: 0px;
+}
+
 .mui-table-view-cell:after {
-    background-color: #fff;
+	background-color: #fff;
 }
+
+input[type=color], input[type=date], input[type=datetime-local], input[type=datetime], input[type=email], input[type=month], input[type=number], input[type=password], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], input[type=week], select, textarea {
+    line-height: 45px;
+    width: 100%;
+    height: 45px;
+    margin-bottom: 0px;
+    padding: 0px 10px;
+    border: none;
+    outline: 0;
+	border-radius:5px;
+}
+textarea{border:1px solid #e6e6e6; resize:none !important; border-radius:5px; }
+
 </style>
 
 <script type="text/tmp" id="tmp7"> 
@@ -309,6 +334,233 @@ html, body {
 				class="mui-table-view mui-table-view-striped mui-table-view-condensed">
 				<div class="requestScope">${requestScope.key}</div>
 			</ul>
+			<div class="mui-content">
+
+
+
+
+				<div class="wdydycont" style="display:block">
+					<div class="z-row">
+						<div class="z-col wdydytitle">创建信贷微店、扩大获客渠道</div>
+					</div>
+					<div class="z-row">
+						<div class="z-col wdertitle">超过95%的信贷经理都创建了自己的微店</div>
+					</div>
+
+
+					<div class="padLR15">
+
+						<div class="z-row marB10">
+							<div class="z-col">
+								<div class="z-row">
+									<div class="z-col"></div>
+									<div class="wdydyimgbox">
+										<img src="${basePath }/rwjr/images/wdydyimg1.png">
+									</div>
+									<div class="z-col"></div>
+								</div>
+								<div class="z-row">
+									<div class="z-col wdydyimgtxt">免费客户申请</div>
+								</div>
+							</div>
+							<div class="z-col">
+								<div class="z-row">
+									<div class="z-col"></div>
+									<div class="wdydyimgbox">
+										<img src="${basePath }/rwjr/images/wdydyimg2.png">
+									</div>
+									<div class="z-col"></div>
+								</div>
+								<div class="z-row">
+									<div class="z-col wdydyimgtxt">展现专业形象</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="z-row marB15">
+							<div class="z-col">
+								<div class="z-row">
+									<div class="z-col"></div>
+									<div class="wdydyimgbox">
+										<img src="${basePath }/rwjr/images/wdydyimg3.png">
+									</div>
+									<div class="z-col"></div>
+								</div>
+								<div class="z-row">
+									<div class="z-col wdydyimgtxt">秀出行业地位</div>
+								</div>
+							</div>
+							<div class="z-col">
+								<div class="z-row">
+									<div class="z-col"></div>
+									<div class="wdydyimgbox">
+										<img src="${basePath }/rwjr/images/wdydyimg4.png">
+									</div>
+									<div class="z-col"></div>
+								</div>
+								<div class="z-row">
+									<div class="z-col wdydyimgtxt">社交更加及时</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+
+					<div class="z-row loginInput">
+						<div class="sfzrzitemtxt">日期望消费金额：</div>
+						<div class="z-col">
+							<input type="text" placeholder="请输入" id="rqwxfje"  class="zInput">
+						</div>
+						<div class="sfzrzitemtxt">万元</div>
+					</div>
+
+					<div class="z-row loginInput">
+						<div class="sfzrzitemtxt">日期望订单笔数：</div>
+						<div class="z-col">
+							<input type="text" placeholder="请输入" id="rqwddbs" class="zInput">
+						</div>
+						<div class="sfzrzitemtxt">笔</div>
+					</div>
+
+					<div class="z-row">
+						<div class="z-col padB10">
+							<i class="fa fa-edit fa-fw"></i>&nbsp;请填写店铺介绍
+						</div>
+					</div>
+
+					<div class="z-row">
+						<div class="z-col">
+							<textarea placeholder="150字以内" id="wd_area" class="layui-textarea"></textarea>
+						</div>
+					</div>
+
+					<div class="z-row marT15">
+						<div class="z-col">
+							<button class="layui-btn width100" id="ktwdwd">开通我的微店</button>
+						</div>
+					</div>
+
+				</div>
+
+
+
+
+<div class="wdsybox" style="display:none">
+
+   <div class="wdsytopbox">
+     <div class="z-row">
+        <div class="wdsyhead"><img src="${basePath }/rwjr/images/head.jpg"></div>
+        <div class="z-col wdsyheadright">
+           <div class="z-row">
+              <div><span class="wdsyheadName">秀水信贷人</span></div>
+              <div class="z-col"><span class="wdsyheadAddr"><i class="fa fa-street-view fa-fw"></i>九江市</span></div>
+           </div>
+           <div class="z-row">
+              <div class="z-col wdsyheadms">
+                  诚信经营的态度对待每一个咨询者
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="wdsycont">
+        <div class="wdsycontinner">
+           <div class="z-row">
+              <div class="z-col borRgray"> 
+                 <div class="rqwxfnumber" id="rqwxfjenumber"> 
+                   无上限
+                 </div>
+                 <div class="rqwxf"> 
+                    日期望消费金额
+                 </div>
+              </div>
+              <div class="z-col"> 
+                 <div class="rqwxfnumber" id="rqwxfbsnumber"> 
+                   无上限
+                 </div>
+                 <div class="rqwxf"> 
+                    日期望订单笔数
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div class="wdsycontnavbox">
+          
+           <div class="z-row">
+              <div id="grcp_wd" class="z-col pad15 borRBgray mui-table-view-cell"> 
+                <div class="z-row">
+                   <div class="z-col"></div>
+                   <div class="wdsynavitem">
+                       <img src="${basePath }/rwjr/images/grcp.png">
+                   </div>
+                   <div class="z-col"></div>
+                </div>
+                <div class="z-row">
+                   <div class="z-col"></div>
+                   <div class="wdsynavtxt">个人产品</div>
+                   <div class="z-col"></div>
+                </div>
+              </div>
+              <div  id="fxwd_wd" class="z-col pad15 borBgray mui-table-view-cell"> 
+                <div class="z-row">
+                   <div class="z-col"></div>
+                   <div class="wdsynavitem">
+                       <img src="${basePath }/rwjr/images/wdfx.png">
+                   </div>
+                   <div class="z-col"></div>
+                </div>
+                <div class="z-row">
+                   <div class="z-col"></div>
+                   <div class="wdsynavtxt">分享微店</div>
+                   <div class="z-col"></div>
+                </div>
+              </div>
+           </div>  
+           
+           <div class="z-row">
+              <div  id="wdph_wd" class="z-col pad15 borRgray mui-table-view-cell"> 
+                <div class="z-row">
+                   <div class="z-col"></div>
+                   <div class="wdsynavitem">
+                       <img src="${basePath }/rwjr/images/wdph.png">
+                   </div>
+                   <div class="z-col"></div>
+                </div>
+                <div class="z-row">
+                   <div class="z-col"></div>
+                   <div class="wdsynavtxt">微店排行</div>
+                   <div class="z-col"></div>
+                </div>
+              </div>
+              <div  id="mjfk_wd" class="z-col pad15 borRgray mui-table-view-cell"> 
+                <div class="z-row">
+                   <div class="z-col"></div>
+                   <div class="wdsynavitem">
+                       <img src="${basePath }/rwjr/images/mjfk.png">
+                   </div>
+                   <div class="z-col"></div>
+                </div>
+                <div class="z-row">
+                   <div class="z-col"></div>
+                   <div class="wdsynavtxt">民间风控</div>
+                   <div class="z-col"></div>
+                </div>
+              </div>
+           </div> 
+           
+        </div>
+     </div>
+   </div>
+
+  </div>
+
+
+
+			</div>
+
+
+
 		</div>
 		<!-------------------------------------------->
 		<!-------------------------------------------->
@@ -360,33 +612,39 @@ html, body {
 
 
 			<ul class="mui-table-view mui-grid-view mui-grid-9">
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
-					<span class="renzheng"><img id="shengqing_pic" img_url="${basePath }/rwjr/images/"
+				<li id='_sqrz'
+					class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+					<span class="renzheng"><img id="shengqing_pic"
+						img_url="${basePath }/rwjr/images/"
 						src="${basePath }/rwjr/images/no_rz.png"> <!--<img src="${basePath }/rwjr/images/yes_rz.png">--></span>
 					<a href="#"> <span class="mycenterxtb"><img
 							src="${basePath }/rwjr/images/myxtb1.png"></span>
 						<div class="mui-media-body" id="shenqing-status">申请认证</div>
 				</a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+				<li id='_khsq'
+					class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
 					<a href="#tabbar-with-chat"> <span class="mycenterxtb"><img
 							src="${basePath }/rwjr/images/myxtb2.png"></span>
 						<div class="mui-media-body">客户申请</div>
 				</a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+				<li id='_wdye'
+					class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
 					<a href="#"> <span class="mycenterxtb"><img
 							src="${basePath }/rwjr/images/myxtb3.png"></span>
 						<div class="mui-media-body">我的余额</div>
 				</a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+				<li id='_czjl'
+					class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
 					<a href="#"> <span class="mycenterxtb"><img
 							src="${basePath }/rwjr/images/myxtb4.png"></span>
 						<div class="mui-media-body">充值记录</div>
 				</a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+				<li id='_wdjf'
+					class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
 					<a href="#"> <span class="mycenterxtb"><img
 							src="${basePath }/rwjr/images/myxtb5.png"></span>
 						<div class="mui-media-body">我的积分</div>
@@ -409,7 +667,7 @@ html, body {
 			class="mui-icon mui-icon-email"></span> <span class="mui-tab-label">客户</span>
 		</a> <a class="mui-tab-item" href="#tabbar-with-contact"> <span
 			class="mui-icon mui-icon-contact"></span> <span class="mui-tab-label">微店</span>
-		</a> <a class="mui-tab-item"   href="#tabbar-with-map"> <span
+		</a> <a class="mui-tab-item" href="#tabbar-with-map"> <span
 			class="mui-icon mui-icon-gear"></span> <span class="mui-tab-label">我的</span>
 		</a>
 	</nav>
@@ -419,7 +677,7 @@ html, body {
 	<script src="${basePath }/rwjr/layui/layer_mobile/layer.js"></script>
 	<!--------layui_moblile js--------->
 	<script src="${basePath }/rwjr/js/jsRender.js"></script>
-	 
+
 	<!------------------MUI 选项卡 js----------------------->
 	<script>
 		mui.init({

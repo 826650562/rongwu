@@ -28,6 +28,7 @@ public class sqdk {
 		return "/sqdk";
 	}
 
+	//条款
 	@RequestMapping(value = "/tk")
 	public String tytk() {
 		return "/tk";
