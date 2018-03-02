@@ -121,7 +121,6 @@
 							_sfrzsjh :sjh
 						},
 						success : function(code) {
-							alert(code);
 							var _xm = getCookie("_xm") || "请输入名字";
 							var _sfz = getCookie("_sfz") || "请输入身份证号";
 							if (code == "10703") {
@@ -211,11 +210,6 @@
 									setCookie("_xm", _xm);
 									setCookie("_sfz", _sfz);
 									window.location.href = '../rwjr/sjrz';
-									/* _msg("信息已提交！",function(){
-								    	window.location.href = '../rwjr/sjrz';
-									}); */
-								
-									
 								}
 							},
 							error : function(error) {

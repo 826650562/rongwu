@@ -1,7 +1,8 @@
 //身份认证 上传图片
 $(function() {
-	var sjh = "${auto_login_user}".split("_")[1];
-	alert(sjh);
+	var auto_login_user=$("body").attr("login_user");
+	alert(auto_login_user);
+	var sjh = auto_login_user.split("_")[1];
 	if(!sjh){
 	    window.location.href="login";
 	}

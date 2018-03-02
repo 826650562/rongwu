@@ -26,6 +26,7 @@ import com.clint.untils.Outer;
 
 import net.sf.json.JSONArray;
 import org.springframework.ui.Model;
+
 //抢单相关
 @Controller
 @RequestMapping(value = "/wyqd")
@@ -36,25 +37,25 @@ public class Qd {
 
 	@RequestMapping(value = "/index")
 	public String index(HttpServletRequest req, Model model) {
-		String wexinOpenId=(String) req.getSession().getAttribute(Global.WEIXINOPENID);
-		if(StringUtils.isNotEmpty(wexinOpenId)){
-			model.addAttribute("wexinOpenId", wexinOpenId);	
-		}else{
-			//model.addAttribute("wexinOpenId", "");
-			 model.addAttribute("wexinOpenId", "opT5v0iSEeH8QB5nzL7vDRtS3YeA");
+		String wexinOpenId = (String) req.getSession().getAttribute(Global.WEIXINOPENID);
+		if (StringUtils.isNotEmpty(wexinOpenId)) {
+			model.addAttribute("wexinOpenId", wexinOpenId);
+		} else {
+			model.addAttribute("wexinOpenId", "");
+			//model.addAttribute("wexinOpenId", "opT5v0iSEeH8QB5nzL7vDRtS3YeA");
 		}
 		return "qd_oauth";
 	}
 
 	@RequestMapping(value = "/wyqdjsp")
 	public String wyqdjsp(HttpServletRequest req, HttpServletResponse response, Model model) {
-		String wexinOpenId=(String) req.getSession().getAttribute(Global.WEIXINOPENID);
-		if(StringUtils.isNotEmpty(wexinOpenId)){
-			model.addAttribute("wexinOpenId", wexinOpenId);	
-		}else{
-			//model.addAttribute("wexinOpenId", "");
-			 model.addAttribute("wexinOpenId", "opT5v0iSEeH8QB5nzL7vDRtS3YeA");
-			
+		String wexinOpenId = (String) req.getSession().getAttribute(Global.WEIXINOPENID);
+		if (StringUtils.isNotEmpty(wexinOpenId)) {
+			model.addAttribute("wexinOpenId", wexinOpenId);
+		} else {
+			model.addAttribute("wexinOpenId", "");
+			//model.addAttribute("wexinOpenId", "opT5v0iSEeH8QB5nzL7vDRtS3YeA");
+
 		}
 		return "wyqd";
 	}
@@ -126,10 +127,17 @@ public class Qd {
 		return "grcp";
 	}
 
+/*	// 民间封控
+	@RequestMapping(value = "/mjfk_wd")
+	public String mjfk() {
+		return "mjfk";
+	}*/
+
 	// 分享微店
 	@RequestMapping(value = "/fxwd_wd")
-	public String fxwd_wd( Model model) {
-		model.addAttribute("userInfo",Global.USER_SESSION_KEY);
+	public String fxwd_wd(HttpServletRequest req, Model model) {
+		String wexinOpenId = (String) req.getSession().getAttribute(Global.USER_SESSION_KEY);
+		model.addAttribute("userInfo", wexinOpenId);
 		return "fxwd";
 	}
 
@@ -185,8 +193,8 @@ public class Qd {
 			req.getSession().setMaxInactiveInterval(-1);
 			req.getSession().setAttribute(Global.WEIXINOPENID, map.get("openid"));
 			model.addAttribute(Global.WEIXINOPENID, map.get("openid"));
-			System.out.println("redirect:"+jsp);
-			return "redirect:"+jsp;
+			System.out.println("redirect:" + jsp);
+			return "redirect:" + jsp;
 		} else {
 			return "login";
 		}
@@ -222,24 +230,26 @@ public class Qd {
 		List list = mapService.getListBySql(sql);
 		System.out.println(sql);
 		allres.add(list);
-		Map wx_user = (Map) list.get(0);
-		String sjh = (String) wx_user.get("sjh");
-		if (StringUtils.isNotBlank(sjh)) {
-			String gzsql = "select * from sjh_gzzpic where sjh='" + sjh + "'";
-			String grsql = "select * from sjh_sfzpic where sjh='" + sjh + "'";
-			String usersql = "select * from user where sjh='" + sjh + "'";
-			String wdsql = "select * from wd where sjh='" + sjh + "'";
-			List gzsqllist = mapService.getListBySql(gzsql);
-			List grsqllist = mapService.getListBySql(grsql);
-			List userlist = mapService.getListBySql(usersql);
-			List wdlist = mapService.getListBySql(wdsql);
-			allres.add(gzsqllist);
-			allres.add(grsqllist);
-			allres.add(userlist);
-			allres.add(wdlist);
+		if(list.size()>0){
+			Map wx_user = (Map) list.get(0);
+			String sjh = (String) wx_user.get("sjh");
+			if (StringUtils.isNotBlank(sjh)) {
+				String gzsql = "select * from sjh_gzzpic where sjh='" + sjh + "'";
+				String grsql = "select * from sjh_sfzpic where sjh='" + sjh + "'";
+				String usersql = "select * from user where sjh='" + sjh + "'";
+				String wdsql = "select * from wd where sjh='" + sjh + "'";
+				List gzsqllist = mapService.getListBySql(gzsql);
+				List grsqllist = mapService.getListBySql(grsql);
+				List userlist = mapService.getListBySql(usersql);
+				List wdlist = mapService.getListBySql(wdsql);
+				allres.add(gzsqllist);
+				allres.add(grsqllist);
+				allres.add(userlist);
+				allres.add(wdlist);
+			}
 		}
-		JSONArray jsonArray = JSONArray.fromObject(allres);
 		try {
+			JSONArray jsonArray = JSONArray.fromObject(allres);
 			response.getWriter().write(jsonArray.toString());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
