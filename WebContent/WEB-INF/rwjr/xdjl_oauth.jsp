@@ -17,11 +17,10 @@
 		//请求用户基本信息
 		var wexinOpenId="${openid}";
 		if (wexinOpenId.length<=0) {
-			var url = encodeURI("http://www.80wangjian.com/springmvc/wyqd/getuserInfo?jsp=/sfzyz/sfzrz");
+			var url = encodeURI("http://www.80wangjian.com/springmvc/wyqd/getuserInfo?jsp=/rwjr/sjrz");
 			window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc3691f09dbfd769d&redirect_uri=" + url + "&response_type=code&scope=snsapi_userinfo&state=index.html#wechat_redirect";
-		 
 		}else{
-		  window.location.href="scsfzz";
+		  window.location.href="../rwjr/sjrz";
 		}
 	</script>
 </body>

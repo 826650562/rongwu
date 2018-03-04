@@ -123,11 +123,11 @@ public class Rwjr {
 					session.setAttribute(Global.USER_SESSION_KEY, "rwjr_" + sjh + "_" + weixinOpenid);
 				}
 				// 屏蔽登陆
-				else {
+			  /*	else {
 					this.mapService
 							.execute("UPDATE weixin_info SET sjh='" + sjh + "' where openid = '" + weixinOpenid + "'");
 					session.setAttribute(Global.USER_SESSION_KEY, "rwjr_" + sjh + "_" + "opT5v0iSEeH8QB5nzL7vDRtS3YeA");
-				}
+				}*/
 			}
 
 			response.getWriter().write("10002");
