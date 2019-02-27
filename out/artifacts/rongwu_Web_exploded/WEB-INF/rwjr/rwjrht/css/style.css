@@ -1,0 +1,100 @@
+﻿*{padding:0px;margin:0px;}
+body {font-family: 'microsoft yahei', Arial, Helvetica, sans-serif;color: #313131;background-color: #f6f6f6; font-size:15px;padding:0px;margin:0px; position:relative;}
+a{color:#313131;}
+a:hover{color:#313131; text-decoration:none;}
+p{color:#313131;}
+
+
+.mar0{margin:0px  !important;}
+.marB15{margin:0px 0px  15px 0px !important;}
+.marB20{margin:0px 0px 20px 0px !important;}
+.marT15{margin-top:15px;}
+.marT20{margin-top:20px;}
+.marT30{margin-top:30px;}
+.marLR15{margin:0px 15px;}
+
+.colorBlue{color:#0873bd !important;}
+.colorGreen{color:#40e201 !important;}
+.colorGray{color:#999 !important;}
+.color666{color:#666 !important;}
+.colorWhite{color:#fff;}
+.colorRed{color:#fc4023 !important;}
+.colorZise{color:#7d24fb !important;}
+.colorBlue{color:#0275e1;}
+.pad0{padding:0px !important;}
+.pad10{padding:10px !important;}
+.pad15{padding:15px !important;}
+.padB15{padding:0px 0px 15px 0px !important;}
+.padT15{padding-top:15px !important;}
+.padT20{padding-top:20px !important;}
+.padR5{padding-right:5px !important;}
+.padL10{padding-left:10px !important;}
+.padLR8{padding:0px 8px !important;}
+.padLR15{padding:0px 15px !important;}
+.padLR20{padding:0px 20px !important;}
+.padLR25{padding:0px 25px !important;}
+.padLR30{padding:0px 30px !important;}
+.padTB5{padding:5px 0px !important;}
+.padTB10{padding:10px 0px !important;}
+.padTB15{padding:15px 0px !important;}
+.padTB20{padding:20px 0px !important;}
+.padTB25{padding:25px 0px !important;}
+.padTB30{padding:30px 0px !important;}
+
+.bgGray{ background:#f6f6f6;}
+.bgWhite{ background:#fff;}
+.bgBlue{ background:#0873bd;}
+.bgBlack{ background:#333;}
+.ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+
+.zInput{width:100%; height:45px;border:none; border-top-right-radius:4px; border-bottom-right-radius:4px;}
+.width100{width:100% !important;}
+.textCenter{ text-align:center;}
+/*--layui重定义--*/
+.layui-tab-title li {min-width: 50%; padding:0px; font-size:15px;    line-height: 45px;}
+.layui-tab {margin:0px;text-align: left!important;}
+.layui-btn { height: 45px; line-height: 45px;  font-size:15px;   border-radius: 4px; }
+.layui-tab-title {height: 45px;}
+.layui-tab-title .layui-this:after {height: 46px;}
+.layui-btn-primary { border: 1px solid #e2e2e2;border-radius:4px;}
+.layui-tab-content {padding: 0px;}
+.layui-tab-brief>.layui-tab-title .layui-this { color: #fc4023;}
+.layui-table, .layui-table-view {margin: 0px;}
+.layui-layout-admin .layui-body { top: 60px;bottom: 0px;}
+.layui-layout-admin .layui-footer{z-index:1000;}
+.layui-laypage {margin: 0px;}
+.layui-layout-admin .layui-footer {border-top:1px solid #e6e6e6; background-color: #fff;}
+.layui-layout-admin .layui-logo {color: #fff;}
+.layui-btn-xs {height: 22px !important;line-height: 22px !important;font-size: 12px !important;border-radius:2px;}
+.layui-layer-btn {
+    text-align: right;
+    padding: 0 5px 10px 0px !important;
+}
+/*---mui 重定义---*/
+/**---------login html css---------**/
+.loginbox{ position:relative; height:100%;}
+.logincentbox{width:400px; height:300px; border-radius:5px; background:#fff; position:absolute; top:50%; margin-top:-150px; left:50%; margin-left:-200px;}
+.logintitle{width:100%; height:60px; line-height:60px; text-align:center; color:#fc4023; font-size:20px; font-weight:bold; border-bottom:2px solid #fc4023;}
+.loginmain{padding:35px 50px;}
+
+
+.loginInputXtb{width:45px; height:45px; line-height:45px; text-align:center; }
+.loginInput{border:1px solid #e6e6e6; margin-bottom:10px; background:#fff; box-sizing:border-box; border-radius:4px;}
+.loginTxtInput{width:100%; height:45px;border:none; border-top-right-radius:4px; border-bottom-right-radius:4px;}
+.bottomblank{height:105px; width:100%; float:left;}
+
+
+
+
+/**---------xdjlsfshsq.html css---------**/
+.htnewbox{ position:relative;}
+.htnew{width:38px; height:25px; position:absolute; top:0px;right:0px;}
+.sfzcont img{width:100%; display:block; border-radius:5px;}
+.tdxxright{padding:0px !important; text-align:right;}
+.btngreen{background:#40e201; border:1px solid #40e201; color:#fff;}
+.btngreen:hover{border:1px solid #40e201;}
+.notgarea{width:100%;box-sizing:border-box; padding:10px 10px 0px 10px;}
+.notgarea textarea{width:100%; resize:none; border:1px solid #e2e2e2; height:120px; padding:10px; box-sizing:border-box;}
+.tkitem{line-height:26px; font-size:14px;}
+.tckcont{padding:5px 20px;}
+.sfzimg img{width:100%;}

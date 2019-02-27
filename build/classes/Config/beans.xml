@@ -49,9 +49,15 @@
 		<property name="user" value="${user}" />
 		<property name="password" value="${password}" />
 
-		<property name="initialPoolSize" value="${initialPoolSize}" />
-		<property name="maxPoolSize" value="50" />
-		<property name="minPoolSize" value="10" />
+		<property name="maxPoolSize" value="10"></property>
+		<property name="maxStatements" value="100"></property>
+		<property name="acquireIncrement" value="2"></property>
+
+		<property name="initialPoolSize" value="10" />
+		<property name="testConnectionOnCheckin" value="false" />
+		<property name="testConnectionOnCheckout" value="true" />
+		<property name="preferredTestQuery" value="SELECT 1" />
+		
 	</bean>
 	<bean id="sf"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">

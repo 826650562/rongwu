@@ -1,0 +1,5 @@
+登录：login.html
+信贷经理身份审核申请：xdjlsfshsq.html
+信贷经理审核详细页面：xdjlshDetail.html
+贷款申请客户列表：dksqkhList.html
+信贷经理管理：xdjlgl.html
